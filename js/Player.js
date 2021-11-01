@@ -1,8 +1,6 @@
 class Player {
 
   constructor(lives) {
-    this.x = 0;
-    this.y = 0;  
     this.xBg1 = 0;
     this.xBg2 = 0;
     this.lives = lives;
@@ -35,9 +33,6 @@ class Player {
       divFruits.style.transform = `translateX(${this.xBg1}px)`
     })
 
-    // Why on key up it goes fowards??? stop it!
-    
-
     //console.log("xBg1 after: ", this.xBg1)
     //console.log("xBg2 after: ", this.xBg2)
   }
@@ -50,7 +45,6 @@ class Player {
     setTimeout( () => {
       pig.classList.remove('jump')
     } , 1000);
-
 
   }
 

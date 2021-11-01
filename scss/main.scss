@@ -85,7 +85,6 @@ body {
         padding-bottom: 10px;
 
         h1 {
-            margin: 10px 0 0 20px;
             font-size: 40px;
             text-align: left;
         }
@@ -93,6 +92,10 @@ body {
         .lives {
             text-align: right;
         }
+    }
+
+    .btn {
+        margin-top: 20px;
     }
 
     .frame-game {
@@ -117,7 +120,25 @@ body {
         &.jump {
             // pig jumps!
             @include jump;
-            transition: transform 0.5s 0s cubic-bezier(0.075, 0.82, 0.165, 1);
+        }
+    }
+
+    .butcher {
+        width: 100px;
+        height: 100px;
+        background-color: chocolate;
+        border-radius: 10px;
+        position: absolute;
+        top: 30px;
+        left: 20%;  // starts after the title 
+        
+        .hand {
+
+        }
+
+        &.moving {
+            // butcher "follows" pig!
+            @include moving;
         }
     }
 
@@ -170,21 +191,6 @@ body {
                 }
             }
         }
-    }
-
-    .butcher {
-        width: 100px;
-        height: 100px;
-        background-color: chocolate;
-        border-radius: 10px;
-        
-        .hand {
-
-        }
-    }
-
-    .btn {
-        margin-top: 20px;
     }
 
     // Fruits

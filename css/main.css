@@ -95,10 +95,6 @@ body .btn {
   margin: 10px 0 50px 0;
   font-size: 40px;
 }
-#splash-screen h1 span {
-  font-size: 20px;
-  display: block;
-}
 #splash-screen .description {
   width: 400px;
   margin: 30px auto;
@@ -116,16 +112,14 @@ body .btn {
   padding-bottom: 10px;
 }
 #game-board .top h1 {
-  margin: 10px 0 0 20px;
   font-size: 40px;
   text-align: left;
 }
-#game-board .top h1 span {
-  font-size: 20px;
-  display: block;
-}
 #game-board .top .lives {
   text-align: right;
+}
+#game-board .btn {
+  margin-top: 20px;
 }
 #game-board .frame-game {
   border: solid 1px black;
@@ -147,33 +141,99 @@ body .btn {
 }
 #game-board #pig.jump {
   animation-name: jump;
-  -webkit-animation-name: jump;
-  animation-duration: 1s;
-  -webkit-animation-duration: 1s;
+  animation-duration: 2s;
   animation-iteration-count: 1;
+  animation-timing-function: cubic-bezier(0.28, 0.84, 0.42, 1);
+  -webkit-animation-name: jump;
+  -webkit-animation-duration: 2s;
   -webkit-animation-iteration-count: 1;
-  transition: transform 0.5s 0s cubic-bezier(0.075, 0.82, 0.165, 1);
+  -webkit-animation-timing-function: cubic-bezier(0.28, 0.84, 0.42, 1);
 }
 @keyframes jump {
   0% {
-    transform: translateY(0%);
+    transform: translateY(0);
   }
-  50% {
+  10% {
+    transform: translateY(0);
+  }
+  30% {
     transform: translateY(-200px);
   }
+  50% {
+    transform: translateY(0);
+  }
+  57% {
+    transform: translateY(-7px);
+  }
+  64% {
+    transform: translateY(0);
+  }
   100% {
-    transform: translateY(0%);
+    transform: translateY(0);
   }
 }
 @-webkit-keyframes jump {
   0% {
-    -webkit-transform: translateY(0%);
+    -webkit-transform: translateY(0);
   }
-  50% {
+  10% {
+    -webkit-transform: translateY(0);
+  }
+  30% {
     -webkit-transform: translateY(-200px);
   }
+  50% {
+    -webkit-transform: translateY(0);
+  }
+  57% {
+    -webkit-transform: translateY(-7px);
+  }
+  64% {
+    -webkit-transform: translateY(0);
+  }
   100% {
-    -webkit-transform: translateY(0%);
+    -webkit-transform: translateY(0);
+  }
+}
+#game-board .butcher {
+  width: 100px;
+  height: 100px;
+  background-color: chocolate;
+  border-radius: 10px;
+  position: absolute;
+  top: 30px;
+  left: 20%;
+}
+#game-board .butcher.moving {
+  animation-name: moving;
+  animation-duration: 14s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+  -webkit-animation-name: moving;
+  -webkit-animation-duration: 14s;
+  -webkit-animation-iteration-count: infinite;
+  -webkit-animation-timing-function: linear;
+}
+@keyframes moving {
+  0% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(50vw);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+@-webkit-keyframes moving {
+  0% {
+    -webkit-transform: translateX(0);
+  }
+  50% {
+    -webkit-transform: translateX(50vw);
+  }
+  100% {
+    -webkit-transform: translateX(0);
   }
 }
 #game-board .landscape .first-layer-bg,
@@ -215,15 +275,6 @@ body .btn {
   right: 100px;
   top: 0px;
   z-index: 9999;
-}
-#game-board .butcher {
-  width: 100px;
-  height: 100px;
-  background-color: chocolate;
-  border-radius: 10px;
-}
-#game-board .btn {
-  margin-top: 20px;
 }
 #game-board .fruits {
   position: absolute;

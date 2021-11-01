@@ -11,6 +11,9 @@ class Game {
     this.boardGame = document.getElementById("game-board");
     this.player = new Player(5);
 
+    // Enemy starts moving "following" Pig
+    this.startEnemyMovement();
+
     this.handleKeyDown = (event) => {
       if (event.defaultPrevented) return; 
 
@@ -29,9 +32,10 @@ class Game {
       // Multiple key detection! for the jump Forward!
       // https://stackoverflow.com/questions/5203407/how-to-detect-if-multiple-keys-are-pressed-at-once-using-javascript
       
+      // Move scenario as pig walks
       this.player.moveScenario();
-      event.preventDefault();
 
+      event.preventDefault();
     };
 
     document.body.addEventListener("keydown", this.handleKeyDown);
@@ -56,22 +60,14 @@ class Game {
     //this.startThrowingKnives();
   }
 
-  startEnemyMoving() {
-    const loop = () => {
+  startEnemyMovement() {
+    console.log('lets move enemy!!!')
+    butcher.classList.add("moving")
 
-      // butcher moves following pig 
-      
-      // get position pig, make Butcher follow with a bit of delay
-
-      // Stop butcher's move if Game is Over
-      if (!this.gameOver) {
-        window.requestAnimationFrame(loop);
-      } else {
-        showGameOver();
-      }
-    };
-
-    window.requestAnimationFrame(loop);
+    // Stop butcher's move if Game is Over
+    if (this.gameOver) {
+      butcher.classList.remove("moving")
+    } 
   }
 
   startThrowingKnives() {
@@ -99,10 +95,6 @@ class Game {
       });
 
       this.checkPain();
-
-      // Make the enemy start following Pig
-      // Code goes here
-      // ....
 
       // 4. Stop throwing knives and butcher moving if Game is Over
       if (!this.gameOver) {

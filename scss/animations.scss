@@ -1,28 +1,99 @@
 // Keyframes Animations 
 
+// Butcher moves (slowly, like following the pig)
+@mixin moving {
+  
+  animation-name: moving;
+  animation-duration: 14s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+
+  -webkit-animation-name: moving;
+  -webkit-animation-duration: 14s;
+  -webkit-animation-iteration-count: infinite;
+  -webkit-animation-timing-function: linear;
+
+  @keyframes moving {
+    0%   { transform: translateX(0); }
+    50%  { transform: translateX(50vw); }
+    100% { transform: translateX(0); }
+  }
+
+  @-webkit-keyframes moving {
+    0%   { -webkit-transform: translateX(0); }
+    50%  { -webkit-transform: translateX(50vw); }
+    100% { -webkit-transform: translateX(0); }
+  }
+}
+
 // Pig jumps
 @mixin jump {
+  
     animation-name: jump;
-    -webkit-animation-name: jump;
-  
-    animation-duration: 1s;
-    -webkit-animation-duration: 1s;
-  
+    animation-duration: 2s;
     animation-iteration-count: 1;
+    animation-timing-function: cubic-bezier(0.280, 0.840, 0.420, 1);
+
+    -webkit-animation-name: jump;
+    -webkit-animation-duration: 2s;
     -webkit-animation-iteration-count: 1;
+    -webkit-animation-timing-function: cubic-bezier(0.280, 0.840, 0.420, 1);
   
     @keyframes jump {
-      0% { transform: translateY(0%); }
-      50% { transform: translateY(-200px); }
-      100% { transform: translateY(0%); }
+      0%   { transform: translateY(0); }
+      10%  { transform: translateY(0); }
+      30%  { transform: translateY(-200px); }
+      50%  { transform: translateY(0); }
+      57%  { transform: translateY(-7px); }
+      64%  { transform: translateY(0); }
+      100% { transform: translateY(0); }
     }
   
     @-webkit-keyframes jump {
-      0% { -webkit-transform: translateY(0%); }
-      50% { -webkit-transform: translateY(-200px); }
-      100% { -webkit-transform: translateY(0%); }
+      0%   { -webkit-transform: translateY(0); }
+      10%  { -webkit-transform: translateY(0); }
+      30%  { -webkit-transform: translateY(-200px); }
+      50%  { -webkit-transform: translateY(0); }
+      57%  { -webkit-transform: translateY(-7px); }
+      64%  { -webkit-transform: translateY(0); }
+      100% { -webkit-transform: translateY(0); }
     }
 }
+
+// Pig jumps with distorsion
+@mixin jump-with-distorsion {
+  
+  animation-name: jump;
+  animation-duration: 2s;
+  animation-iteration-count: 1;
+  animation-timing-function: cubic-bezier(0.280, 0.840, 0.420, 1);
+
+  -webkit-animation-name: jump;
+  -webkit-animation-duration: 2s;
+  -webkit-animation-iteration-count: 1;
+  -webkit-animation-timing-function: cubic-bezier(0.280, 0.840, 0.420, 1);
+
+  @keyframes jump {
+    0%   { transform: scale(1,1)      translateY(0); }
+    10%  { transform: scale(1.1,.9)   translateY(0); }
+    30%  { transform: scale(.9,1.1)   translateY(-200px); }
+    50%  { transform: scale(1,.95)    translateY(0); }
+    57%  { transform: scale(1,1)      translateY(-7px); }
+    64%  { transform: scale(1,1)      translateY(0); }
+    100% { transform: scale(1,1)      translateY(0); }
+  }
+
+  @-webkit-keyframes jump {
+    0%   { -webkit-transform: scale(1,1)      translateY(0); }
+    10%  { -webkit-transform: scale(1.1,.9)   translateY(0); }
+    30%  { -webkit-transform: scale(.9,1.1)   translateY(-200px); }
+    50%  { -webkit-transform: scale(1,.95)    translateY(0); }
+    57%  { -webkit-transform: scale(1,1)      translateY(-7px); }
+    64%  { -webkit-transform: scale(1,1)      translateY(0); }
+    100% { -webkit-transform: scale(1,1)      translateY(0); }
+  }
+}
+
 
 
 // elements floating (example: clouds, fruits)
