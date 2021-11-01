@@ -27,7 +27,7 @@ Dodge the knives thrown from the sky, while collecting all the fruits in the fie
     - Space bar to jump
 
 
-## Requirements
+**Requirements**
 
 - Google Chrome
 - Desktop size in the browser
@@ -35,35 +35,37 @@ Dodge the knives thrown from the sky, while collecting all the fruits in the fie
 🐽 **Happy playing!!!** 🐽
 
 
-## How to download and play locally this game
+
+
+## Download, play, or edit locally this game
 
 - Fork this repo to your personal account
 - Clone it in your local workspace
 - run `npm install`
 - open `index.html` (for example with Live Server in Visual Studio Code)
 
-## How to edit the game
+**How to edit the game**
 
 - If you do styling changes, you must write SCSS code in the scss folder. 
 - run `sass --watch scss/main.scss css/main.css` to watch live the css changes you do.
 - If you use Live Server in VSC, you will see any JS and HTML changes live in your browser. 
 
-## How to edit the game
+**Push your changes**
 
-`git add .`
-`git commit -m "your commit"`
-`git push origin main`
+`git add .`  
+`git commit -m "your commit"`  
+`git push origin main`  
 
-Please commit only to your own forked repo.
+Please commit only to your own forked repo.  
 Pull Requests are welcome!
 
 <br>
 
-## Automated Tests
+**Automated Tests**
 
 - to run the tests locally:
-`npm install`
-`npm run test:watch`
+`npm install`  
+`npm run test:watch`  
 Open the resulting `tests-live.html` file with the "Live Server" VSCode extension to always see the most up-to-date test results.
 
 <br>
