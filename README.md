@@ -41,7 +41,7 @@ Dodge the knives thrown from the sky, while collecting all the fruits in the fie
 - Fork this repo to your personal account
 - Clone it in your local workspace
 - run `npm install`
-- open `index.html` (for example with Live Server in Visual Studio Code)
+- open `index.html` (for example with Live Server in VSCode)
 
 **How to edit the game**
 
