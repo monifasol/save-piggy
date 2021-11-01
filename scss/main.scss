@@ -132,13 +132,34 @@ body {
         top: 30px;
         left: 20%;  // starts after the title 
         
-        .hand {
-
+        .hand { 
+            width: 20px;
+            height: 20px;
+            background-color: black;
+            border-radius: 50%;
+            position: absolute;
+            top: 0px;
+            right: -10px;
         }
 
         &.moving {
             // butcher "follows" pig!
             @include moving;
+        }
+    }
+
+    .knife {
+        width: 70px;
+        height: auto;
+        position: absolute;
+        z-index: 3;
+
+        img {
+            width: 100%;
+        }
+
+        &.falling {
+            @include falling;
         }
     }
 

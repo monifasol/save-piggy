@@ -204,6 +204,15 @@ body .btn {
   top: 30px;
   left: 20%;
 }
+#game-board .butcher .hand {
+  width: 20px;
+  height: 20px;
+  background-color: black;
+  border-radius: 50%;
+  position: absolute;
+  top: 0px;
+  right: -10px;
+}
 #game-board .butcher.moving {
   animation-name: moving;
   animation-duration: 14s;
@@ -234,6 +243,41 @@ body .btn {
   }
   100% {
     -webkit-transform: translateX(0);
+  }
+}
+#game-board .knife {
+  width: 70px;
+  height: auto;
+  position: absolute;
+  z-index: 3;
+}
+#game-board .knife img {
+  width: 100%;
+}
+#game-board .knife.falling {
+  animation-name: falling;
+  animation-duration: 8s;
+  animation-iteration-count: inf1inite;
+  animation-timing-function: ease-out;
+  -webkit-animation-name: falling;
+  -webkit-animation-duration: 8s;
+  -webkit-animation-iteration-count: 1;
+  -webkit-animation-timing-function: ease-out;
+}
+@keyframes falling {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(100vh);
+  }
+}
+@-webkit-keyframes falling {
+  0% {
+    -webkit-transform: translateY(0);
+  }
+  100% {
+    -webkit-transform: translateY(100vh);
   }
 }
 #game-board .landscape .first-layer-bg,

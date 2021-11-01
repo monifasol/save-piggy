@@ -45,9 +45,7 @@ class Player {
     setTimeout( () => {
       pig.classList.remove('jump')
     } , 1000);
-
   }
-
 
   gotHurt(item) {
     // this works it it's a "rectangle", 

@@ -1,6 +1,7 @@
-// Keyframes Animations 
+// CSS ANIMATIONS with Keyframes 
 
 // Butcher moves (slowly, like following the pig)
+
 @mixin moving {
   
   animation-name: moving;
@@ -26,7 +27,33 @@
   }
 }
 
+// Knives are falling from butcher's hand
+
+@mixin falling {
+  
+  animation-name: falling;
+  animation-duration: 8s;
+  animation-iteration-count: inf1inite;
+  animation-timing-function: ease-out;
+
+  -webkit-animation-name: falling;
+  -webkit-animation-duration: 8s;
+  -webkit-animation-iteration-count: 1;
+  -webkit-animation-timing-function: ease-out;
+
+  @keyframes falling {
+    0%   { transform: translateY(0); }
+    100%  { transform: translateY(100vh); }
+  }
+
+  @-webkit-keyframes falling {
+    0%   { -webkit-transform: translateY(0); }
+    100%  { -webkit-transform: translateY(100vh); }
+  }
+}
+
 // Pig jumps
+
 @mixin jump {
   
     animation-name: jump;
@@ -61,6 +88,7 @@
 }
 
 // Pig jumps with distorsion
+
 @mixin jump-with-distorsion {
   
   animation-name: jump;
@@ -94,9 +122,7 @@
   }
 }
 
-
-
-// elements floating (example: clouds, fruits)
+// Elements floating (example: clouds, fruits)
 
 @mixin floating {
     animation-name: floating;
@@ -109,27 +135,15 @@
     -webkit-animation-iteration-count: infinite;
   
     @keyframes floating {
-      0% {
-        transform: translateY(0%);
-      }
-      50% {
-        transform: translateY(10%);
-      }
-      100% {
-        transform: translateY(0%);
-      }
+      0% { transform: translateY(0%); }
+      50% { transform: translateY(10%); }
+      100% { transform: translateY(0%); }
     }
   
     @-webkit-keyframes floating {
-      0% {
-        -webkit-transform: translateY(0%);
-      }
-      50% {
-        -webkit-transform: translateY(10%);
-      }
-      100% {
-        -webkit-transform: translateY(0%);
-      }
+      0% { -webkit-transform: translateY(0%); }
+      50% { -webkit-transform: translateY(10%); }
+      100% { -webkit-transform: translateY(0%); }
     }
   }
 

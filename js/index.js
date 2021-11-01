@@ -1,10 +1,9 @@
-
 let splashScreen = null,
-      gameBoard = null,
-      gameOverScreen = null,
-      butcher = document.querySelector('.butcher'),
-      butcherHand = document.querySelector('.hand'),
-      frameGame = document.querySelector('.frame-game');
+    gameBoard = null,
+    gameOverScreen = null,
+    butcher = document.querySelector('.butcher'),
+    butcherHand = document.querySelector('.hand'),
+    frameGame = document.querySelector('.frame-game');
 
 
 // Create cross browser requestAnimationFrame method:
@@ -52,6 +51,12 @@ const showGameScreen = () => {
 
   const game = new Game()
   game.start()
+
+  // every 2 seconds, I check if there are knives to be removed
+  setInterval( ()=> {
+    game.deleteLostKnives() 
+  }, 2000)
+
 };
 
 // Game Over Screen
@@ -72,7 +77,6 @@ const isVisible = (element) => {
     rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
     rect.right + 100 <= (window.innerWidth || document.documentElement.clientWidth)
   );
-
 }
 
 window.addEventListener("load", loadGameElements)

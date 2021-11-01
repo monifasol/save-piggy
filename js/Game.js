@@ -13,6 +13,7 @@ class Game {
 
     // Enemy starts moving "following" Pig
     this.startEnemyMovement();
+    this.startThrowingKnives();
 
     this.handleKeyDown = (event) => {
       if (event.defaultPrevented) return; 
@@ -71,44 +72,36 @@ class Game {
   }
 
   startThrowingKnives() {
-    const loop = () => {
+    let counterKnives = 1;
 
-      // We create the knives at a random speed
+    const loopKnives = () => {
       let boardTop = gameBoard.getBoundingClientRect().top;
-      console.log("boardTop", boardTop);
-
       let butcherHandPosition = butcherHand.getBoundingClientRect().right;
-      console.log("butcherHandPosition", butcherHandPosition);
+      //console.log("butcherHandPosition", butcherHandPosition);
+      
+      // We create the knives at a random speed
+      if (Math.random() * 2 > 1.99) {                     // slow probability of throwing a knive        
+        let y = boardTop;                                 // top of the board 
+        let x = `${parseInt(butcherHandPosition)}px`;     // where the butcher hand is
+        let newKnife =  new Knive(x, y, counterKnives);          
+        newKnife.throwKnife();
+        this.knives.push(newKnife);
+        counterKnives++;
 
-      if (Math.random() > 0.99) {         // slow % to throw a knive
-        let y = boardTop;                 // top of the board 
-        let x = butcherHandPosition;     //where the butcher hand is
-        this.knives.push(new Knive(x, y, 1));
+        // We check pain every time a new knive is created
+        this.checkPain();
       }
 
-      // 1. Update the player's 
-      //this.player.update();
-
-      // Throw knives
-      this.knives.forEach((k) => {
-        k.throwKnife();
-      });
-
-      this.checkPain();
-
-      // 4. Stop throwing knives and butcher moving if Game is Over
+      // Stop throwing knives and butcher moving if Game is Over
       if (!this.gameOver) {
-        window.requestAnimationFrame(loop);
+        window.requestAnimationFrame(loopKnives);
       } else {
         showGameOver();
       }
     };
 
-    // We keep calling requestAnimationFrame (with our loop) until the game is over
-    window.requestAnimationFrame(loop);
-  }
-
-  restart() {
+    // We keep calling requestAnimationFrame (with our loop of knives) until the game is over
+    window.requestAnimationFrame(loopKnives);
   }
 
   isGameOver(player) {
@@ -120,6 +113,24 @@ class Game {
       if (this.player.gotHurt(knive)) {
         console.log("ARRGHHH!!! I GOT HUT!");
         this.gameOver = true;
+      }
+    });
+  }
+
+  deleteLostKnives() {
+    // here I'll go through all knives and delete from the DOM and from the array of kinves 
+    // the ones that are not visible anymore. 
+
+    this.knives.forEach((knife) => {
+      let knifeDOMElement = document.getElementById(`knife${knife.id}`)
+
+      if (knifeDOMElement && !isVisible(knifeDOMElement)) {
+        
+        knifeDOMElement.remove();                              // remove from DOM
+        let positionKnife = this.knives.indexOf(knife)        // remove from this.knives
+        this.knives.splice(positionKnife, 1)
+        
+        console.log("I delete this knife", knife);
       }
     });
   }
