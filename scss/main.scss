@@ -268,22 +268,24 @@ body {
     }
 
     .dialog-lives {
-        visibility: hidden;
+        opacity: 0;
         border: solid 3px salmon;
         border-radius: 10px;
-        padding: 20px 40px;
-        width: 400px;
-        line-height: 50px;
-        font-size: 30px;
+        padding: 16px 20px;
+        width: 300px;
+        line-height: 40px;
+        font-size: 20px;
         background-color: rgba(salmon, $alpha: 0.5);
         position: absolute;
-        top: 40%;
-        left: 35%;
-        z-index: 99999;
-        transition: all 1s;
+        top: 10px;
+        left: 10px;
+        z-index: 3;
+        height: 130px;
+        transition: all 0.4s;
 
         &.visible {
-            visibility: visible;
+            opacity: 1;
+            height: 160px;
         }
     }
 

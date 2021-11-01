@@ -32,12 +32,12 @@
 @mixin falling {
   
   animation-name: falling;
-  animation-duration: 20s;
+  animation-duration: 8s;
   animation-iteration-count: inf1inite;
   animation-timing-function: ease-out;
 
   -webkit-animation-name: falling;
-  -webkit-animation-duration: 20s;
+  -webkit-animation-duration: 8s;
   -webkit-animation-iteration-count: 1;
   -webkit-animation-timing-function: ease-out;
 

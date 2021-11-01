@@ -263,11 +263,11 @@ body .btn {
 }
 #game-board .knife.falling {
   animation-name: falling;
-  animation-duration: 20s;
+  animation-duration: 8s;
   animation-iteration-count: inf1inite;
   animation-timing-function: ease-out;
   -webkit-animation-name: falling;
-  -webkit-animation-duration: 20s;
+  -webkit-animation-duration: 8s;
   -webkit-animation-iteration-count: 1;
   -webkit-animation-timing-function: ease-out;
 }
@@ -392,22 +392,24 @@ body .btn {
   width: 200px;
 }
 #game-board .dialog-lives {
-  visibility: hidden;
+  opacity: 0;
   border: solid 3px salmon;
   border-radius: 10px;
-  padding: 20px 40px;
-  width: 400px;
-  line-height: 50px;
-  font-size: 30px;
+  padding: 16px 20px;
+  width: 300px;
+  line-height: 40px;
+  font-size: 20px;
   background-color: rgba(250, 128, 114, 0.5);
   position: absolute;
-  top: 40%;
-  left: 35%;
-  z-index: 99999;
-  transition: all 1s;
+  top: 10px;
+  left: 10px;
+  z-index: 3;
+  height: 130px;
+  transition: all 0.4s;
 }
 #game-board .dialog-lives.visible {
-  visibility: visible;
+  opacity: 1;
+  height: 160px;
 }
 
 /*# sourceMappingURL=main.css.map */

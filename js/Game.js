@@ -16,7 +16,7 @@ class Game {
     this.startThrowingKnives();
 
     this.handleKeyDown = (event) => {
-      //if (event.defaultPrevented) return; 
+      if (event.defaultPrevented) return; 
 
       if (event.code === "Right" || event.code === "ArrowRight") {
         this.player.direction = 1  
@@ -28,13 +28,12 @@ class Game {
         return
       }
 
-      this.knives.forEach( (k) => k.moveKnive(this.player.direction))
-
       // Multiple key detection! for the jump Forward!
       // https://stackoverflow.com/questions/5203407/how-to-detect-if-multiple-keys-are-pressed-at-once-using-javascript
       
       // Move scenario as pig walks
-      this.player.moveScenario(this.knives);
+      this.player.moveScenario();
+      this.knives.forEach( (k) => k.moveKnive(this.player.direction))
       event.preventDefault();
     };
 
@@ -77,10 +76,10 @@ class Game {
       //console.log("butcherHandPosition", butcherHandPosition);
       
       // We create the knives at a random speed
-      if (Math.random() * 2 > 1.99) {                     // slow probability of throwing a knive        
+      if (Math.random() * 1 > 0.99) {                     // slow probability of throwing a knive        
         let y = parseInt(boardTop);                       // top of the board 
         let x = parseInt(butcherHandPosition);            // where the butcher hand is
-        let newKnife =  new Knive(x, y, counterKnives);          
+        let newKnife =  new Knife(x, y, counterKnives);          
         newKnife.throwKnife();
         this.knives.push(newKnife);
 
@@ -128,7 +127,7 @@ class Game {
       let pigDOM =  document.getElementById('pig')
       let dialogDOM = document.querySelector('.dialog-lives')
       
-      if ( this.areTouching(knifeDOM, pigDOM) ) {
+      if ( areTouching(knifeDOM, pigDOM) ) {
         dialogDOM.classList.add('visible')
         setTimeout(() => {
           dialogDOM.classList.remove('visible')
@@ -141,15 +140,6 @@ class Game {
       return true
     });
 
-  }
-
-  areTouching(el1, el2) {
-    let rect1 = el1.getBoundingClientRect();
-    let rect2 = el2.getBoundingClientRect();
-
-    let collisionX = Math.abs(rect1.x - rect2.x) < (rect1.x < rect2.x ? rect2.width : rect1.width);
-    let collisionY = Math.abs(rect1.y - rect2.y) < (rect1.y < rect2.y ? rect2.height : rect1.height);
-    return collisionX && collisionY;
   }
 
   deleteLostKnives() {

@@ -1,4 +1,4 @@
-class Knive {
+class Knife {
   constructor(x, y, id) {
     this.id = id;
     this.x = x;     // Initial X is where the butcher hand is

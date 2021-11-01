@@ -3,11 +3,12 @@ class Player {
   constructor(lives) {
     this.xBg1 = 0;
     this.xBg2 = 0;
+    this.xFruits = 0;
     this.lives = lives;
     this.direction = 0;
   }  
 
-  moveScenario(knives) {
+  moveScenario() {
     // The player doesn NOT move; it's the background that moves.
 
     let firstLayerBg = document.querySelector('.first-layer-bg'),
@@ -16,20 +17,21 @@ class Player {
 
     if (this.direction === 1 && !this.didReachTheEnd()) {
       // goes RIGHT and scenario moves if RIGHT limit is not reached
-      this.xBg1 -= 40
-      this.xBg2 -= 20
-
+      this.xFruits -= 40
+      this.xBg1 -= 25
+      this.xBg2 -= 10
     } else if (this.direction === -1 && this.xBg2 < 0) {
       // goes left and scenario moves if LEFT limit is not reached
-      this.xBg1 += 40
-      this.xBg2 += 20
+      this.xFruits += 40
+      this.xBg1 += 25
+      this.xBg2 += 10
     }
 
     firstLayerBg.style.transform = `translateX(${this.xBg1}px)`
     secondLayerBg.style.transform = `translateX(${this.xBg2}px)`
-    
+
     fruits.forEach( (divFruits) => { 
-      divFruits.style.transform = `translateX(${this.xBg1}px)`
+      divFruits.style.transform = `translateX(${this.xFruits}px)`
     })
   }
 

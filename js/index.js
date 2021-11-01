@@ -42,9 +42,6 @@ const loadGameElements = () => {
 // Game Screen
 const showGameScreen = () => {
 
-  console.log("I clicked")
-  console.log(gameBoard)
-
   gameBoard.className = 'show'
   splashScreen.className = 'hide'
   gameOverScreen.className = 'hide'
@@ -78,5 +75,40 @@ const isVisible = (element) => {
     rect.right + 100 <= (window.innerWidth || document.documentElement.clientWidth)
   );
 }
+
+const areTouching = (el1, el2) => {
+
+  console.log(el1)
+  console.log(el2)
+
+  let rect1 = el1.getBoundingClientRect();
+  let rect2 = el2.getBoundingClientRect();
+
+  //console.log(rect1)
+  //console.log(rect2)
+
+  let verticalMatch = false; 
+  if ((rect2.top > rect1.top && rect2.top < rect1.bottom)||(rect2.bottom > rect1.top && rect2.bottom < rect1.bottom)) {
+    verticalMatch = true
+  } 
+
+  let horizontalMatch = false;
+  if ((rect2.right > rect1.left && rect2.right < rect1.right)||(rect2.left < rect1.right && rect2.left > rect1.left)) {
+    horizontalMatch = true
+  } 
+
+  return (horizontalMatch || verticalMatch) ? true : false 
+
+}
+
+//areTouching(el1, el2) {
+//  let rect1 = el1.getBoundingClientRect();
+//  let rect2 = el2.getBoundingClientRect();
+
+//  let collisionX = Math.abs(rect1.x - rect2.x) < (rect1.x < rect2.x ? rect2.width : rect1.width);
+//  let collisionY = Math.abs(rect1.y - rect2.y) < (rect1.y < rect2.y ? rect2.height : rect1.height);
+//  return collisionX && collisionY;
+//}
+
 
 window.addEventListener("load", loadGameElements)
