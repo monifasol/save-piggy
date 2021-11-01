@@ -1,7 +1,5 @@
 # Project | Save piggy 🐽
 
-<br>
-
 ## Introduction
 
 Develop a basic game for the browser (only for desktop) to train DOM manipulation, Vanila Javascript classes and objects, HTML and CSS animations, etc. 
@@ -35,6 +33,7 @@ Dodge the knives thrown from the sky, while collecting all the fruits in the fie
 🐽 **Happy playing!!!** 🐽
 
 
+<br>
 
 
 ## Download, play, or edit locally this game
@@ -63,8 +62,8 @@ Pull Requests are welcome!
 
 **Automated Tests**
 
-- to run the tests locally:
-`npm install`  
+- Run the tests locally:  
+`npm install`   
 `npm run test:watch`  
 Open the resulting `tests-live.html` file with the "Live Server" VSCode extension to always see the most up-to-date test results.
 
