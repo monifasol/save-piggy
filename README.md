@@ -1,4 +1,4 @@
-# Project | Run Out - save the pig!
+# Project | Save piggy 🐽
 
 <br>
 
@@ -22,9 +22,9 @@ Dodge the knives thrown from the sky, while collecting all the fruits in the fie
 **The game controls:**
 
 - We control the player with the controls:
-- - Right arrow to move forward
-- - Left arriw to move backwards
-- - Space bar to jump
+    - Right arrow to move forward
+    - Left arriw to move backwards
+    - Space bar to jump
 
 
 ## Requirements
@@ -32,31 +32,30 @@ Dodge the knives thrown from the sky, while collecting all the fruits in the fie
 - Google Chrome
 - Desktop size in the browser
 
-**Happy playing!!!** 💙
-
+🐽 **Happy playing!!!** 🐽
 
 
 ## How to download and play locally this game
 
 - Fork this repo to your personal account
 - Clone it in your local workspace
-- run npm install
-- open index.html (for example with Live Server in Visual Studio Code)
+- run `npm install`
+- open `index.html` (for example with Live Server in Visual Studio Code)
 
 ## How to edit the game
 
 - If you do styling changes, you must write SCSS code in the scss folder. 
-- run sass --watch scss/main.scss css/main.css to watch live the css changes you do.
+- run `sass --watch scss/main.scss css/main.css` to watch live the css changes you do.
 - If you use Live Server in VSC, you will see any JS and HTML changes live in your browser. 
 
 ## How to edit the game
 
-- git add .
-- git commit -m "your commit"
-- git push origin main
+`git add .`
+`git commit -m "your commit"`
+`git push origin main`
 
-- Please commit only to your own repository.
-- In case you want to propose an improvement, Pull Requests are welcome!
+Please commit only to your own forked repo.
+Pull Requests are welcome!
 
 <br>
 
