@@ -1,0 +1,293 @@
+/* ============================================================
+  RESET Stylesheet
+============================================================ */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+
+body {
+  line-height: 1;
+}
+
+ol, ul {
+  list-style: none;
+}
+
+*,
+*:before,
+*:after {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.clearfix:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+body {
+  font-family: "Philosopher", sans-serif;
+  font-size: 20px;
+}
+body h1 {
+  font-size: 50px;
+}
+body .btn {
+  background-color: salmon;
+  padding: 12px 40px;
+  display: inline-block;
+  cursor: pointer;
+  color: white;
+  border-radius: 10px;
+}
+
+#splash-screen.show,
+#game-over.show,
+#game-board.show {
+  display: block;
+}
+#splash-screen.hide,
+#game-over.hide,
+#game-board.hide {
+  display: none;
+}
+
+#game-over,
+#game-board {
+  display: none;
+}
+
+.screen {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  height: 100vh;
+  width: 100vw;
+}
+/* ================ Splash Screen ================ */
+#splash-screen h1 {
+  margin: 10px 0 50px 0;
+  font-size: 40px;
+}
+#splash-screen h1 span {
+  font-size: 20px;
+  display: block;
+}
+#splash-screen .description {
+  width: 400px;
+  margin: 30px auto;
+  font-size: 16px;
+  line-height: 1.6em;
+}
+
+/* ================ Game over Screen ================ */
+/* ================ Game board ================ */
+#game-board .top {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding-bottom: 10px;
+}
+#game-board .top h1 {
+  margin: 10px 0 0 20px;
+  font-size: 40px;
+  text-align: left;
+}
+#game-board .top h1 span {
+  font-size: 20px;
+  display: block;
+}
+#game-board .top .lives {
+  text-align: right;
+}
+#game-board .frame-game {
+  border: solid 1px black;
+  width: 90vw;
+  height: 78vh;
+  position: relative;
+  background-color: #B7EEFF;
+  overflow: hidden;
+}
+#game-board #pig {
+  width: 100px;
+  height: 100px;
+  background-color: salmon;
+  position: absolute;
+  bottom: 0;
+  left: 40%;
+  transition: transform 0.3s;
+  z-index: 3;
+}
+#game-board #pig.jump {
+  animation-name: jump;
+  -webkit-animation-name: jump;
+  animation-duration: 1s;
+  -webkit-animation-duration: 1s;
+  animation-iteration-count: 1;
+  -webkit-animation-iteration-count: 1;
+  transition: transform 0.5s 0s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+@keyframes jump {
+  0% {
+    transform: translateY(0%);
+  }
+  50% {
+    transform: translateY(-200px);
+  }
+  100% {
+    transform: translateY(0%);
+  }
+}
+@-webkit-keyframes jump {
+  0% {
+    -webkit-transform: translateY(0%);
+  }
+  50% {
+    -webkit-transform: translateY(-200px);
+  }
+  100% {
+    -webkit-transform: translateY(0%);
+  }
+}
+#game-board .landscape .first-layer-bg,
+#game-board .landscape .second-layer-bg {
+  transition: transform 0.3s;
+}
+#game-board .landscape .first-layer-bg {
+  background-image: url("/img/first-layer-bg-white.png");
+  background-repeat: repeat-x;
+  background-size: contain;
+  background-position: bottom;
+  height: 35vh;
+  width: 4000px;
+  position: absolute;
+  bottom: 0;
+  z-index: 1;
+}
+#game-board .landscape .second-layer-bg-wrapper {
+  width: 2000px;
+  position: absolute;
+  top: 150px;
+  display: flex;
+}
+#game-board .landscape .second-layer-bg-wrapper .second-layer-bg {
+  background-image: url("/img/second-layer-bg-white.png");
+  background-repeat: repeat-x;
+  background-size: contain;
+  background-position: bottom;
+  height: 50vh;
+  width: 100%;
+  position: relative;
+}
+#game-board .landscape .second-layer-bg-wrapper .second-layer-bg .the-end {
+  background-color: brown;
+  border: solid 1px black;
+  width: 30px;
+  height: 100%;
+  position: absolute;
+  right: 100px;
+  top: 0px;
+  z-index: 9999;
+}
+#game-board .butcher {
+  width: 100px;
+  height: 100px;
+  background-color: chocolate;
+  border-radius: 10px;
+}
+#game-board .btn {
+  margin-top: 20px;
+}
+#game-board .fruits {
+  position: absolute;
+  display: flex;
+  justify-content: space-between;
+  z-index: 1;
+  height: 35px;
+  transition: transform 0.3s;
+}
+#game-board .fruits span {
+  animation-name: floating;
+  -webkit-animation-name: floating;
+  animation-duration: 2s;
+  -webkit-animation-duration: 2s;
+  animation-iteration-count: infinite;
+  -webkit-animation-iteration-count: infinite;
+  margin-right: 20px;
+}
+@keyframes floating {
+  0% {
+    transform: translateY(0%);
+  }
+  50% {
+    transform: translateY(10%);
+  }
+  100% {
+    transform: translateY(0%);
+  }
+}
+@-webkit-keyframes floating {
+  0% {
+    -webkit-transform: translateY(0%);
+  }
+  50% {
+    -webkit-transform: translateY(10%);
+  }
+  100% {
+    -webkit-transform: translateY(0%);
+  }
+}
+#game-board .fruits span img {
+  height: 100%;
+  -webkit-filter: drop-shadow(3px 8px 10px #fff);
+  filter: drop-shadow(3px 8px 10px #fff);
+}
+#game-board .peaches {
+  left: 900px;
+  bottom: 250px;
+  width: 200px;
+}
+#game-board .strawberries {
+  left: 1400px;
+  bottom: 250px;
+  width: 250px;
+}
+#game-board .avocados {
+  left: 2000px;
+  bottom: 400px;
+  width: 200px;
+}
+#game-board .carrots {
+  left: 2600px;
+  bottom: 250px;
+  width: 200px;
+}
+
+/*# sourceMappingURL=main.css.map */

@@ -1,0 +1,241 @@
+@import 'reset';
+@import 'animations';
+
+body {
+    font-family: 'Philosopher', sans-serif;
+    font-size: 20px;
+
+    h1 {
+        font-size: 50px;
+    }
+    
+    .btn {
+        background-color: salmon;
+        padding: 12px 40px;
+        display: inline-block;
+        cursor: pointer;
+        color: white;
+        border-radius: 10px;
+    }
+
+}
+
+#splash-screen,
+#game-over,
+#game-board {
+    &.show {
+        display: block;
+    }
+    &.hide {
+        display: none;
+    }
+}
+
+#game-over,
+#game-board {
+    display: none;          // initial state
+}
+
+
+.screen {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: 100vh;
+    width: 100vw;
+
+    &-elements {
+    }
+}
+
+/* ================ Splash Screen ================ */
+#splash-screen { 
+
+    h1 {
+        margin: 10px 0 50px 0;
+        font-size: 40px;
+    }
+
+    .description {
+        width: 400px;
+        margin: 30px auto;
+        font-size: 16px;
+        line-height: 1.6em;
+    }
+}
+
+/* ================ Game over Screen ================ */
+
+#game-over {
+
+
+}
+
+
+/* ================ Game board ================ */
+
+#game-board {
+
+    .top {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: flex-end;
+        padding-bottom: 10px;
+
+        h1 {
+            margin: 10px 0 0 20px;
+            font-size: 40px;
+            text-align: left;
+        }
+    
+        .lives {
+            text-align: right;
+        }
+    }
+
+    .frame-game {
+        border: solid 1px black;
+        width: 90vw;
+        height: 78vh;
+        position: relative;
+        background-color: #B7EEFF;
+        overflow: hidden;
+    }
+
+    #pig {
+        width: 100px;
+        height: 100px;
+        background-color: salmon;
+        position: absolute;
+        bottom: 0;
+        left: 40%;
+        transition: transform 0.3s;
+        z-index: 3;
+
+        &.jump {
+            // pig jumps!
+            @include jump;
+            transition: transform 0.5s 0s cubic-bezier(0.075, 0.82, 0.165, 1);
+        }
+    }
+
+    .landscape {
+
+        // first layer contains the fruits, and challenges. 
+        // second layer contains the bg that moves slower.
+
+        .first-layer-bg, 
+        .second-layer-bg {
+            transition: transform 0.3s;
+        }
+
+        .first-layer-bg {
+            background-image: url('/img/first-layer-bg-white.png');
+            background-repeat: repeat-x;
+            background-size: contain;
+            background-position: bottom;
+            height: 35vh;
+            width: 4000px;
+            position: absolute;
+            bottom: 0;
+            z-index: 1;
+        }
+
+        .second-layer-bg-wrapper {
+            width: 2000px;     // doble size, because it will move half speed
+            position: absolute;
+            top: 150px;
+            display: flex;
+
+            .second-layer-bg {
+                background-image: url('/img/second-layer-bg-white.png');
+                background-repeat: repeat-x;
+                background-size: contain;
+                background-position: bottom;
+                height: 50vh;
+                width: 100%;
+                position: relative;
+
+                .the-end {
+                    background-color: brown;
+                    border: solid 1px black;
+                    width: 30px;
+                    height: 100%;
+                    position: absolute;
+                    right: 100px;   //to give a bit of margin for the delay
+                    top: 0px;
+                    z-index: 9999;
+                }
+            }
+        }
+    }
+
+    .butcher {
+        width: 100px;
+        height: 100px;
+        background-color: chocolate;
+        border-radius: 10px;
+        
+        .hand {
+
+        }
+    }
+
+    .btn {
+        margin-top: 20px;
+    }
+
+    // Fruits
+    .fruits {
+        position: absolute;
+        display: flex;
+        justify-content: space-between;
+        z-index: 1;
+        height: 35px;
+        transition: transform 0.3s;
+
+        span {
+            @include floating;
+            margin-right: 20px;
+            
+            img {
+                height: 100%;
+                -webkit-filter: drop-shadow(3px 8px 10px #fff);
+                filter: drop-shadow(3px 8px 10px #fff);
+            }
+        }
+    }
+
+    .peaches {
+        left: 900px;
+        bottom: 250px;
+
+        width: 200px;
+    }
+
+    .strawberries {
+        left: 1400px;
+        bottom: 250px;
+
+        width: 250px;
+    } 
+
+    .avocados {
+        left: 2000px;
+        bottom: 400px;
+
+        width: 200px;
+    }
+
+    .carrots {
+        left: 2600px;
+        bottom: 250px;
+
+        width: 200px;
+    }
+
+}
+
+

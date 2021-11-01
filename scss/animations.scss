@@ -1,0 +1,64 @@
+// Keyframes Animations 
+
+// Pig jumps
+@mixin jump {
+    animation-name: jump;
+    -webkit-animation-name: jump;
+  
+    animation-duration: 1s;
+    -webkit-animation-duration: 1s;
+  
+    animation-iteration-count: 1;
+    -webkit-animation-iteration-count: 1;
+  
+    @keyframes jump {
+      0% { transform: translateY(0%); }
+      50% { transform: translateY(-200px); }
+      100% { transform: translateY(0%); }
+    }
+  
+    @-webkit-keyframes jump {
+      0% { -webkit-transform: translateY(0%); }
+      50% { -webkit-transform: translateY(-200px); }
+      100% { -webkit-transform: translateY(0%); }
+    }
+}
+
+
+// elements floating (example: clouds, fruits)
+
+@mixin floating {
+    animation-name: floating;
+    -webkit-animation-name: floating;
+  
+    animation-duration: 2s;
+    -webkit-animation-duration: 2s;
+  
+    animation-iteration-count: infinite;
+    -webkit-animation-iteration-count: infinite;
+  
+    @keyframes floating {
+      0% {
+        transform: translateY(0%);
+      }
+      50% {
+        transform: translateY(10%);
+      }
+      100% {
+        transform: translateY(0%);
+      }
+    }
+  
+    @-webkit-keyframes floating {
+      0% {
+        -webkit-transform: translateY(0%);
+      }
+      50% {
+        -webkit-transform: translateY(10%);
+      }
+      100% {
+        -webkit-transform: translateY(0%);
+      }
+    }
+  }
+

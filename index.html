@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+
+    <title>Save Piggy - Online Game</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Philosopher:wght@400;800&family=Raleway:wght@300;800&display=swap" rel="stylesheet"> 
+
+    <!-- Styles -->
+    <link rel="stylesheet" type="text/css" href="css/main.css" />
+
+    <!-- Javascript -->
+    <script defer src="js/Player.js"></script>
+    <script defer src="js/Knife.js"></script>
+    <script defer src="js/Game.js"></script>
+    <script defer src="js/index.js"></script>
+
+  </head>
+
+  <body>
+
+    <section id="game-over">
+      <div class="screen">
+        <div class="screen-elements">
+
+          <h1> Oh no, your game is over!</h1>
+          <div class="btn" id="restart-game">Start over!</div>
+        </div>
+
+      </div>
+    </section>
+
+    <section id="splash-screen">
+
+      <div class="screen">
+        <div class="screen-elements">
+          <h1>Save Piggy</h1>
+          <p class="description"> 
+            Collect all the fruits, dodge all knives, scape from the butcher,... 
+            in 1 minute time.
+          </p>
+          <div class="btn" id="start-game">Let's play</div>
+        </div>
+      </div>
+
+    </section>
+
+    <main id="game-board">
+      <div class="screen">
+        <div class="screen-elements">
+
+          <div class="top">
+            <h1>Save Piggy</h1>
+
+            <div class="lives">
+              <div class="time-left">Time left: <span id="time-left">01:00</span></div>
+              <div class="lives-left">Lives left: <span id="lives-left">3 </span>/ 6</div>
+            </div>
+          </div>
+
+          <div class="butcher">
+            <div class="hand"></div>
+          </div>
+
+          <section class="frame-game">
+
+            <div class="landscape">
+              <div class="second-layer-bg-wrapper">
+                <div class="second-layer-bg">
+                  <div class="the-end"></div>
+                </div>
+              </div>
+              <div class="first-layer-bg"></div>
+            </div>
+
+            <div id="pig"></div>
+
+            <div class="fruits peaches bounce">
+              <span id="fruit1"><img src="/img/peach.png" alt="peach"/></span>
+              <span id="fruit2"><img src="/img/peach.png" alt="peach"/></span>
+              <span id="fruit3"><img src="/img/peach.png" alt="peach"/></span>
+            </div>
+
+            <div class="fruits strawberries bounce">
+              <span id="fruit4"><img src="/img/strawberry.png" alt="strawberry"/></span>
+              <span id="fruit5"><img src="/img/strawberry.png" alt="strawberry"/></span>
+              <span id="fruit6"><img src="/img/strawberry.png" alt="strawberry"/></span>
+              <span id="fruit7"><img src="/img/strawberry.png" alt="strawberry"/></span>
+            </div>
+
+            <div class="fruits avocados">
+              <span id="fruit8"><img src="/img/avocado.png" alt="avocado"/></span>
+              <span id="fruit9"><img src="/img/avocado.png" alt="avocado"/></span>
+              <span id="fruit10"><img src="/img/avocado.png" alt="avocado"/></span>
+            </div>
+
+            <div class="fruits carrots">
+              <span id="fruit11"><img src="/img/carrot.png" alt="carrot"/></span>
+              <span id="fruit12"><img src="/img/carrot.png" alt="carrot"/></span>
+              <span id="fruit13"><img src="/img/carrot.png" alt="carrot"/></span>
+            </div>
+
+          </section>
+
+          <div class="btn" id="stop-game">Exit</div>
+
+        </div>
+      </div>
+    
+    </main>
+
+  </body>
+</html>
