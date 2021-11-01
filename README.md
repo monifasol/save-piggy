@@ -1,10 +1,10 @@
 # Project | Save piggy 🐽
 
-## Introduction
+**Introduction**
 
 Develop a basic game for the browser (only for desktop) to train DOM manipulation, Vanila Javascript classes and objects, HTML and CSS animations, etc. 
 
-<br>
+## The Game
 
 The game consists in saving the pig from the butcher. 
 Dodge the knives thrown from the sky, while collecting all the fruits in the field. 
