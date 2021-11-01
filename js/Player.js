@@ -7,19 +7,18 @@ class Player {
     this.direction = 0;
   }  
 
-  moveScenario() {
-    // the truth is, the player doesn NOT move. 
-    // what it moves, it's the background
+  moveScenario(knives) {
+    // The player doesn NOT move; it's the background that moves.
 
-    const firstLayerBg = document.querySelector('.first-layer-bg')
-    const secondLayerBg = document.querySelector('.second-layer-bg')
-    const theEnd = document.querySelector('.the-end')
-    const fruits = document.querySelectorAll('.fruits')
+    let firstLayerBg = document.querySelector('.first-layer-bg'),
+        secondLayerBg = document.querySelector('.second-layer-bg'),
+        fruits = document.querySelectorAll('.fruits');
 
-    if (this.direction === 1 && !isVisible(theEnd)) {
+    if (this.direction === 1 && !this.didReachTheEnd()) {
       // goes RIGHT and scenario moves if RIGHT limit is not reached
       this.xBg1 -= 40
       this.xBg2 -= 20
+
     } else if (this.direction === -1 && this.xBg2 < 0) {
       // goes left and scenario moves if LEFT limit is not reached
       this.xBg1 += 40
@@ -29,12 +28,14 @@ class Player {
     firstLayerBg.style.transform = `translateX(${this.xBg1}px)`
     secondLayerBg.style.transform = `translateX(${this.xBg2}px)`
     
-    fruits.forEach( (divFruits) => {
+    fruits.forEach( (divFruits) => { 
       divFruits.style.transform = `translateX(${this.xBg1}px)`
     })
+  }
 
-    //console.log("xBg1 after: ", this.xBg1)
-    //console.log("xBg2 after: ", this.xBg2)
+  didReachTheEnd() {
+    let theEnd = document.querySelector('.the-end');
+    return isVisible(theEnd) ? true : false
   }
 
   jump() {
@@ -45,23 +46,6 @@ class Player {
     setTimeout( () => {
       pig.classList.remove('jump')
     } , 1000);
-  }
-
-  gotHurt(item) {
-    // this works it it's a "rectangle", 
-    // if it's another shape, it's not perfectly calculated.   
-    if (
-      this.x + this.size >= item.x &&
-      this.y + this.size > item.y &&
-      this.y < item.y + item.size &&
-      this.x <= item.x + item.size &&
-      this.y + this.size > item.y &&
-      this.y < item.y + item.size
-    ) {
-      return true;
-    } else {
-      return false;
-    }
   }
 
   isDead() {

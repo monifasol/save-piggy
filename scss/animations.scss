@@ -32,23 +32,23 @@
 @mixin falling {
   
   animation-name: falling;
-  animation-duration: 8s;
+  animation-duration: 20s;
   animation-iteration-count: inf1inite;
   animation-timing-function: ease-out;
 
   -webkit-animation-name: falling;
-  -webkit-animation-duration: 8s;
+  -webkit-animation-duration: 20s;
   -webkit-animation-iteration-count: 1;
   -webkit-animation-timing-function: ease-out;
 
   @keyframes falling {
-    0%   { transform: translateY(0); }
-    100%  { transform: translateY(100vh); }
+    0%   { top: 0px; }
+    100%  { top: 100vh; }
   }
 
   @-webkit-keyframes falling {
-    0%   { -webkit-transform: translateY(0); }
-    100%  { -webkit-transform: translateY(100vh); }
+    0%   { top: 0px; }
+    100%  { top: 100vh; }
   }
 }
 

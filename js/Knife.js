@@ -1,10 +1,11 @@
 class Knive {
   constructor(x, y, id) {
     this.id = id;
-    this.x = x;     // X is where the butcher hand is
-    this.y = y;     // Y is always the same: top of the board
+    this.x = x;     // Initial X is where the butcher hand is
+    this.y = y;     // Initial Y is the top of the board
+    this.direction = 0;
   }
- 
+
   throwKnife() {
     console.log('Im in throw knife')
 
@@ -21,11 +22,38 @@ class Knive {
 
     // give properties
     knifeElement.style.position = 'absolute';
-    knifeElement.style.top = this.y;
-    knifeElement.style.left = this.x;
+    knifeElement.style.top = `${this.y}px`;
+    knifeElement.style.left = `${this.x}px`;
 
     // move knife!
     knifeElement.classList.add('falling')
+  }
+
+  moveKnive(direction) {
+
+    // X didn't change (it was created where Hand's Butcher is) - only changed Y, by falling.
+
+    let knifeDOMElement = document.getElementById(`knife${this.id}`)
+    let newValue = 0;
+    let prevTranslate = knifeDOMElement.style.transform
+
+    if (prevTranslate == "") {
+
+      // first fime we apply a transform: translate
+      if (direction === 1) newValue = -40
+      else if (direction === -1) newValue = 40
+
+    } else {
+
+      let positionPx = prevTranslate.indexOf('px')
+      let prevValue = prevTranslate.slice(11, positionPx)     // position 11 because starts by "translateX("
+
+      if (direction === 1) newValue = parseInt(prevValue) - 40
+      else if (direction === -1) newValue = parseInt(prevValue) + 40
+
+    }
+  
+    knifeDOMElement.style.transform = `translateX(${newValue}px)`
   }
 }
 
