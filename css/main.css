@@ -122,7 +122,18 @@ body .btn {
   text-align: left;
 }
 #game-board .top .lives {
-  text-align: right;
+  text-align: left;
+}
+#game-board .top .lives-left {
+  display: flex;
+}
+#game-board .top .lives-left span.live {
+  border: solid 1px salmon;
+  background-color: pink;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  margin: 10px 5px 0 0;
 }
 #game-board .btn {
   margin-top: 20px;
@@ -201,6 +212,9 @@ body .btn {
     -webkit-transform: translateY(0);
   }
 }
+#game-board #pig.touched {
+  border: solid 2px blue;
+}
 #game-board .butcher {
   width: 100px;
   height: 100px;
@@ -234,7 +248,7 @@ body .btn {
     transform: translateX(0);
   }
   50% {
-    transform: translateX(50vw);
+    transform: translateX(45vw);
   }
   100% {
     transform: translateX(0);
@@ -245,7 +259,7 @@ body .btn {
     -webkit-transform: translateX(0);
   }
   50% {
-    -webkit-transform: translateX(50vw);
+    -webkit-transform: translateX(45vw);
   }
   100% {
     -webkit-transform: translateX(0);
@@ -286,6 +300,9 @@ body .btn {
   100% {
     top: 100vh;
   }
+}
+#game-board .knife.touched {
+  border: solid 2px blue;
 }
 #game-board .landscape .first-layer-bg,
 #game-board .landscape .second-layer-bg {
@@ -349,7 +366,7 @@ body .btn {
     transform: translateY(0%);
   }
   50% {
-    transform: translateY(10%);
+    transform: translateY(15%);
   }
   100% {
     transform: translateY(0%);
@@ -360,7 +377,7 @@ body .btn {
     -webkit-transform: translateY(0%);
   }
   50% {
-    -webkit-transform: translateY(10%);
+    -webkit-transform: translateY(15%);
   }
   100% {
     -webkit-transform: translateY(0%);

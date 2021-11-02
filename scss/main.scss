@@ -93,7 +93,20 @@ body {
         }
     
         .lives {
-            text-align: right;
+            text-align: left;
+
+            &-left {
+                display: flex;
+
+                span.live {
+                    border: solid 1px salmon;
+                    background-color: pink;
+                    width: 25px;
+                    height: 25px;
+                    border-radius: 50%;
+                    margin: 10px 5px 0 0;
+                }
+            }
         }
     }
 
@@ -123,6 +136,10 @@ body {
         &.jump {
             // pig jumps!
             @include jump;
+        }
+
+        &.touched {
+            border: solid 2px blue;
         }
     }
 
@@ -165,6 +182,11 @@ body {
         &.falling {
             @include falling;
         }
+
+        &.touched {
+            border: solid 2px blue;
+        }
+
     }
 
     .landscape {

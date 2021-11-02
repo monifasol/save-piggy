@@ -34,6 +34,12 @@ class Game {
       // Move scenario as pig walks
       this.player.moveScenario();
       this.knives.forEach( (k) => k.moveKnive(this.player.direction))
+
+      let checkPainID = setInterval(() => {
+        // We check pain quite often
+        this.checkPain();
+      }, 100);
+              
       event.preventDefault();
     };
 
@@ -61,10 +67,6 @@ class Game {
 
   startEnemyMovement() {
     butcher.classList.add("moving")
-
-    if (this.gameOver) {
-      butcher.classList.remove("moving")
-    } 
   }
 
   startThrowingKnives() {
@@ -85,16 +87,18 @@ class Game {
 
         console.log('I just created a new knife: ', newKnife)
         counterKnives++;
-
-        // We check pain every time a new knive is created
-        this.checkPain();
       }
 
-      // Stop throwing knives and butcher moving if Game is Over
-      if (!this.gameOver) {
-        window.requestAnimationFrame(loopKnives);
-      } else {
+      // If Game is Over:
+      if (this.gameOver) {
+        // Game is finished:
+        clearInterval(checkPainID);
+        butcher.classList.remove("moving");
         showGameOver();
+
+      } else {
+        window.requestAnimationFrame(loopKnives);
+        
       }
     };
 
@@ -128,10 +132,20 @@ class Game {
       let dialogDOM = document.querySelector('.dialog-lives')
       
       if ( areTouching(knifeDOM, pigDOM) ) {
-        dialogDOM.classList.add('visible')
+        console.log("TOUCHED!")
+
+        knifeDOM.classList.add('touched')
+        pigDOM.classList.add('touched')
+
         setTimeout(() => {
-          dialogDOM.classList.remove('visible')
-        }, 1000);
+          knifeDOM.classList.remove('touched')
+          pigDOM.classList.remove('touched')
+        }, 800);
+
+        //dialogDOM.classList.add('visible')
+        //setTimeout(() => {
+        //  dialogDOM.classList.remove('visible')
+        //}, 1000);
 
         this.deleteKnife(knife);
         this.player.lives -= 1;
