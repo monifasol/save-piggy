@@ -91,7 +91,23 @@ body {
             font-size: 40px;
             text-align: left;
         }
-    
+        
+        .top-left {
+            display: flex; 
+            flex-direction: column;
+            align-items: flex-start;
+            width: 180px;
+        }
+
+        .fruits-collected {
+            
+            span {
+                color: salmon;
+                text-shadow: 2px 2px #ff0000;
+                font-size: 30px;
+            }
+        }
+
         .lives {
             text-align: left;
 
@@ -105,6 +121,11 @@ body {
                     height: 25px;
                     border-radius: 50%;
                     margin: 10px 5px 0 0;
+
+                    &.lost {
+                        border: solid 1px grey;
+                        background-color:#ccc;
+                    }
                 }
             }
         }
@@ -126,12 +147,36 @@ body {
     #pig {
         width: 100px;
         height: 100px;
-        background-color: salmon;
+        border-radius: 50%;
+        background-color: pink;
         position: absolute;
         bottom: 0;
         left: 40%;
         transition: transform 0.3s;
         z-index: 3;
+
+        .ouch, .yummy {
+            opacity: 0;
+            font-family: 'Source Code Pro', monospace;
+            position: absolute;
+            transition: all 0.3s;
+
+            &.visible {
+                opacity: 1;
+            }
+        }
+
+        .ouch {
+            top: -30px;
+            right: -30px;
+            transform: rotate(10deg);
+        }
+
+        .yummy {
+            top: -100px;
+            left: -30px;
+            transform: rotate(-15deg);
+        }
 
         &.jump {
             // pig jumps!
@@ -139,7 +184,9 @@ body {
         }
 
         &.touched {
-            border: solid 2px blue;
+            -webkit-filter: drop-shadow(2px 4px 6px salmon);
+            filter: drop-shadow(2px 4px 6px salmon);
+            border: solid 1px salmon;            
         }
     }
 
@@ -242,12 +289,22 @@ body {
 
     // Fruits
     .fruits {
-        position: absolute;
         display: flex;
         justify-content: space-between;
         z-index: 1;
         height: 35px;
         transition: transform 0.3s;
+        width: 200px;
+        
+        position: absolute;
+        // all of them in the same position, waiting to be shown
+        right: 0px;
+        transform: translateX(300px);
+        transition: transform 40s;
+
+        &.in-scenario {
+            transform: translateX(-2000px);
+        }
 
         span {
             @include floating;
@@ -262,52 +319,40 @@ body {
     }
 
     .peaches {
-        left: 900px;
         bottom: 250px;
-
-        width: 200px;
     }
 
     .strawberries {
-        left: 1400px;
         bottom: 250px;
-
         width: 250px;
     } 
 
     .avocados {
-        left: 2000px;
         bottom: 400px;
-
-        width: 200px;
     }
 
     .carrots {
-        left: 2600px;
         bottom: 250px;
-
-        width: 200px;
+        height: 60px;       // carrots are bigger
     }
 
     .dialog-lives {
         opacity: 0;
         border: solid 3px salmon;
-        border-radius: 10px;
-        padding: 16px 20px;
-        width: 300px;
-        line-height: 40px;
-        font-size: 20px;
         background-color: rgba(salmon, $alpha: 0.5);
+        border-radius: 10px;
+        padding: 12px 20px;
+        width: 200px;
+        line-height: 30px;
+        font-size: 18px;
         position: absolute;
         top: 10px;
-        left: 10px;
+        right: 10px;
         z-index: 3;
-        height: 130px;
-        transition: all 0.4s;
+        transition: all 0.2s;
 
         &.visible {
             opacity: 1;
-            height: 160px;
         }
     }
 

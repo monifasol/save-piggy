@@ -1,18 +1,24 @@
-let splashScreen = null,
+
+let game,
+    counterKnives = 1,
+    splashScreen = null,
     gameBoard = null,
     gameOverScreen = null,
     butcher = document.querySelector('.butcher'),
     butcherHand = document.querySelector('.hand'),
-    frameGame = document.querySelector('.frame-game');
+    pig = document.getElementById('pig'),
+    frameGame = document.querySelector('.frame-game'),
+    checkPainID = null,                                     // setInterval that checks pain
+    deleteKnivesID = null,                                  // setInterval that deletes lost knives
+    throwKnivesID = null;                                   // setInterval that throws knives
 
 
-// Create cross browser requestAnimationFrame method:
+// Cross browser requestAnimationFrame:
 window.requestAnimationFrame = window.requestAnimationFrame
 || window.mozRequestAnimationFrame
 || window.webkitRequestAnimationFrame
 || window.msRequestAnimationFrame
 || function(f){setTimeout(f, 1000/60)}
-
 
 // Load all Game elements
 
@@ -42,18 +48,23 @@ const loadGameElements = () => {
 // Game Screen
 const showGameScreen = () => {
 
+  if (game != null && game != undefined) {
+    //console.log("OLD GAME", game)
+
+    // game already existed, we are "restarting the game"
+    // WE "DELETE" THE OLD GAME INSTANCE by setting it to null
+    game = null   
+
+  } 
+
   gameBoard.className = 'show'
   splashScreen.className = 'hide'
   gameOverScreen.className = 'hide'
 
-  const game = new Game()
+  game = new Game()
   game.start()
 
-  // every 2 seconds, I check if there are knives to be removed
-  setInterval( ()=> {
-    game.deleteLostKnives() 
-  }, 2000)
-
+  //console.log("NEW GAME", game)
 };
 
 // Game Over Screen
@@ -77,12 +88,15 @@ const isVisible = (element) => {
 }
 
 const areTouching = (el1, el2) => {
-  let rect1 = el1.getBoundingClientRect();
-  let rect2 = el2.getBoundingClientRect();
+
+  let rect1 = el1.getBoundingClientRect()
+  let rect2 = el2.getBoundingClientRect()
   
   let collisionX = Math.abs(rect1.x - rect2.x) < (rect1.x < rect2.x ? rect2.width : rect1.width);
   let collisionY = Math.abs(rect1.y - rect2.y) < (rect1.y < rect2.y ? rect2.height : rect1.height);
+  
   return collisionX && collisionY;
+
 }
 
 window.addEventListener("load", loadGameElements)

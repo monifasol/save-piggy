@@ -2,18 +2,17 @@ class Game {
   constructor() {
     this.player = null
     this.knives = []
-    this.gameOver = false
+    this.xBg1 = 0
+    this.xBg2 = 0
+    //this.xFruits = 0
   }
 
   start() {
     // Show game board, create a Player, and start throwing knives
 
-    this.boardGame = document.getElementById("game-board");
-    this.player = new Player(5);
-
-    // Enemy starts moving "following" Pig
-    this.startEnemyMovement();
-    this.startThrowingKnives();
+    this.boardGame = document.getElementById("game-board")
+    this.player = new Player()
+    this.startEnemyMovement()
 
     this.handleKeyDown = (event) => {
       if (event.defaultPrevented) return; 
@@ -24,6 +23,7 @@ class Game {
         this.player.direction = -1
       } else if (event.code === "Space") {
         this.player.jump() 
+        this.player.didEatFruit()
       } else {
         return
       }
@@ -32,78 +32,82 @@ class Game {
       // https://stackoverflow.com/questions/5203407/how-to-detect-if-multiple-keys-are-pressed-at-once-using-javascript
       
       // Move scenario as pig walks
-      this.player.moveScenario();
+      this.moveScenario()
       this.knives.forEach( (k) => k.moveKnive(this.player.direction))
-
-      let checkPainID = setInterval(() => {
-        // We check pain quite often
-        this.checkPain();
-      }, 100);
-              
-      event.preventDefault();
+      event.preventDefault()
     };
 
     document.body.addEventListener("keydown", this.handleKeyDown);
 
+    throwKnivesID = setInterval( () => { this.throwKnives() }, 1200)
+    checkPainID = setInterval(() => { if (!this.isGameOver()) this.checkPain() }, 100)
+    deleteKnivesID = setInterval( ()=> { this.deleteLostKnives() }, 1500)
+
     // if I don't use the this.handleKeyDown, then inside my function 
-    // this.player does not exist!!!! Like here:
-    /*
-    document.body.addEventListener("keydown", function (event) {
+    // this.moveScenario does not exist!!!! Like here:
+    /* document.body.addEventListener("keydown", function (event) {
+        // BLA BLA BLA 
+        this.moveScenario()
+        event.preventDefault();
+      }, true);  */
+  }
 
-      switch (event.key) {
-        case "Space":           // Support for IE/Edge
-        case "Space":           // Pig JUMPS   
-          this.player.setDirection("jump");
-          break;
-      }
-      this.player.moveScenario()
-      event.preventDefault();
-    }, true);
-    */
+  moveScenario() {
+    // The player doesn NOT move; it's the background that moves
 
-    // Start requestAnimationFrame loop for throwing knives
-    //this.startThrowingKnives();
+    let firstLayerBg = document.querySelector('.first-layer-bg'),
+        secondLayerBg = document.querySelector('.second-layer-bg'),
+        fruits = document.querySelectorAll('.fruits')
+
+    if (this.player.direction === 1 && !this.player.didReachTheEnd()) {
+      // goes RIGHT and scenario moves if RIGHT limit is not reached
+      //this.xFruits -= 40
+      this.xBg1 -= 25
+      this.xBg2 -= 10
+    } else if (this.player.direction === -1 && this.xBg2 < 0) {
+      // goes left and scenario moves if LEFT limit is not reached
+      //this.xFruits += 40
+      this.xBg1 += 25
+      this.xBg2 += 10
+    }
+
+    // Depending on how much Piggy walked (or scenario moved), we show certain fruits
+    if (this.xBg1 == -300) {
+      document.querySelector('.fruits.peaches').classList.add("in-scenario")
+
+    } else if (this.xBg1 == -800) {
+      document.querySelector('.fruits.strawberries').classList.add("in-scenario")
+    
+    } else if (this.xBg1 == -1500) {
+
+      document.querySelector('.fruits.avocados').classList.add("in-scenario")
+    } else if (this.xBg1 == -2300) {
+
+      document.querySelector('.fruits.carrots').classList.add("in-scenario")
+    }
+
+    firstLayerBg.style.transform = `translateX(${this.xBg1}px)`
+    secondLayerBg.style.transform = `translateX(${this.xBg2}px)`
+    //fruits.forEach( (divFruits) => { divFruits.style.transform = `translateX(${this.xFruits}px)` })
   }
 
   startEnemyMovement() {
     butcher.classList.add("moving")
   }
 
-  startThrowingKnives() {
-    let counterKnives = 1;
+  throwKnives() {
+          
+    let boardTop = gameBoard.getBoundingClientRect().top
+    let butcherHandPosition = butcherHand.getBoundingClientRect().right
+    let y = parseInt(boardTop)                            // top of the board 
+    let x = parseInt(butcherHandPosition)                 // where the butcher hand is
+    let newKnife =  new Knife(x, y, counterKnives)         
+    
+    newKnife.throwKnife()
+    this.knives.push(newKnife)
+    counterKnives++
 
-    const loopKnives = () => {
-      let boardTop = gameBoard.getBoundingClientRect().top;
-      let butcherHandPosition = butcherHand.getBoundingClientRect().right;
-      //console.log("butcherHandPosition", butcherHandPosition);
-      
-      // We create the knives at a random speed
-      if (Math.random() * 1 > 0.99) {                     // slow probability of throwing a knive        
-        let y = parseInt(boardTop);                       // top of the board 
-        let x = parseInt(butcherHandPosition);            // where the butcher hand is
-        let newKnife =  new Knife(x, y, counterKnives);          
-        newKnife.throwKnife();
-        this.knives.push(newKnife);
-
-        console.log('I just created a new knife: ', newKnife)
-        counterKnives++;
-      }
-
-      // If Game is Over:
-      if (this.gameOver) {
-        // Game is finished:
-        clearInterval(checkPainID);
-        butcher.classList.remove("moving");
-        showGameOver();
-
-      } else {
-        window.requestAnimationFrame(loopKnives);
-        
-      }
-    };
-
-    // We keep calling requestAnimationFrame (with our loop of knives) until the game is over
-    window.requestAnimationFrame(loopKnives);
+    console.log('I just created a new knife: ', newKnife)
   }
 
   isGameOver() {
@@ -113,62 +117,84 @@ class Game {
   deleteKnife(knife) {
     // delete knife from DOM
     let knifeDOM = document.getElementById(`knife${knife.id}`)
-    knifeDOM.remove();                
+    knifeDOM.remove()                
     
     // delete knife from game.knives
     let positionKnife = this.knives.indexOf(knife)        
     this.knives.splice(positionKnife, 1)
 
-    console.log("I delete this knife", knife);
-
+    //console.log("This knife is deleted:", knife);
   }
 
   checkPain() {
     // Check if any Knife touched Piggy
-    this.knives.every((knife) => {
+
+    console.log(`I HAVE ${this.player.lives} lives`)
+
+    this.knives.every( (knife) => {
       
       let knifeDOM = document.getElementById(`knife${knife.id}`)
       let pigDOM =  document.getElementById('pig')
-      let dialogDOM = document.querySelector('.dialog-lives')
       
       if ( areTouching(knifeDOM, pigDOM) ) {
-        console.log("TOUCHED!")
 
-        knifeDOM.classList.add('touched')
+        let dialog = document.querySelector('.dialog-lives')
+        let ouch = document.querySelector('#pig .ouch')
+  
         pigDOM.classList.add('touched')
+        dialog.classList.add('visible')
+        ouch.classList.add('visible')
 
         setTimeout(() => {
-          knifeDOM.classList.remove('touched')
           pigDOM.classList.remove('touched')
-        }, 800);
+          dialog.classList.remove('visible')
+          ouch.classList.remove('visible')
+        }, 800)
 
-        //dialogDOM.classList.add('visible')
-        //setTimeout(() => {
-        //  dialogDOM.classList.remove('visible')
-        //}, 1000);
+        this.deleteKnife(knife)
+        this.player.removeLive()
 
-        this.deleteKnife(knife);
-        this.player.lives -= 1;
+        if (this.isGameOver() ) this.callGameOver()
         return false
       }
       return true
     });
-
   }
 
   deleteLostKnives() {
-    // here I'll go through all knives and delete from the DOM and from the array of kinves 
-    // the ones that are not visible anymore. 
-
+    // Delete the knives that are not visible anymore. (both from DOM and from object)
     this.knives.forEach((knife) => {
       let knifeDOMElement = document.getElementById(`knife${knife.id}`)
 
       if (knifeDOMElement && !isVisible(knifeDOMElement)) {
-        this.deleteKnife(knife);
+        this.deleteKnife(knife)
       }
     });
   }
-}
 
-// Required for testing:
-if (typeof module !== 'undefined') module.exports = Game;
+  callGameOver() {
+    // Game is finished
+
+    clearInterval(checkPainID)
+    clearInterval(deleteKnivesID)
+    clearInterval(throwKnivesID)
+
+    butcher.classList.remove("moving")
+    showGameOver()
+
+    // UPDATE ELEMENTS IN THE DOM, too:
+
+    // Remove remaining flying knives from the DOM 
+    let knives = document.querySelectorAll('.knife')
+    knives.forEach( (el) => el.remove())
+
+    // Set all lives active
+    let lives = document.querySelectorAll('.live')
+    lives.forEach( (el) => el.classList.remove('lost'))
+  }
+
+  restartGame() {
+    showGameScreen()
+  }
+
+}

@@ -1,8 +1,8 @@
 class Knife {
   constructor(x, y, id) {
     this.id = id;
-    this.x = x;     // Initial X is where the butcher hand is
-    this.y = y;     // Initial Y is the top of the board
+    this.x = x;             // Initial X is where the butcher hand is
+    this.y = y;             // Initial Y is the top of the board
     this.direction = 0;
   }
 
@@ -39,7 +39,8 @@ class Knife {
 
     if (prevTranslate == "") {
 
-      // first fime we apply a transform: translate
+      // then it's the first fime we apply "transform: translate"
+
       if (direction === 1) newValue = -40
       else if (direction === -1) newValue = 40
 
@@ -56,7 +57,3 @@ class Knife {
     knifeDOMElement.style.transform = `translateX(${newValue}px)`
   }
 }
-
-
-// required for testing:
-if (typeof module !== 'undefined') module.exports = Knive;

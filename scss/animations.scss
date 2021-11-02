@@ -59,12 +59,13 @@
     animation-name: jump;
     animation-duration: 2s;
     animation-iteration-count: 1;
-    animation-timing-function: cubic-bezier(0.280, 0.840, 0.420, 1);
+    animation-timing-function: cubic-bezier(.02,.73,.46,1.28);
 
     -webkit-animation-name: jump;
     -webkit-animation-duration: 2s;
     -webkit-animation-iteration-count: 1;
-    -webkit-animation-timing-function: cubic-bezier(0.280, 0.840, 0.420, 1);
+    -webkit-animation-timing-function: cubic-bezier(.02,.73,.46,1.28);
+
   
     @keyframes jump {
       0%   { transform: translateY(0); }
@@ -94,12 +95,12 @@
   animation-name: jump;
   animation-duration: 2s;
   animation-iteration-count: 1;
-  animation-timing-function: cubic-bezier(0.280, 0.840, 0.420, 1);
+  animation-timing-function: cubic-bezier(.02,.73,.46,1.28);
 
   -webkit-animation-name: jump;
   -webkit-animation-duration: 2s;
   -webkit-animation-iteration-count: 1;
-  -webkit-animation-timing-function: cubic-bezier(0.280, 0.840, 0.420, 1);
+  -webkit-animation-timing-function: cubic-bezier(.02,.73,.46,1.28);
 
   @keyframes jump {
     0%   { transform: scale(1,1)      translateY(0); }

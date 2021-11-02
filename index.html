@@ -12,6 +12,10 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Philosopher:wght@400;800&family=Raleway:wght@300;800&display=swap" rel="stylesheet"> 
 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap" rel="stylesheet"> 
+
     <!-- Styles -->
     <link rel="stylesheet" type="text/css" href="css/main.css" />
 
@@ -58,14 +62,20 @@
           <div class="top">
             <h1>Save <br/> Piggy</h1>
 
-            <div class="lives">
-              Lives left
-              <div class="lives-left">
-                <span class="live"></span>
-                <span class="live"></span>
-                <span class="live"></span>
-                <span class="live"></span>
-                <span class="live"></span>
+            <div class="top-left">
+              <div class="lives">
+                Lives left
+                <div class="lives-left">
+                  <span class="live" id="live1"></span>
+                  <span class="live" id="live2"></span>
+                  <span class="live" id="live3"></span>
+                  <span class="live" id="live4"></span>
+                  <span class="live" id="live5"></span>
+                </div>
+              </div>
+
+              <div class="fruits-collected">
+                Fruits collected: <span id="fruits-collected">0</span>
               </div>
             </div>
           </div>
@@ -90,31 +100,34 @@
               <div class="first-layer-bg"></div>
             </div>
 
-            <div id="pig"></div>
+            <div id="pig">
+              <div class="ouch">Ouch!</div>
+              <div class="yummy">Yummy!</div>
+            </div>
 
             <div class="fruits peaches bounce">
-              <span id="fruit1"><img src="/img/peach.png" alt="peach"/></span>
-              <span id="fruit2"><img src="/img/peach.png" alt="peach"/></span>
-              <span id="fruit3"><img src="/img/peach.png" alt="peach"/></span>
+              <span class="fruit" id="fruit1"><img src="/img/peach.png" alt="peach"/></span>
+              <span class="fruit" id="fruit2"><img src="/img/peach.png" alt="peach"/></span>
+              <span class="fruit" id="fruit3"><img src="/img/peach.png" alt="peach"/></span>
             </div>
 
             <div class="fruits strawberries bounce">
-              <span id="fruit4"><img src="/img/strawberry.png" alt="strawberry"/></span>
-              <span id="fruit5"><img src="/img/strawberry.png" alt="strawberry"/></span>
-              <span id="fruit6"><img src="/img/strawberry.png" alt="strawberry"/></span>
-              <span id="fruit7"><img src="/img/strawberry.png" alt="strawberry"/></span>
+              <span class="fruit" id="fruit4"><img src="/img/strawberry.png" alt="strawberry"/></span>
+              <span class="fruit" id="fruit5"><img src="/img/strawberry.png" alt="strawberry"/></span>
+              <span class="fruit" id="fruit6"><img src="/img/strawberry.png" alt="strawberry"/></span>
+              <span class="fruit" id="fruit7"><img src="/img/strawberry.png" alt="strawberry"/></span>
             </div>
 
-            <div class="fruits avocados">
-              <span id="fruit8"><img src="/img/avocado.png" alt="avocado"/></span>
-              <span id="fruit9"><img src="/img/avocado.png" alt="avocado"/></span>
-              <span id="fruit10"><img src="/img/avocado.png" alt="avocado"/></span>
+            <div class="fruits avocados bounce">
+              <span class="fruit" id="fruit8"><img src="/img/avocado.png" alt="avocado"/></span>
+              <span class="fruit" id="fruit9"><img src="/img/avocado.png" alt="avocado"/></span>
+              <span class="fruit" id="fruit10"><img src="/img/avocado.png" alt="avocado"/></span>
             </div>
 
-            <div class="fruits carrots">
-              <span id="fruit11"><img src="/img/carrot.png" alt="carrot"/></span>
-              <span id="fruit12"><img src="/img/carrot.png" alt="carrot"/></span>
-              <span id="fruit13"><img src="/img/carrot.png" alt="carrot"/></span>
+            <div class="fruits carrots bounce">
+              <span class="fruit" id="fruit11"><img src="/img/carrot.png" alt="carrot"/></span>
+              <span class="fruit" id="fruit12"><img src="/img/carrot.png" alt="carrot"/></span>
+              <span class="fruit" id="fruit13"><img src="/img/carrot.png" alt="carrot"/></span>
             </div>
 
           </section>
