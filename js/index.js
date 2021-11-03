@@ -4,6 +4,9 @@ let game,
     splashScreen = null,
     gameBoard = null,
     gameOverScreen = null,
+    firstLayerBg = document.querySelector('.first-layer-bg'),
+    secondLayerBg = document.querySelector('.second-layer-bg'),
+    fruits = document.querySelectorAll('.fruits'),
     butcher = document.querySelector('.butcher'),
     butcherHand = document.querySelector('.hand'),
     pig = document.getElementById('pig'),
@@ -62,6 +65,7 @@ const showGameScreen = () => {
   gameOverScreen.className = 'hide'
 
   game = new Game()
+  game.initScenario()
   game.start()
 
   //console.log("NEW GAME", game)

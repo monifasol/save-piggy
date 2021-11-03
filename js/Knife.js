@@ -3,7 +3,50 @@ class Knife {
     this.id = id;
     this.x = x;             // Initial X is where the butcher hand is
     this.y = y;             // Initial Y is the top of the board
-    this.direction = 0;
+  }
+
+  move(direction) {
+    // X didn't change (it was created where Hand's Butcher is) - only changed Y, by falling.
+    // Need to extract the Number of the previous "transform translate", to accumulate on it.
+    let knifeDOMElement = document.getElementById(`knife${this.id}`)
+    let prevTranslate = knifeDOMElement.style.transform
+    
+    let newValue = ""
+
+    if (direction === 1) newValue = this.moveBackwards(prevTranslate)
+    if (direction === -1) newValue = this.moveForwards(prevTranslate)
+
+    console.log(newValue)
+
+    knifeDOMElement.style.transform = `translateX(${newValue}px)`
+  }
+
+  moveBackwards(prevTranslate) {
+    let newValue = 0;
+
+    if (prevTranslate == "" || prevTranslate == undefined) {          // then it's the first fime we apply "transform translate"
+      newValue = -40
+    } else {
+      let positionPx = prevTranslate.indexOf('px')
+      let prevValue = prevTranslate.slice(11, positionPx)     // position 11 because starts by "translateX("
+      newValue = parseInt(prevValue) - 40
+    }
+
+    return newValue
+  }
+
+  moveForwards(prevTranslate) {
+    let newValue = 0;
+
+    if (prevTranslate == "" || prevTranslate == undefined) {          // then it's the first fime we apply "transform translate"
+      newValue = 40
+    } else {
+      let positionPx = prevTranslate.indexOf('px')
+      let prevValue = prevTranslate.slice(11, positionPx)     // position 11 because starts by "translateX("
+      newValue = parseInt(prevValue) + 40
+    }
+
+    return newValue
   }
 
   throwKnife() {
@@ -29,31 +72,4 @@ class Knife {
     knifeElement.classList.add('falling')
   }
 
-  moveKnive(direction) {
-
-    // X didn't change (it was created where Hand's Butcher is) - only changed Y, by falling.
-
-    let knifeDOMElement = document.getElementById(`knife${this.id}`)
-    let newValue = 0;
-    let prevTranslate = knifeDOMElement.style.transform
-
-    if (prevTranslate == "") {
-
-      // then it's the first fime we apply "transform: translate"
-
-      if (direction === 1) newValue = -40
-      else if (direction === -1) newValue = 40
-
-    } else {
-
-      let positionPx = prevTranslate.indexOf('px')
-      let prevValue = prevTranslate.slice(11, positionPx)     // position 11 because starts by "translateX("
-
-      if (direction === 1) newValue = parseInt(prevValue) - 40
-      else if (direction === -1) newValue = parseInt(prevValue) + 40
-
-    }
-  
-    knifeDOMElement.style.transform = `translateX(${newValue}px)`
-  }
 }

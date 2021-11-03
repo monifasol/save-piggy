@@ -289,52 +289,81 @@ body {
 
     // Fruits
     .fruits {
-        display: flex;
-        justify-content: space-between;
         z-index: 1;
-        height: 35px;
-        transition: transform 0.3s;
-        width: 200px;
-        
+        bottom: 50vh;
         position: absolute;
-        // all of them in the same position, waiting to be shown
-        right: 0px;
-        transform: translateX(300px);
-        transition: transform 40s;
+        transition: transform 0.3s;
 
-        &.in-scenario {
-            transform: translateX(-2000px);
-        }
-
-        span {
+        span.fruit {
             @include floating;
-            margin-right: 20px;
+            position: absolute;
+            height: 40px;
+            top: 0px;
+            transition: all 0.3s;
+
+            
+            &.eaten {
+                @include eaten;
+            }
             
             img {
                 height: 100%;
                 -webkit-filter: drop-shadow(3px 8px 10px #fff);
                 filter: drop-shadow(3px 8px 10px #fff);
             }
+
+            &:nth-child(1) {
+                left: 0px;
+            }
+            &:nth-child(2) {
+                left: 80px;
+            }
+            &:nth-child(3) {
+                left: 160px;
+            }
+            &:nth-child(4) {
+                left: 240px;
+            }
         }
     }
 
     .peaches {
-        bottom: 250px;
+        left: 600px;
     }
 
     .strawberries {
-        bottom: 250px;
+        left: 1200px;
         width: 250px;
     } 
 
     .avocados {
-        bottom: 400px;
+        left: 1700px;
     }
 
     .carrots {
-        bottom: 250px;
-        height: 60px;       // carrots are bigger
+        left: 2200px;
+        span.fruit{
+            // carrots are bigger
+            height: 60px;       
+        }      
     }
+
+    .peaches2 {
+        left: 2600px;
+    }
+
+    .avocados2 {
+        left: 3200px;
+    }
+
+    .carrots2 {
+        left: 3700px;
+        span.fruit{
+            // carrots are bigger
+            height: 60px;       
+        }      
+    }
+
 
     .dialog-lives {
         opacity: 0;

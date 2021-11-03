@@ -31,38 +31,47 @@ class Player {
 
     allFruits.forEach( (fruit) => {
       
-      console.log('Im checking this fruit', fruit, 'and this pig', pig)
+      //console.log('Im checking this fruit', fruit, 'and this pig', pig)
 
       // Check if fruit is on the range of my jump
-      // So, we only check if there is a fruit in between x1 and x2 (left and right of my pig) 
-      
-      // Pig does not move. It only moves the BG. 
-      // Therefore, position pig is the scroll of the BG --> game.xBg1
+      // (if there is a fruit in between x1 and x2 (left and right of my pig))
 
-      let leftPig = pig.getBoundingClientRect().left
-      let rightPig = pig.getBoundingClientRect().right
+      // But I take less area!!! because the hand takes less space. 
+      // (If we'd take into account the limits of his body, Piggy would eat all at once.) 
+
+      let leftPig = pig.getBoundingClientRect().left + 20
+      let rightPig = pig.getBoundingClientRect().right - 10
       let leftFruit = fruit.getBoundingClientRect().left
       let rightFruit = fruit.getBoundingClientRect().right
 
+      let yummy = document.querySelector('#pig .yummy')
+
+      // I really don't understand Why this works:
+      //console.log('Im checking this fruit', fruit)
       //console.log("leftPig", leftPig, "rightPig", rightPig, "leftFruit", leftFruit, "rightFruit", rightFruit)
 
       if (leftPig < leftFruit && rightPig > rightFruit) {
         
         // With a little delay, because pig takes 1 second to jump
         setTimeout(() => {
-          let yummy = document.querySelector('#pig .yummy')
           yummy.classList.add('visible')
-          yummy.classList.remove('visible')
-        }, 1000)
+        }, 800)
 
-        // After another second, we removed the Yummy div
+        // After 1,5 seconds, we removed the Yummy div
         setTimeout(() => { 
           yummy.classList.remove('visible')
-        }, 2000)
+        }, 1500)
 
         this.fruitsCollected += 1
         let fruitsCollectedDOM = document.querySelector('.fruits-collected span')
         fruitsCollectedDOM.textContent = `${this.fruitsCollected}`
+
+        // Fruit animation to hide from DOM
+        fruit.classList.add('eaten')
+        //setTimeout(() => { 
+        //  fruit.classList.add('eaten')
+        //}, 1000)
+      
       }
 
     });

@@ -382,28 +382,22 @@ body .btn {
   z-index: 9999;
 }
 #game-board .fruits {
-  display: flex;
-  justify-content: space-between;
   z-index: 1;
-  height: 35px;
-  transition: transform 0.3s;
-  width: 200px;
+  bottom: 50vh;
   position: absolute;
-  right: 0px;
-  transform: translateX(300px);
-  transition: transform 40s;
+  transition: transform 0.3s;
 }
-#game-board .fruits.in-scenario {
-  transform: translateX(-2000px);
-}
-#game-board .fruits span {
+#game-board .fruits span.fruit {
   animation-name: floating;
   -webkit-animation-name: floating;
   animation-duration: 2s;
   -webkit-animation-duration: 2s;
   animation-iteration-count: infinite;
   -webkit-animation-iteration-count: infinite;
-  margin-right: 20px;
+  position: absolute;
+  height: 40px;
+  top: 0px;
+  transition: all 0.3s;
 }
 @keyframes floating {
   0% {
@@ -427,23 +421,72 @@ body .btn {
     -webkit-transform: translateY(0%);
   }
 }
-#game-board .fruits span img {
+#game-board .fruits span.fruit.eaten {
+  animation-name: eaten;
+  animation-delay: 0.4s;
+  animation-duration: 0.3s;
+  animation-iteration-count: 1;
+  animation-timing-function: linear;
+  animation-fill-mode: forwards;
+}
+@keyframes eaten {
+  0% {
+    opacity: 1;
+    transform: rotateY(20deg);
+  }
+  50% {
+    opacity: 0.5;
+    transform: rotateY(40deg);
+  }
+  100% {
+    display: none;
+    opacity: 0;
+    transform: rotateY(80deg);
+  }
+}
+#game-board .fruits span.fruit img {
   height: 100%;
   -webkit-filter: drop-shadow(3px 8px 10px #fff);
   filter: drop-shadow(3px 8px 10px #fff);
 }
+#game-board .fruits span.fruit:nth-child(1) {
+  left: 0px;
+}
+#game-board .fruits span.fruit:nth-child(2) {
+  left: 80px;
+}
+#game-board .fruits span.fruit:nth-child(3) {
+  left: 160px;
+}
+#game-board .fruits span.fruit:nth-child(4) {
+  left: 240px;
+}
 #game-board .peaches {
-  bottom: 250px;
+  left: 600px;
 }
 #game-board .strawberries {
-  bottom: 250px;
+  left: 1200px;
   width: 250px;
 }
 #game-board .avocados {
-  bottom: 400px;
+  left: 1700px;
 }
 #game-board .carrots {
-  bottom: 250px;
+  left: 2200px;
+}
+#game-board .carrots span.fruit {
+  height: 60px;
+}
+#game-board .peaches2 {
+  left: 2600px;
+}
+#game-board .avocados2 {
+  left: 3200px;
+}
+#game-board .carrots2 {
+  left: 3700px;
+}
+#game-board .carrots2 span.fruit {
   height: 60px;
 }
 #game-board .dialog-lives {

@@ -4,7 +4,7 @@ class Game {
     this.knives = []
     this.xBg1 = 0
     this.xBg2 = 0
-    //this.xFruits = 0
+    this.xFruits = 0
   }
 
   start() {
@@ -19,13 +19,25 @@ class Game {
 
       if (event.code === "Right" || event.code === "ArrowRight") {
         this.player.direction = 1  
+        pig.classList.add("walk")
+
       } else if (event.code === "Left" || event.code === "ArrowLeft") {
         this.player.direction = -1
+        pig.classList.add("walk")
+
       } else if (event.code === "Space") {
+        this.player.direction = 0
         this.player.jump() 
+        pig.classList.add("jump")
         this.player.didEatFruit()
+
       } else {
         return
+      }
+
+      // add walking class to pig only 1 second
+      if (this.player.direction == 1 || this.player.direction == -1) {
+        setTimeout( () => pig.classList.remove("walk"), 400)
       }
 
       // Multiple key detection! for the jump Forward!
@@ -33,13 +45,12 @@ class Game {
       
       // Move scenario as pig walks
       this.moveScenario()
-      this.knives.forEach( (k) => k.moveKnive(this.player.direction))
       event.preventDefault()
     };
 
     document.body.addEventListener("keydown", this.handleKeyDown);
 
-    throwKnivesID = setInterval( () => { this.throwKnives() }, 1200)
+    throwKnivesID = setInterval( () => { this.throwKnives() }, 2000)
     checkPainID = setInterval(() => { if (!this.isGameOver()) this.checkPain() }, 100)
     deleteKnivesID = setInterval( ()=> { this.deleteLostKnives() }, 1500)
 
@@ -52,43 +63,40 @@ class Game {
       }, true);  */
   }
 
+  initScenario() {
+    firstLayerBg.style.transform = 'translateX(0px)'
+    secondLayerBg.style.transform = 'translateX(0px)'
+  }
+
   moveScenario() {
     // The player doesn NOT move; it's the background that moves
 
-    let firstLayerBg = document.querySelector('.first-layer-bg'),
-        secondLayerBg = document.querySelector('.second-layer-bg'),
-        fruits = document.querySelectorAll('.fruits')
-
     if (this.player.direction === 1 && !this.player.didReachTheEnd()) {
       // goes RIGHT and scenario moves if RIGHT limit is not reached
-      //this.xFruits -= 40
-      this.xBg1 -= 25
-      this.xBg2 -= 10
+      this.xFruits -= 20
+      this.xBg1 -= 10
+      this.xBg2 -= 5
+      this.knives.forEach( (k) => k.move(this.player.direction))        // because pig moves forwards
+
     } else if (this.player.direction === -1 && this.xBg2 < 0) {
       // goes left and scenario moves if LEFT limit is not reached
-      //this.xFruits += 40
-      this.xBg1 += 25
-      this.xBg2 += 10
+      this.xFruits += 20
+      this.xBg1 += 10
+      this.xBg2 += 5
+      this.knives.forEach( (k) => k.move(this.player.direction))       // because pig moves backwards
+
+    } else if (this.player.direction === 0) {                          // then make sure he does not move
+      return
     }
 
-    // Depending on how much Piggy walked (or scenario moved), we show certain fruits
-    if (this.xBg1 == -300) {
-      document.querySelector('.fruits.peaches').classList.add("in-scenario")
-
-    } else if (this.xBg1 == -800) {
-      document.querySelector('.fruits.strawberries').classList.add("in-scenario")
-    
-    } else if (this.xBg1 == -1500) {
-
-      document.querySelector('.fruits.avocados').classList.add("in-scenario")
-    } else if (this.xBg1 == -2300) {
-
-      document.querySelector('.fruits.carrots').classList.add("in-scenario")
+    // If We reached the end but Piggy wants to continue, then is Piggy who moves.
+    if (this.player.direction === 1 && this.player.didReachTheEnd()) {
+      pig.style
     }
 
     firstLayerBg.style.transform = `translateX(${this.xBg1}px)`
     secondLayerBg.style.transform = `translateX(${this.xBg2}px)`
-    //fruits.forEach( (divFruits) => { divFruits.style.transform = `translateX(${this.xFruits}px)` })
+    fruits.forEach( (divFruits) => { divFruits.style.transform = `translateX(${this.xFruits}px)` })
   }
 
   startEnemyMovement() {
@@ -128,9 +136,6 @@ class Game {
 
   checkPain() {
     // Check if any Knife touched Piggy
-
-    console.log(`I HAVE ${this.player.lives} lives`)
-
     this.knives.every( (knife) => {
       
       let knifeDOM = document.getElementById(`knife${knife.id}`)
@@ -179,10 +184,10 @@ class Game {
     clearInterval(deleteKnivesID)
     clearInterval(throwKnivesID)
 
-    butcher.classList.remove("moving")
     showGameOver()
 
-    // UPDATE ELEMENTS IN THE DOM, too:
+    //Butcher stops moving
+    butcher.classList.remove("moving")
 
     // Remove remaining flying knives from the DOM 
     let knives = document.querySelectorAll('.knife')
@@ -191,10 +196,11 @@ class Game {
     // Set all lives active
     let lives = document.querySelectorAll('.live')
     lives.forEach( (el) => el.classList.remove('lost'))
-  }
 
-  restartGame() {
-    showGameScreen()
+    // Set fruits collected to 0
+    let fruitsCollectedDOM = document.querySelector('.fruits-collected span')
+    fruitsCollectedDOM.textContent = "0"
+
   }
 
 }
