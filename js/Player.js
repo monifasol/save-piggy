@@ -22,22 +22,15 @@ class Player {
   }
 
   didEatFruit() {
-    // Check if any Knife touched Piggy
 
-    console.log(`I'm checking if I ate fruits`)
-    // We got 50 fruits
+    //console.log(`I'm checking if Piggy ate a fruit`)
 
     let allFruits = document.querySelectorAll('.fruit')
 
     allFruits.forEach( (fruit) => {
       
-      //console.log('Im checking this fruit', fruit, 'and this pig', pig)
-
-      // Check if fruit is on the range of my jump
-      // (if there is a fruit in between x1 and x2 (left and right of my pig))
-
-      // But I take less area!!! because the hand takes less space. 
-      // (If we'd take into account the limits of his body, Piggy would eat all at once.) 
+      // Check if fruit is on the range of my jump (if there is a fruit in between x1 and x2 (left and right of my pig))
+      // But I take less area!!! because the hand takes less space. (If we'd take into account the limits of his body, Piggy would eat all at once.) 
 
       let leftPig = pig.getBoundingClientRect().left + 20
       let rightPig = pig.getBoundingClientRect().right - 10
@@ -68,12 +61,18 @@ class Player {
 
         // Fruit animation to hide from DOM
         fruit.classList.add('eaten')
-        //setTimeout(() => { 
-        //  fruit.classList.add('eaten')
-        //}, 1000)
-      
-      }
 
+        // Update message for Piggy
+        let messageTheEndDOM = document.getElementById('dialog-the-end-sentence')
+        let messageTheEnd = ""
+
+        if (this.fruitsCollected < 10) {
+          messageTheEnd = `Piggy, you need to pick ${10 - this.fruitsCollected} more fruits!!`
+        } else {
+          messageTheEnd = "Nice, Piggy!! You collected all fruits!! 🍑🥑"
+        }
+        messageTheEndDOM.textContent = messageTheEnd
+      }
     });
   }
   
@@ -84,8 +83,4 @@ class Player {
     // remove life from the Player
     this.lives -= 1
   }
-
-  //resetLives() {
-  //  this.lives = 5
-  //}
 }

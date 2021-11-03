@@ -52,12 +52,9 @@ const loadGameElements = () => {
 const showGameScreen = () => {
 
   if (game != null && game != undefined) {
-    //console.log("OLD GAME", game)
-
-    // game already existed, we are "restarting the game"
-    // WE "DELETE" THE OLD GAME INSTANCE by setting it to null
-    game = null   
-
+    // game object already exists (we are restarting the game)
+    // So let's DELETE THE OLD GAME INSTANCE by setting it to null
+    game = null 
   } 
 
   gameBoard.className = 'show'
@@ -66,9 +63,8 @@ const showGameScreen = () => {
 
   game = new Game()
   game.initScenario()
+  counterKnives = 1
   game.start()
-
-  //console.log("NEW GAME", game)
 };
 
 // Game Over Screen

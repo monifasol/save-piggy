@@ -173,13 +173,13 @@ body .btn {
   z-index: 3;
 }
 #game-board #pig.touched {
-  -webkit-filter: drop-shadow(2px 4px 6px salmon);
   filter: drop-shadow(2px 4px 6px salmon);
   border: solid 1px salmon;
 }
 #game-board #pig .ouch, #game-board #pig .yummy {
   opacity: 0;
   font-family: "Source Code Pro", monospace;
+  filter: drop-shadow(2px 4px 6px salmon);
   position: absolute;
   transition: all 0.3s;
 }
@@ -335,28 +335,31 @@ body .btn {
 }
 #game-board .fruits span.fruit {
   animation-name: floating;
-  animation-duration: 2s;
+  animation-duration: 1.6s;
   animation-iteration-count: infinite;
+  animation-fill-mode: forwards;
   position: absolute;
   height: 40px;
   top: 0px;
-  transition: all 0.3s;
+  transition: all 0.5s;
 }
 @keyframes floating {
   0% {
     transform: translateY(0%);
   }
   50% {
-    transform: translateY(15%);
+    transform: translateY(30%);
   }
   100% {
     transform: translateY(0%);
   }
 }
 #game-board .fruits span.fruit.eaten {
+  filter: drop-shadow(2px 4px 4px salmon);
+  transform: translateY(15%) !important;
   animation-name: eaten;
-  animation-delay: 0.4s;
-  animation-duration: 0.3s;
+  animation-delay: 0.5s;
+  animation-duration: 0.8s;
   animation-iteration-count: 1;
   animation-timing-function: linear;
   animation-fill-mode: forwards;
@@ -364,21 +367,19 @@ body .btn {
 @keyframes eaten {
   0% {
     opacity: 1;
-    transform: rotateY(20deg);
+    transform: rotate(20deg);
   }
   50% {
     opacity: 0.5;
-    transform: rotateY(40deg);
+    transform: rotate(40deg);
   }
   100% {
-    display: none;
     opacity: 0;
-    transform: rotateY(80deg);
+    transform: rotate(80deg);
   }
 }
 #game-board .fruits span.fruit img {
   height: 100%;
-  -webkit-filter: drop-shadow(3px 8px 10px #fff);
   filter: drop-shadow(3px 8px 10px #fff);
 }
 #game-board .fruits span.fruit:nth-child(1) {
@@ -438,6 +439,19 @@ body .btn {
 }
 #game-board .dialog-lives.visible {
   opacity: 1;
+}
+#game-board .dialog-the-end {
+  border: solid 1px #23882b;
+  background-color: rgba(183, 248, 210, 0.6);
+  border-radius: 10px;
+  padding: 12px 20px;
+  width: 200px;
+  line-height: 30px;
+  font-size: 18px;
+  position: absolute;
+  top: 100px;
+  right: 10px;
+  z-index: 3;
 }
 
 /*# sourceMappingURL=main.css.map */

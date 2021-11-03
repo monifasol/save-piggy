@@ -5,30 +5,19 @@
 @mixin eaten {
   
   animation-name: eaten;
-  animation-delay: 0.4s;
-  animation-duration: 0.3s;
+  animation-delay: 0.5s;
+  animation-duration: 0.8s;
   animation-iteration-count: 1;
   animation-timing-function: linear;
   animation-fill-mode: forwards;
 
   @keyframes eaten {
 
-    0%{
-      opacity: 1;
-      transform: rotateY(20deg);
-    }
-    50%{
-      opacity: 0.5;
-      transform: rotateY(40deg);
-    }
-    100% {
-      display: none;
-      opacity: 0;
-      transform: rotateY(80deg);
-    }
+    0% { opacity: 1; transform: rotate(20deg); }
+    50% { opacity: 0.5; transform: rotate(40deg); }
+    100% { opacity: 0; transform: rotate(80deg); }
   }
 }
-
 
 // legs of Pig are walking!
 @mixin walking-right {
@@ -137,12 +126,13 @@
 
 @mixin floating {
     animation-name: floating;
-    animation-duration: 2s;
+    animation-duration: 1.6s;
     animation-iteration-count: infinite;
+    animation-fill-mode: forwards;
   
     @keyframes floating {
       0% { transform: translateY(0%); }
-      50% { transform: translateY(15%); }
+      50% { transform: translateY(30%); }
       100% { transform: translateY(0%); }
     }
   }

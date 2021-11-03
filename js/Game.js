@@ -1,7 +1,7 @@
 class Game {
   constructor() {
     this.player = null
-    this.knives = []
+    this.knives = new Array()
     this.xBg1 = 0
     this.xBg2 = 0
     this.xFruits = 0
@@ -13,6 +13,10 @@ class Game {
     this.boardGame = document.getElementById("game-board")
     this.player = new Player()
     this.startEnemyMovement()
+    
+    console.log("I start the game with ", this.knives.length, "knives")
+    console.log("knives I have:", this.knives)
+
 
     this.handleKeyDown = (event) => {
       if (event.defaultPrevented) return; 
@@ -50,10 +54,14 @@ class Game {
 
     document.body.addEventListener("keydown", this.handleKeyDown);
 
-    throwKnivesID = setInterval( () => { this.throwKnives() }, 2000)
-    checkPainID = setInterval(() => { if (!this.isGameOver()) this.checkPain() }, 100)
-    deleteKnivesID = setInterval( ()=> { this.deleteLostKnives() }, 1500)
-
+    // I delay 1 second to start throwing knives
+    setTimeout( () => {
+      throwKnivesID = setInterval( () => { this.throwKnives() }, 2000)
+      checkPainID = setInterval(() => { if (!this.isGameOver()) this.checkPain() }, 100)
+      deleteKnivesID = setInterval( ()=> { this.deleteLostKnives() }, 2000)
+    }, 2000)
+    
+  
     // if I don't use the this.handleKeyDown, then inside my function 
     // this.moveScenario does not exist!!!! Like here:
     /* document.body.addEventListener("keydown", function (event) {
@@ -66,38 +74,118 @@ class Game {
   initScenario() {
     firstLayerBg.style.transform = 'translateX(0px)'
     secondLayerBg.style.transform = 'translateX(0px)'
-    fruits.forEach( (divFruits) => { divFruits.style.transform = 'translateX(0px)' })
+    
+    // Remove any remaining flying knife from the DOM 
+    let knives = document.querySelectorAll('.knife')
+    knives.forEach( (el) => el.remove())
+
+    // Reset state of all fruits
+    fruits.forEach( (divFruits) => { 
+      divFruits.style.transform = 'translateX(0px)' 
+      let fruitSpans = divFruits.querySelectorAll('span.fruit')
+
+      fruitSpans.forEach( (fruit) => { 
+        fruit.classList.remove("eaten")
+      })
+    })
   }
 
   moveScenario() {
     // The player doesn NOT move; it's the background that moves
+
+    let knivesDOM = document.querySelectorAll('.knife')     // only take knives in DOM
 
     if (this.player.direction === 1 && !this.player.didReachTheEnd()) {
       // goes RIGHT and scenario moves if RIGHT limit is not reached
       this.xFruits -= 20
       this.xBg1 -= 10
       this.xBg2 -= 5
-      this.knives.forEach( (k) => k.move(this.player.direction))        // because pig moves forwards
+      knivesDOM.forEach( (k) => this.moveKnife(k) )        
 
     } else if (this.player.direction === -1 && this.xBg2 < 0) {
       // goes left and scenario moves if LEFT limit is not reached
       this.xFruits += 20
       this.xBg1 += 10
       this.xBg2 += 5
-      this.knives.forEach( (k) => k.move(this.player.direction))       // because pig moves backwards
+      knivesDOM.forEach( (k) => this.moveKnife(k) )        
 
-    } else if (this.player.direction === 0) {                          // then make sure he does not move
+    } else if (this.player.direction === 0) {      
+      // then make sure he does not move                  
       return
     }
 
-    // If We reached the end but Piggy wants to continue, then is Piggy who moves.
-    if (this.player.direction === 1 && this.player.didReachTheEnd()) {
-      pig.style
+    // If Piggy reached the end and picked up all fruits, then Piggy moves directly to The End.
+    if (this.player.direction === 1 && this.player.didReachTheEnd() && this.player.fruitsCollected >= 2) {
+
+      let frameGameRight = frameGame.getBoundingClientRect().right
+      pig.style.left = `${frameGameRight - 200 }px`
+      pig.style.transform = 'scale(1.3)'
+      pig.style.transition = 'all 2s'
     }
 
     firstLayerBg.style.transform = `translateX(${this.xBg1}px)`
     secondLayerBg.style.transform = `translateX(${this.xBg2}px)`
     fruits.forEach( (divFruits) => { divFruits.style.transform = `translateX(${this.xFruits}px)` })
+  }
+
+  moveKnife(element) {
+
+    // X didn't change (it was created where Hand's Butcher is) - only changed Y, by falling.
+    // Need to extract the Number of the previous "transform translate", to accumulate on it.
+
+    try {
+
+      let prevTranslate = element.style.transform
+      
+      console.log('*************************************')
+      console.log('Does it exists?', element, 'Id Knife', this.id)
+      console.log("prevTranslate", prevTranslate)
+
+      let newValue = ""
+
+      if (this.player.direction === 1) newValue = this.moveKnifeBackwards(prevTranslate)
+      if (this.player.direction === -1) newValue = this.moveKnifeForwards(prevTranslate)
+    
+      element.style.transform = `translateX(${newValue}px)`
+
+      console.log("Added value to style transform: ", element.style.transform)
+      console.log('*************************************')
+      
+    } catch(err) {
+      console.log(`Hey Moni, you got an error! ${err}`, err)
+    }
+
+  }
+
+  moveKnifeBackwards(prevTranslate) {
+
+    let newValue = 0;
+
+    if (prevTranslate == "" || prevTranslate == undefined) {   // then it's the first fime we apply "transform translate"
+      newValue = -40
+    } else {
+      let positionPx = prevTranslate.indexOf('px')
+      let prevValue = prevTranslate.slice(11, positionPx)      // position 11 because starts by "translateX("
+      newValue = parseInt(prevValue) - 40
+    }
+
+    return newValue
+  }
+
+  moveKnifeForwards(prevTranslate) {
+
+    let newValue = 0;
+
+    if (prevTranslate == "" || prevTranslate == undefined) {    // then it's the first fime we apply "transform translate"
+      newValue = 40
+    } else {
+
+      let positionPx = prevTranslate.indexOf('px')
+      let prevValue = prevTranslate.slice(11, positionPx)       // position 11 because starts by "translateX("
+      newValue = parseInt(prevValue) + 40
+    }
+
+    return newValue
   }
 
   startEnemyMovement() {
@@ -190,10 +278,6 @@ class Game {
     //Butcher stops moving
     butcher.classList.remove("moving")
 
-    // Remove remaining flying knives from the DOM 
-    let knives = document.querySelectorAll('.knife')
-    knives.forEach( (el) => el.remove())
-
     // Set all lives active
     let lives = document.querySelectorAll('.live')
     lives.forEach( (el) => el.classList.remove('lost'))
@@ -202,6 +286,10 @@ class Game {
     let fruitsCollectedDOM = document.querySelector('.fruits-collected span')
     fruitsCollectedDOM.textContent = "0"
 
+    // Remove any remaining flying knife from the DOM 
+    let knives = document.querySelectorAll('.knife')
+    knives.forEach( (el) => el.remove())
+    
   }
 
 }
