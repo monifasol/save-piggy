@@ -73,6 +73,7 @@ class Game {
     
     // Set Pig at initial position
     pig.style.left = '40%';
+    pig.style.transform = 'none'
 
     // Remove any remaining flying knife from the DOM 
     let knives = document.querySelectorAll('.knife')
@@ -111,18 +112,40 @@ class Game {
       return
     }
 
-    // If Piggy reached the end and picked up all fruits, then Piggy moves directly to The End.
-    if (this.player.direction === 1 && this.player.didReachTheEnd() && this.player.fruitsCollected >= 10) {
-
-      let frameGameRight = frameGame.getBoundingClientRect().right
-      pig.style.left = `${frameGameRight - 250 }px`
-      pig.style.transform = 'scale(1.3)'
-      pig.style.transition = 'all 2s'
-    }
-
     firstLayerBg.style.transform = `translateX(${this.xBg1}px)`
     secondLayerBg.style.transform = `translateX(${this.xBg2}px)`
     fruits.forEach( (divFruits) => { divFruits.style.transform = `translateX(${this.xFruits}px)` })
+
+    // If Piggy reached the end and picked up all fruits, then Piggy moves directly to The End.
+    if (this.player.direction === 1 && this.player.didReachTheEnd() && this.player.fruitsCollected >= 2) {
+      
+      // Piggy WON!!!!!!
+      this.playerWon()
+
+      let frameGameRight = frameGame.getBoundingClientRect().right
+      pig.style.left = `${frameGameRight - 250 }px`
+      pig.style.transform = 'scale(1.3) translateY(-20px)'
+      pig.style.transition = 'all 2s'
+
+      setTimeout( () => { playerWonScreen.className = 'show' }, 1500 )
+      
+    }
+
+  }
+
+  playerWon() {
+
+    // Game is finished
+    clearInterval(checkPainID)
+    clearInterval(deleteKnivesID)
+    clearInterval(throwKnivesID)
+
+    // Remove any remaining flying knife from the DOM 
+    let knives = document.querySelectorAll('.knife')
+    knives.forEach( (el) => el.remove())
+
+    // SHOW WIN SCREEN!!!
+
   }
 
   moveKnife(element) {
@@ -133,11 +156,6 @@ class Game {
     try {
 
       let prevTranslate = element.style.transform
-      
-      console.log('*************************************')
-      console.log('Does it exists?', element, 'Id Knife', this.id)
-      console.log("prevTranslate", prevTranslate)
-
       let newValue = ""
 
       if (this.player.direction === 1) newValue = this.moveKnifeBackwards(prevTranslate)
@@ -145,9 +163,6 @@ class Game {
     
       element.style.transform = `translateX(${newValue}px)`
 
-      console.log("Added value to style transform: ", element.style.transform)
-      console.log('*************************************')
-      
     } catch(err) {
       console.log(`Hey Moni, you got an error! ${err}`, err)
     }

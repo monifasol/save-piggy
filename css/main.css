@@ -58,27 +58,37 @@ body h1 {
   font-size: 50px;
 }
 body .btn {
-  background-color: salmon;
+  font-family: "Source Code Pro", monospace;
+  background-color: pink;
+  border: solid 1px rosybrown;
   padding: 12px 40px;
   display: inline-block;
   cursor: pointer;
-  color: white;
+  color: black;
   border-radius: 10px;
+  font-size: 16px;
+  transition: all 1s;
+}
+body .btn:hover {
+  background-color: white;
 }
 
 #splash-screen.show,
 #game-over.show,
-#game-board.show {
+#game-board.show,
+#player-won.show {
   display: block;
 }
 #splash-screen.hide,
 #game-over.hide,
-#game-board.hide {
+#game-board.hide,
+#player-won.hide {
   display: none;
 }
 
 #game-over,
-#game-board {
+#game-board,
+#player-won {
   display: none;
 }
 
@@ -90,6 +100,30 @@ body .btn {
   height: 100vh;
   width: 100vw;
 }
+
+#player-won {
+  position: absolute;
+  top: 30%;
+  left: 40%;
+  width: 400px;
+  height: 300px;
+  text-align: center;
+  border: solid 5px pink;
+  background-color: rgba(255, 255, 255, 0.7);
+  border-radius: 20px;
+  padding: 20px 40px;
+  text-align: center;
+  z-index: 3;
+}
+#player-won p {
+  margin: 20px auto;
+  font-size: 28px;
+  line-height: 30px;
+}
+#player-won .btn {
+  margin-top: 40px;
+}
+
 /* ================ Splash Screen ================ */
 #splash-screen h1 {
   margin: 10px 0 50px 0;
@@ -110,49 +144,17 @@ body .btn {
 }
 
 /* ================ Game board ================ */
-#game-board .top {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: flex-end;
-  padding-bottom: 10px;
-}
-#game-board .top h1 {
+#game-board h1.title-game {
+  position: absolute;
+  top: 10px;
+  left: 10px;
   font-size: 40px;
   text-align: left;
 }
-#game-board .top .top-left {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  width: 180px;
-}
-#game-board .top .lives {
-  text-align: left;
-}
-#game-board .top .lives-left {
-  display: flex;
-}
-#game-board .top .lives-left span.live {
-  border: solid 1px salmon;
-  background-color: pink;
-  width: 25px;
-  height: 25px;
-  border-radius: 50%;
-  margin: 10px 5px 0 0;
-}
-#game-board .top .lives-left span.live.lost {
-  border: solid 1px grey;
-  background-color: #ccc;
-}
-#game-board .btn {
-  margin-top: 20px;
-}
 #game-board .frame-game {
-  border: solid 1px black;
-  width: 90vw;
-  height: 78vh;
   position: relative;
+  width: 100vw;
+  height: 100vh;
   background-color: #B7EEFF;
   overflow: hidden;
 }
@@ -160,8 +162,8 @@ body .btn {
   width: 152px;
   height: 140px;
   position: absolute;
-  bottom: 20px;
-  left: 40%;
+  bottom: 30px;
+  left: 30%;
   z-index: 3;
   transition: transform 0.5s;
 }
@@ -350,12 +352,23 @@ body .btn {
 #game-board .landscape .second-layer-bg {
   transition: transform 0.3s;
 }
+#game-board .landscape .herbs-layer-bg {
+  background-image: url("/img/herbs.png");
+  background-repeat: repeat-x;
+  background-size: contain;
+  background-position: bottom;
+  height: 60px;
+  width: 4000px;
+  position: absolute;
+  bottom: 0;
+  z-index: 2;
+}
 #game-board .landscape .first-layer-bg {
   background-image: url("/img/first-layer-bg.png");
   background-repeat: repeat-x;
   background-size: contain;
   background-position: bottom;
-  height: 35vh;
+  height: 45vh;
   width: 4000px;
   position: absolute;
   bottom: 0;
@@ -372,7 +385,7 @@ body .btn {
   background-repeat: repeat-x;
   background-size: contain;
   background-position: bottom;
-  height: 50vh;
+  height: 65vh;
   width: 100%;
   position: relative;
 }
@@ -481,32 +494,58 @@ body .btn {
 #game-board .carrots2 span.fruit {
   height: 60px;
 }
-#game-board .dialog-lives,
-#game-board .dialog-the-end {
+#game-board .dialog {
   font-family: "Source Code Pro", monospace;
   position: absolute;
-  right: 10px;
   z-index: 3;
   border-radius: 10px;
   padding: 12px 20px;
   width: 230px;
   line-height: 30px;
   font-size: 15px;
+  right: 10px;
+}
+#game-board .lives {
+  top: 10px;
+  text-align: left;
+  border: solid 1px salmon;
+  background-color: rgba(255, 255, 255, 0.5);
+}
+#game-board .lives-left {
+  display: flex;
+}
+#game-board .lives-left span.live {
+  border: solid 1px salmon;
+  background-color: pink;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  margin: 10px 5px 0 0;
+}
+#game-board .lives-left span.live.lost {
+  border: solid 1px grey;
+  background-color: #ccc;
+}
+#game-board .dialog-the-end {
+  border: solid 1px #23882b;
+  background-color: rgba(183, 248, 210, 0.6);
+  top: 110px;
 }
 #game-board .dialog-lives {
   opacity: 0;
   border: solid 1px salmon;
   background-color: rgba(250, 128, 114, 0.5);
-  top: 10px;
+  top: 205px;
   transition: all 0.2s;
 }
 #game-board .dialog-lives.visible {
   opacity: 1;
 }
-#game-board .dialog-the-end {
-  border: solid 1px #23882b;
-  background-color: rgba(183, 248, 210, 0.6);
-  top: 100px;
+#game-board #stop-game {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  z-index: 2;
 }
 
 /*# sourceMappingURL=main.css.map */

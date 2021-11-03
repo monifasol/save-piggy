@@ -43,10 +43,16 @@ const loadGameElements = () => {
   let restartButton = document.getElementById("restart-game")
   restartButton.addEventListener("click", showGameScreen)
 
+  // elements in Game over screen
+  playerWonScreen = document.getElementById('player-won')
+  let playAgainButton = document.getElementById("play-again")
+  playAgainButton.addEventListener("click", showGameScreen)
+
   // set initial classes
   splashScreen.className = 'show'
   gameBoard.className = 'hide'
   gameOverScreen.className = 'hide'
+  playerWonScreen.className = 'hide'
 };
 
 // Game Screen

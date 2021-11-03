@@ -54,8 +54,6 @@ class Player {
         setTimeout(() => { yummy.classList.remove('visible') }, 1500)
 
         this.fruitsCollected += 1
-        let fruitsCollectedDOM = document.querySelector('.fruits-collected span')
-        fruitsCollectedDOM.textContent = `${this.fruitsCollected}`
 
         // Fruit animation to hide from DOM
         fruit.classList.add('eaten')

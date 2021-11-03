@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="icon" type="image/png" href="/img/favicon.png"/>
 
     <title>Save Piggy - Online Game</title>
     
@@ -29,6 +30,12 @@
 
   <body>
 
+    <section id="player-won">
+        <p> Congrats!!</p>
+        <p> Yout saved Piggy! </p>
+        <div class="btn" id="play-again">Start over!</div>
+    </section>
+
     <section id="game-over">
       <div class="screen">
         <div class="screen-elements">
@@ -44,10 +51,12 @@
 
       <div class="screen">
         <div class="screen-elements">
+
           <h1>Save Piggy</h1>
           <p class="description"> 
-            Collect all the fruits, dodge all knives, scape from the butcher,... 
-            in 1 minute time.
+            Collect all the fruits, 
+            <br/>dodge all knives, 
+            <br/>scape from the butcher!
           </p>
           <div class="btn" id="start-game">Let's play</div>
         </div>
@@ -56,108 +65,107 @@
     </section>
 
     <main id="game-board">
-      <div class="screen">
-        <div class="screen-elements">
 
-          <div class="top">
-            <h1>Save <br/> Piggy</h1>
-            <div class="lives">
-              Lives left
-              <div class="lives-left">
-                <span class="live" id="live1"></span>
-                <span class="live" id="live2"></span>
-                <span class="live" id="live3"></span>
-                <span class="live" id="live4"></span>
-                <span class="live" id="live5"></span>
-              </div>
+      <section class="frame-game">
+
+        <div class="btn" id="stop-game">Exit</div>
+
+        <h1 class="title-game">Save <br/> Piggy</h1>
+
+        <div class="lives dialog">
+          Lives left
+          <div class="lives-left">
+            <span class="live" id="live1"></span>
+            <span class="live" id="live2"></span>
+            <span class="live" id="live3"></span>
+            <span class="live" id="live4"></span>
+            <span class="live" id="live5"></span>
+          </div>
+        </div>
+
+        <div class="butcher">
+          <div class="hand"></div>
+        </div>
+
+        <div class="dialog dialog-lives">
+          <p>Piggy got hurt! </p>
+          <p>You lost 1 life! </p>
+        </div>
+
+        <div class="dialog dialog-the-end">
+          <p id='dialog-the-end-sentence'>Piggy, you need to collect 10 fruits!</p>
+        </div>
+
+        <div class="landscape">
+
+          <!--<div class="herbs-layer-bg"></div>-->
+
+          <div class="second-layer-bg-wrapper">
+            <div class="second-layer-bg">
+              <div class="the-end"></div>
             </div>
           </div>
-
-          <div class="butcher">
-            <div class="hand"></div>
-          </div>
-
-          <section class="frame-game">
-
-            <div class="dialog-lives">
-              <p>Piggy got hurt! </p>
-              <p>You lost 1 life! </p>
-            </div>
-
-            <div class="dialog-the-end">
-              <p id='dialog-the-end-sentence'>Piggy, you need to collect 10 fruits!</p>
-            </div>
-
-            <div class="landscape">
-              <div class="second-layer-bg-wrapper">
-                <div class="second-layer-bg">
-                  <div class="the-end"></div>
-                </div>
-              </div>
-              <div class="first-layer-bg"></div>
-            </div>
-
-            <div id="pig">
-              
-              <div class="pig"></div>
-              <img class="leg1" src="img/leg-1.png" />
-              <img class="leg2" src="img/leg-2.png" />
-              
-              <div class="ouch">Ouch!</div>
-              <div class="yummy">Yummy!</div>
-            
-            </div>
-
-            <div class="fruits peaches bounce">
-              <span class="fruit" id="fruit1"><img src="/img/peach.png" alt="peach"/></span>
-              <span class="fruit" id="fruit2"><img src="/img/peach.png" alt="peach"/></span>
-              <span class="fruit" id="fruit3"><img src="/img/peach.png" alt="peach"/></span>
-            </div>
-
-            <div class="fruits strawberries bounce">
-              <span class="fruit" id="fruit4"><img src="/img/strawberry.png" alt="strawberry"/></span>
-              <span class="fruit" id="fruit5"><img src="/img/strawberry.png" alt="strawberry"/></span>
-              <span class="fruit" id="fruit6"><img src="/img/strawberry.png" alt="strawberry"/></span>
-              <span class="fruit" id="fruit7"><img src="/img/strawberry.png" alt="strawberry"/></span>
-            </div>
-
-            <div class="fruits avocados bounce">
-              <span class="fruit" id="fruit8"><img src="/img/avocado.png" alt="avocado"/></span>
-              <span class="fruit" id="fruit9"><img src="/img/avocado.png" alt="avocado"/></span>
-              <span class="fruit" id="fruit10"><img src="/img/avocado.png" alt="avocado"/></span>
-            </div>
-
-            <div class="fruits carrots bounce">
-              <span class="fruit" id="fruit11"><img src="/img/carrot.png" alt="carrot"/></span>
-              <span class="fruit" id="fruit12"><img src="/img/carrot.png" alt="carrot"/></span>
-              <span class="fruit" id="fruit13"><img src="/img/carrot.png" alt="carrot"/></span>
-            </div>
-
-            <div class="fruits peaches2 bounce">
-              <span class="fruit" id="fruit14"><img src="/img/peach.png" alt="peach"/></span>
-              <span class="fruit" id="fruit15"><img src="/img/peach.png" alt="peach"/></span>
-              <span class="fruit" id="fruit16"><img src="/img/peach.png" alt="peach"/></span>
-            </div>
-
-            <div class="fruits avocados2 bounce">
-              <span class="fruit" id="fruit17"><img src="/img/avocado.png" alt="avocado"/></span>
-              <span class="fruit" id="fruit18"><img src="/img/avocado.png" alt="avocado"/></span>
-              <span class="fruit" id="fruit19"><img src="/img/avocado.png" alt="avocado"/></span>
-              <span class="fruit" id="fruit20"><img src="/img/avocado.png" alt="avocado"/></span>
-            </div>
-
-            <div class="fruits carrots2 bounce">
-              <span class="fruit" id="fruit21"><img src="/img/carrot.png" alt="carrot"/></span>
-              <span class="fruit" id="fruit22"><img src="/img/carrot.png" alt="carrot"/></span>
-              <span class="fruit" id="fruit23"><img src="/img/carrot.png" alt="carrot"/></span>
-            </div>
-
-          </section>
-
-          <div class="btn" id="stop-game">Exit</div>
+          <div class="first-layer-bg"></div>
 
         </div>
-      </div>
+
+        <div id="pig">
+          
+          <div class="pig"></div>
+          <img class="leg1" src="img/leg-1.png" />
+          <img class="leg2" src="img/leg-2.png" />
+          
+          <div class="ouch">Ouch!</div>
+          <div class="yummy">Yummy!</div>
+        
+        </div>
+
+        <div class="fruits peaches bounce">
+          <span class="fruit" id="fruit1"><img src="/img/peach.png" alt="peach"/></span>
+          <span class="fruit" id="fruit2"><img src="/img/peach.png" alt="peach"/></span>
+          <span class="fruit" id="fruit3"><img src="/img/peach.png" alt="peach"/></span>
+        </div>
+
+        <div class="fruits strawberries bounce">
+          <span class="fruit" id="fruit4"><img src="/img/strawberry.png" alt="strawberry"/></span>
+          <span class="fruit" id="fruit5"><img src="/img/strawberry.png" alt="strawberry"/></span>
+          <span class="fruit" id="fruit6"><img src="/img/strawberry.png" alt="strawberry"/></span>
+          <span class="fruit" id="fruit7"><img src="/img/strawberry.png" alt="strawberry"/></span>
+        </div>
+
+        <div class="fruits avocados bounce">
+          <span class="fruit" id="fruit8"><img src="/img/avocado.png" alt="avocado"/></span>
+          <span class="fruit" id="fruit9"><img src="/img/avocado.png" alt="avocado"/></span>
+          <span class="fruit" id="fruit10"><img src="/img/avocado.png" alt="avocado"/></span>
+        </div>
+
+        <div class="fruits carrots bounce">
+          <span class="fruit" id="fruit11"><img src="/img/carrot.png" alt="carrot"/></span>
+          <span class="fruit" id="fruit12"><img src="/img/carrot.png" alt="carrot"/></span>
+          <span class="fruit" id="fruit13"><img src="/img/carrot.png" alt="carrot"/></span>
+        </div>
+
+        <div class="fruits peaches2 bounce">
+          <span class="fruit" id="fruit14"><img src="/img/peach.png" alt="peach"/></span>
+          <span class="fruit" id="fruit15"><img src="/img/peach.png" alt="peach"/></span>
+          <span class="fruit" id="fruit16"><img src="/img/peach.png" alt="peach"/></span>
+        </div>
+
+        <div class="fruits avocados2 bounce">
+          <span class="fruit" id="fruit17"><img src="/img/avocado.png" alt="avocado"/></span>
+          <span class="fruit" id="fruit18"><img src="/img/avocado.png" alt="avocado"/></span>
+          <span class="fruit" id="fruit19"><img src="/img/avocado.png" alt="avocado"/></span>
+          <span class="fruit" id="fruit20"><img src="/img/avocado.png" alt="avocado"/></span>
+        </div>
+
+        <div class="fruits carrots2 bounce">
+          <span class="fruit" id="fruit21"><img src="/img/carrot.png" alt="carrot"/></span>
+          <span class="fruit" id="fruit22"><img src="/img/carrot.png" alt="carrot"/></span>
+          <span class="fruit" id="fruit23"><img src="/img/carrot.png" alt="carrot"/></span>
+        </div>
+
+      </section>
+
     
     </main>
 
