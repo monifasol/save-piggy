@@ -127,11 +127,6 @@ body .btn {
   align-items: flex-start;
   width: 180px;
 }
-#game-board .top .fruits-collected span {
-  color: salmon;
-  text-shadow: 2px 2px #ff0000;
-  font-size: 30px;
-}
 #game-board .top .lives {
   text-align: left;
 }
@@ -288,8 +283,8 @@ body .btn {
   transform: rotate(10deg);
 }
 #game-board #pig .yummy {
-  top: -100px;
-  left: -30px;
+  top: -70px;
+  left: -10px;
   transform: rotate(-20deg);
 }
 #game-board .butcher {

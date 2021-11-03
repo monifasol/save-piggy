@@ -17,7 +17,6 @@ body {
         color: white;
         border-radius: 10px;
     }
-
 }
 
 #splash-screen,
@@ -97,15 +96,6 @@ body {
             flex-direction: column;
             align-items: flex-start;
             width: 180px;
-        }
-
-        .fruits-collected {
-            
-            span {
-                color: salmon;
-                text-shadow: 2px 2px #ff0000;
-                font-size: 30px;
-            }
         }
 
         .lives {
@@ -232,8 +222,8 @@ body {
         }
 
         .yummy {
-            top: -100px;
-            left: -30px;
+            top: -70px;
+            left: -10px;
             transform: rotate(-20deg);
         }
 

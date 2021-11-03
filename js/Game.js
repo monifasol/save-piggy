@@ -71,6 +71,9 @@ class Game {
     firstLayerBg.style.transform = 'translateX(0px)'
     secondLayerBg.style.transform = 'translateX(0px)'
     
+    // Set Pig at initial position
+    pig.style.left = '40%';
+
     // Remove any remaining flying knife from the DOM 
     let knives = document.querySelectorAll('.knife')
     knives.forEach( (el) => el.remove())
@@ -80,9 +83,7 @@ class Game {
       divFruits.style.transform = 'translateX(0px)' 
       let fruitSpans = divFruits.querySelectorAll('span.fruit')
 
-      fruitSpans.forEach( (fruit) => { 
-        fruit.classList.remove("eaten")
-      })
+      fruitSpans.forEach( (fruit) => { fruit.classList.remove("eaten") })
     })
   }
 
@@ -93,15 +94,15 @@ class Game {
 
     if (this.player.direction === 1 && !this.player.didReachTheEnd()) {
       // goes RIGHT and scenario moves if RIGHT limit is not reached
-      this.xFruits -= 20
-      this.xBg1 -= 10
+      this.xFruits -= 22
+      this.xBg1 -= 15
       this.xBg2 -= 5
       knivesDOM.forEach( (k) => this.moveKnife(k) )        
 
     } else if (this.player.direction === -1 && this.xBg2 < 0) {
       // goes left and scenario moves if LEFT limit is not reached
-      this.xFruits += 20
-      this.xBg1 += 10
+      this.xFruits += 22
+      this.xBg1 += 15
       this.xBg2 += 5
       knivesDOM.forEach( (k) => this.moveKnife(k) )        
 
@@ -114,7 +115,7 @@ class Game {
     if (this.player.direction === 1 && this.player.didReachTheEnd() && this.player.fruitsCollected >= 10) {
 
       let frameGameRight = frameGame.getBoundingClientRect().right
-      pig.style.left = `${frameGameRight - 200 }px`
+      pig.style.left = `${frameGameRight - 250 }px`
       pig.style.transform = 'scale(1.3)'
       pig.style.transition = 'all 2s'
     }
@@ -158,11 +159,11 @@ class Game {
     let newValue = 0;
 
     if (prevTranslate == "" || prevTranslate == undefined) {   // then it's the first fime we apply "transform translate"
-      newValue = -40
+      newValue = -25
     } else {
       let positionPx = prevTranslate.indexOf('px')
       let prevValue = prevTranslate.slice(11, positionPx)      // position 11 because starts by "translateX("
-      newValue = parseInt(prevValue) - 40
+      newValue = parseInt(prevValue) - 25
     }
 
     return newValue
@@ -173,12 +174,12 @@ class Game {
     let newValue = 0;
 
     if (prevTranslate == "" || prevTranslate == undefined) {    // then it's the first fime we apply "transform translate"
-      newValue = 40
+      newValue = 25
     } else {
 
       let positionPx = prevTranslate.indexOf('px')
       let prevValue = prevTranslate.slice(11, positionPx)       // position 11 because starts by "translateX("
-      newValue = parseInt(prevValue) + 40
+      newValue = parseInt(prevValue) + 25
     }
 
     return newValue
@@ -278,14 +279,9 @@ class Game {
     let lives = document.querySelectorAll('.live')
     lives.forEach( (el) => el.classList.remove('lost'))
 
-    // Set fruits collected to 0
-    let fruitsCollectedDOM = document.querySelector('.fruits-collected span')
-    fruitsCollectedDOM.textContent = "0"
-
     // Remove any remaining flying knife from the DOM 
     let knives = document.querySelectorAll('.knife')
     knives.forEach( (el) => el.remove())
-    
   }
 
 }
