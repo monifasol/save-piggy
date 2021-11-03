@@ -58,14 +58,3 @@ Dodge the knives thrown from the sky, while collecting all the fruits in the fie
 Please commit only to your own forked repo.  
 Pull Requests are welcome!
 
-<br>
-
-**Automated Tests**
-
-- Run the tests locally:  
-`npm install`   
-`npm run test:watch`  
-Open the resulting `tests-live.html` file with the "Live Server" VSCode extension to always see the most up-to-date test results.
-
-<br>
-
