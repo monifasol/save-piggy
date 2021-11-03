@@ -13,7 +13,8 @@ let game,
     frameGame = document.querySelector('.frame-game'),
     checkPainID = null,                                     // setInterval that checks pain
     deleteKnivesID = null,                                  // setInterval that deletes lost knives
-    throwKnivesID = null;                                   // setInterval that throws knives
+    throwKnivesID = null,                                   // setInterval that throws knives
+    audioPig = new Audio('img/audio-pig.mp3');
 
 
 // Cross browser requestAnimationFrame:

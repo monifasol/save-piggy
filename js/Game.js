@@ -13,10 +13,6 @@ class Game {
     this.boardGame = document.getElementById("game-board")
     this.player = new Player()
     this.startEnemyMovement()
-    
-    console.log("I start the game with ", this.knives.length, "knives")
-    console.log("knives I have:", this.knives)
-
 
     this.handleKeyDown = (event) => {
       if (event.defaultPrevented) return; 
@@ -115,7 +111,7 @@ class Game {
     }
 
     // If Piggy reached the end and picked up all fruits, then Piggy moves directly to The End.
-    if (this.player.direction === 1 && this.player.didReachTheEnd() && this.player.fruitsCollected >= 2) {
+    if (this.player.direction === 1 && this.player.didReachTheEnd() && this.player.fruitsCollected >= 10) {
 
       let frameGameRight = frameGame.getBoundingClientRect().right
       pig.style.left = `${frameGameRight - 200 }px`

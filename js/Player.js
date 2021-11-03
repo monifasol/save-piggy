@@ -45,15 +45,13 @@ class Player {
 
       if (leftPig < leftFruit && rightPig > rightFruit) {
         
+        setTimeout(() => { audioPig.play() }, 400)
+        
         // With a little delay, because pig takes 1 second to jump
-        setTimeout(() => {
-          yummy.classList.add('visible')
-        }, 800)
+        setTimeout(() => { yummy.classList.add('visible') }, 800)
 
         // After 1,5 seconds, we removed the Yummy div
-        setTimeout(() => { 
-          yummy.classList.remove('visible')
-        }, 1500)
+        setTimeout(() => { yummy.classList.remove('visible') }, 1500)
 
         this.fruitsCollected += 1
         let fruitsCollectedDOM = document.querySelector('.fruits-collected span')
@@ -69,7 +67,7 @@ class Player {
         if (this.fruitsCollected < 10) {
           messageTheEnd = `Piggy, you need to pick ${10 - this.fruitsCollected} more fruits!!`
         } else {
-          messageTheEnd = "Nice, Piggy!! You collected all fruits!! 🍑🥑"
+          messageTheEnd = "Nice, Piggy!! You collected all fruits!! 🍑 🥑"
         }
         messageTheEndDOM.textContent = messageTheEnd
       }
