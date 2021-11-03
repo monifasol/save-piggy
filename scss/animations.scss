@@ -2,7 +2,6 @@
 
 // fruit is eaten
 
-
 @mixin eaten {
   
   animation-name: eaten;
@@ -70,21 +69,10 @@
   animation-iteration-count: infinite;
   animation-timing-function: linear;
 
-  -webkit-animation-name: moving;
-  -webkit-animation-duration: 14s;
-  -webkit-animation-iteration-count: infinite;
-  -webkit-animation-timing-function: linear;
-
   @keyframes moving {
     0%   { transform: translateX(0); }
     50%  { transform: translateX(45vw); }
     100% { transform: translateX(0); }
-  }
-
-  @-webkit-keyframes moving {
-    0%   { -webkit-transform: translateX(0); }
-    50%  { -webkit-transform: translateX(45vw); }
-    100% { -webkit-transform: translateX(0); }
   }
 }
 
@@ -97,20 +85,11 @@
   animation-iteration-count: inf1inite;
   animation-timing-function: ease-out;
 
-  -webkit-animation-name: falling;
-  -webkit-animation-duration: 8s;
-  -webkit-animation-iteration-count: 1;
-  -webkit-animation-timing-function: ease-out;
-
   @keyframes falling {
     0%   { top: 0px; }
     100%  { top: 100vh; }
   }
 
-  @-webkit-keyframes falling {
-    0%   { top: 0px; }
-    100%  { top: 100vh; }
-  }
 }
 
 // Pig jumps
@@ -121,12 +100,6 @@
     animation-duration: 2s;
     animation-iteration-count: 1;
     animation-timing-function: cubic-bezier(.02,.73,.46,1.28);
-
-    -webkit-animation-name: jump;
-    -webkit-animation-duration: 2s;
-    -webkit-animation-iteration-count: 1;
-    -webkit-animation-timing-function: cubic-bezier(.02,.73,.46,1.28);
-
   
     @keyframes jump {
       0%   { transform: translateY(0); }
@@ -137,16 +110,7 @@
       64%  { transform: translateY(0); }
       100% { transform: translateY(0); }
     }
-  
-    @-webkit-keyframes jump {
-      0%   { -webkit-transform: translateY(0); }
-      10%  { -webkit-transform: translateY(0); }
-      30%  { -webkit-transform: translateY(-200px); }
-      50%  { -webkit-transform: translateY(0); }
-      57%  { -webkit-transform: translateY(-7px); }
-      64%  { -webkit-transform: translateY(0); }
-      100% { -webkit-transform: translateY(0); }
-    }
+
 }
 
 // Pig jumps with distorsion
@@ -158,11 +122,6 @@
   animation-iteration-count: 1;
   animation-timing-function: cubic-bezier(.02,.73,.46,1.28);
 
-  -webkit-animation-name: jump;
-  -webkit-animation-duration: 2s;
-  -webkit-animation-iteration-count: 1;
-  -webkit-animation-timing-function: cubic-bezier(.02,.73,.46,1.28);
-
   @keyframes jump {
     0%   { transform: scale(1,1)      translateY(0); }
     10%  { transform: scale(1.1,.9)   translateY(0); }
@@ -172,40 +131,18 @@
     64%  { transform: scale(1,1)      translateY(0); }
     100% { transform: scale(1,1)      translateY(0); }
   }
-
-  @-webkit-keyframes jump {
-    0%   { -webkit-transform: scale(1,1)      translateY(0); }
-    10%  { -webkit-transform: scale(1.1,.9)   translateY(0); }
-    30%  { -webkit-transform: scale(.9,1.1)   translateY(-200px); }
-    50%  { -webkit-transform: scale(1,.95)    translateY(0); }
-    57%  { -webkit-transform: scale(1,1)      translateY(-7px); }
-    64%  { -webkit-transform: scale(1,1)      translateY(0); }
-    100% { -webkit-transform: scale(1,1)      translateY(0); }
-  }
 }
 
 // Elements floating (example: clouds, fruits)
 
 @mixin floating {
     animation-name: floating;
-    -webkit-animation-name: floating;
-  
     animation-duration: 2s;
-    -webkit-animation-duration: 2s;
-  
     animation-iteration-count: infinite;
-    -webkit-animation-iteration-count: infinite;
   
     @keyframes floating {
       0% { transform: translateY(0%); }
       50% { transform: translateY(15%); }
       100% { transform: translateY(0%); }
     }
-  
-    @-webkit-keyframes floating {
-      0% { -webkit-transform: translateY(0%); }
-      50% { -webkit-transform: translateY(15%); }
-      100% { -webkit-transform: translateY(0%); }
-    }
   }
-

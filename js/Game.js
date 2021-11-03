@@ -66,6 +66,7 @@ class Game {
   initScenario() {
     firstLayerBg.style.transform = 'translateX(0px)'
     secondLayerBg.style.transform = 'translateX(0px)'
+    fruits.forEach( (divFruits) => { divFruits.style.transform = 'translateX(0px)' })
   }
 
   moveScenario() {

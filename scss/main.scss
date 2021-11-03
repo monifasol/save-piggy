@@ -155,6 +155,12 @@ body {
         transition: transform 0.3s;
         z-index: 3;
 
+        &.touched {
+            -webkit-filter: drop-shadow(2px 4px 6px salmon);
+            filter: drop-shadow(2px 4px 6px salmon);
+            border: solid 1px salmon;            
+        }
+        
         .ouch, .yummy {
             opacity: 0;
             font-family: 'Source Code Pro', monospace;
@@ -181,12 +187,6 @@ body {
         &.jump {
             // pig jumps!
             @include jump;
-        }
-
-        &.touched {
-            -webkit-filter: drop-shadow(2px 4px 6px salmon);
-            filter: drop-shadow(2px 4px 6px salmon);
-            border: solid 1px salmon;            
         }
     }
 

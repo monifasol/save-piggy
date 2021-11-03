@@ -172,6 +172,11 @@ body .btn {
   transition: transform 0.3s;
   z-index: 3;
 }
+#game-board #pig.touched {
+  -webkit-filter: drop-shadow(2px 4px 6px salmon);
+  filter: drop-shadow(2px 4px 6px salmon);
+  border: solid 1px salmon;
+}
 #game-board #pig .ouch, #game-board #pig .yummy {
   opacity: 0;
   font-family: "Source Code Pro", monospace;
@@ -196,10 +201,6 @@ body .btn {
   animation-duration: 2s;
   animation-iteration-count: 1;
   animation-timing-function: cubic-bezier(0.02, 0.73, 0.46, 1.28);
-  -webkit-animation-name: jump;
-  -webkit-animation-duration: 2s;
-  -webkit-animation-iteration-count: 1;
-  -webkit-animation-timing-function: cubic-bezier(0.02, 0.73, 0.46, 1.28);
 }
 @keyframes jump {
   0% {
@@ -224,34 +225,6 @@ body .btn {
     transform: translateY(0);
   }
 }
-@-webkit-keyframes jump {
-  0% {
-    -webkit-transform: translateY(0);
-  }
-  10% {
-    -webkit-transform: translateY(0);
-  }
-  30% {
-    -webkit-transform: translateY(-200px);
-  }
-  50% {
-    -webkit-transform: translateY(0);
-  }
-  57% {
-    -webkit-transform: translateY(-7px);
-  }
-  64% {
-    -webkit-transform: translateY(0);
-  }
-  100% {
-    -webkit-transform: translateY(0);
-  }
-}
-#game-board #pig.touched {
-  -webkit-filter: drop-shadow(2px 4px 6px salmon);
-  filter: drop-shadow(2px 4px 6px salmon);
-  border: solid 1px salmon;
-}
 #game-board .butcher {
   width: 100px;
   height: 100px;
@@ -275,10 +248,6 @@ body .btn {
   animation-duration: 14s;
   animation-iteration-count: infinite;
   animation-timing-function: linear;
-  -webkit-animation-name: moving;
-  -webkit-animation-duration: 14s;
-  -webkit-animation-iteration-count: infinite;
-  -webkit-animation-timing-function: linear;
 }
 @keyframes moving {
   0% {
@@ -289,17 +258,6 @@ body .btn {
   }
   100% {
     transform: translateX(0);
-  }
-}
-@-webkit-keyframes moving {
-  0% {
-    -webkit-transform: translateX(0);
-  }
-  50% {
-    -webkit-transform: translateX(45vw);
-  }
-  100% {
-    -webkit-transform: translateX(0);
   }
 }
 #game-board .knife {
@@ -317,20 +275,8 @@ body .btn {
   animation-duration: 8s;
   animation-iteration-count: inf1inite;
   animation-timing-function: ease-out;
-  -webkit-animation-name: falling;
-  -webkit-animation-duration: 8s;
-  -webkit-animation-iteration-count: 1;
-  -webkit-animation-timing-function: ease-out;
 }
 @keyframes falling {
-  0% {
-    top: 0px;
-  }
-  100% {
-    top: 100vh;
-  }
-}
-@-webkit-keyframes falling {
   0% {
     top: 0px;
   }
@@ -389,11 +335,8 @@ body .btn {
 }
 #game-board .fruits span.fruit {
   animation-name: floating;
-  -webkit-animation-name: floating;
   animation-duration: 2s;
-  -webkit-animation-duration: 2s;
   animation-iteration-count: infinite;
-  -webkit-animation-iteration-count: infinite;
   position: absolute;
   height: 40px;
   top: 0px;
@@ -408,17 +351,6 @@ body .btn {
   }
   100% {
     transform: translateY(0%);
-  }
-}
-@-webkit-keyframes floating {
-  0% {
-    -webkit-transform: translateY(0%);
-  }
-  50% {
-    -webkit-transform: translateY(15%);
-  }
-  100% {
-    -webkit-transform: translateY(0%);
   }
 }
 #game-board .fruits span.fruit.eaten {
