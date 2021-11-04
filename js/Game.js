@@ -64,8 +64,8 @@ class Game {
       this.xFruits -= 22
       this.xBg1 -= 15
       this.xBg2 -= 5
-      knivesDOM.forEach( (k) =>  {
-        knivesAnimationID = window.requestAnimationFrame(this.moveKnife.bind(this, k))  
+      knivesDOM.forEach( (k, i) =>  {
+        window.requestAnimationFrame(this.moveKnife.bind(this, k))  
       })        
 
     } else if (this.player.direction === -1 && this.xBg2 < 0) {
@@ -74,7 +74,7 @@ class Game {
       this.xBg1 += 15
       this.xBg2 += 5
       knivesDOM.forEach( (k) =>  {
-        knivesAnimationID = window.requestAnimationFrame(this.moveKnife.bind(this, k))  
+        window.requestAnimationFrame(this.moveKnife.bind(this, k))  
       })  
     } 
 
@@ -108,7 +108,6 @@ class Game {
     clearInterval(checkPainID)
     clearInterval(deleteKnivesID)
     clearInterval(throwKnivesID)
-    clearInterval(knivesAnimationID)
 
     let knives = document.querySelectorAll('.knife')
     knives.forEach( (el) => el.remove())
@@ -226,7 +225,7 @@ class Game {
 
   deleteLostKnives() {
     // Delete the knives that are not visible anymore. (both from DOM and from object)
-    this.knives.forEach((knife) => {
+    this.knives.forEach((knife, i) => {
       let knifeDOMElement = document.getElementById(`knife${knife.id}`)
 
       if (knifeDOMElement && !isVisible(knifeDOMElement)) {
@@ -242,8 +241,6 @@ class Game {
     clearInterval(checkPainID)
     clearInterval(deleteKnivesID)
     clearInterval(throwKnivesID)
-    clearInterval(knivesAnimationID)
-    knivesAnimationID = null
     
     //Butcher stops moving
     butcher.classList.remove("moving")
