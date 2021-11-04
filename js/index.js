@@ -25,7 +25,6 @@ const loadGameElements = () => {
   let startButton = document.getElementById("start-game")
 
   startButton.addEventListener("click",()=> {
-    if (game != null && game != undefined) game.callGameFinished()
     createNewGame()
     showGameScreen()
   })

@@ -24,17 +24,19 @@ Dodge the knives thrown from the sky, while collecting all the fruits in the fie
     - Left arriw to move backwards
     - Space bar to jump
 
-
 **Requirements**
 
 - Google Chrome
 - Desktop size in the browser
 
+**Play here**
+
+https://monifasol.github.io/save-piggy/
+
 🐽 **Happy playing!!!** 🐽
 
 
 <br>
-
 
 ## Download, play, or edit locally this game
 
