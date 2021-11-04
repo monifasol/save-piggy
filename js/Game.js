@@ -73,17 +73,20 @@ class Game {
       this.xFruits -= 22
       this.xBg1 -= 15
       this.xBg2 -= 5
-      knivesDOM.forEach( (k) => this.moveKnife(k) )        
+      knivesDOM.forEach( (k) =>  {
+        window.requestAnimationFrame(this.moveKnife.bind(this, k))  
+      })        
 
     } else if (this.player.direction === -1 && this.xBg2 < 0) {
       // goes left and scenario moves if LEFT limit is not reached
       this.xFruits += 22
       this.xBg1 += 15
       this.xBg2 += 5
-      knivesDOM.forEach( (k) => this.moveKnife(k) )        
-
+      knivesDOM.forEach( (k) =>  {
+        window.requestAnimationFrame(this.moveKnife.bind(this, k))  
+      })  
     } 
-    
+
     window.requestAnimationFrame(this.moveElements.bind(this))
 
     // If Piggy reached the end and picked up all fruits, then Piggy moves directly to The End.
@@ -131,7 +134,7 @@ class Game {
 
     if (this.player.direction === 1) newValue = this.moveKnifeBackwards(prevTranslate)
     if (this.player.direction === -1) newValue = this.moveKnifeForwards(prevTranslate)
-  
+      
     element.style.transform = `translateX(${newValue}px)`
   }
 
@@ -140,11 +143,11 @@ class Game {
     let newValue = 0;
 
     if (prevTranslate == "" || prevTranslate == undefined) {   // then it's the first fime we apply "transform translate"
-      newValue = -25
+      newValue = -20
     } else {
       let positionPx = prevTranslate.indexOf('px')
       let prevValue = prevTranslate.slice(11, positionPx)      // position 11 because starts by "translateX("
-      newValue = parseInt(prevValue) - 25
+      newValue = parseInt(prevValue) - 20
     }
 
     return newValue
@@ -155,12 +158,12 @@ class Game {
     let newValue = 0;
 
     if (prevTranslate == "" || prevTranslate == undefined) {    // then it's the first fime we apply "transform translate"
-      newValue = 25
+      newValue = 20
     } else {
 
       let positionPx = prevTranslate.indexOf('px')
       let prevValue = prevTranslate.slice(11, positionPx)       // position 11 because starts by "translateX("
-      newValue = parseInt(prevValue) + 25
+      newValue = parseInt(prevValue) + 20
     }
 
     return newValue

@@ -343,7 +343,7 @@ body {
     }
 
     .knife {
-        width: 70px;
+        width: 50px;
         height: auto;
         position: absolute;
         z-index: 3;
@@ -364,21 +364,17 @@ body {
         // first layer contains the fruits, and challenges. 
         // second layer contains the bg that moves slower.
 
+        .stick-go {
+            width: 100px;
+            position: absolute;
+            left: 30px;
+            bottom: 290px;
+            z-index: 9999;
+        }
+
         .first-layer-bg, 
         .second-layer-bg {
             transition: transform 0.3s;
-        }
-
-        .herbs-layer-bg {
-            background-image: url('../img/herbs.png');
-            background-repeat: repeat-x;
-            background-size: contain;
-            background-position: bottom;
-            height: 60px;
-            width: 4000px;
-            position: absolute;
-            bottom: 0;
-            z-index: 2;
         }
 
         .first-layer-bg {
@@ -387,14 +383,14 @@ body {
             background-size: contain;
             background-position: bottom;
             height: 45vh;
-            width: 4000px;
+            width: 4500px;
             position: absolute;
             bottom: 0;
             z-index: 1;
         }
 
         .second-layer-bg-wrapper {
-            width: 2000px;     // doble size, because it will move half speed
+            width: 2250px;     // doble size, because it will move half speed
             position: absolute;
             top: 150px;
             display: flex;
@@ -409,13 +405,10 @@ body {
                 position: relative;
 
                 .the-end {
-                    background-color: brown;
-                    border: solid 1px black;
-                    width: 30px;
-                    height: 100%;
+                    width: 110px;
                     position: absolute;
-                    right: 150px;   //to give a bit of margin for the delay
-                    top: 0px;
+                    right: 200px;   //to give a bit of margin for the delay
+                    top: 50px;
                     z-index: 9999;
                 }
             }
@@ -433,8 +426,8 @@ body {
     }
 
     .butterfly1 {
-        top: 320px;
-        left: 80px; 
+        top: 110px;
+        left: 30px; 
     }
 
     .butterfly2 {

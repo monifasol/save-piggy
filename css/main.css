@@ -458,7 +458,7 @@ body .butterfly2, body .butterfly4 {
   }
 }
 #game-board .knife {
-  width: 70px;
+  width: 50px;
   height: auto;
   position: absolute;
   z-index: 3;
@@ -481,20 +481,16 @@ body .butterfly2, body .butterfly4 {
     top: 100vh;
   }
 }
+#game-board .landscape .stick-go {
+  width: 100px;
+  position: absolute;
+  left: 30px;
+  bottom: 290px;
+  z-index: 9999;
+}
 #game-board .landscape .first-layer-bg,
 #game-board .landscape .second-layer-bg {
   transition: transform 0.3s;
-}
-#game-board .landscape .herbs-layer-bg {
-  background-image: url("../img/herbs.png");
-  background-repeat: repeat-x;
-  background-size: contain;
-  background-position: bottom;
-  height: 60px;
-  width: 4000px;
-  position: absolute;
-  bottom: 0;
-  z-index: 2;
 }
 #game-board .landscape .first-layer-bg {
   background-image: url("../img/first-layer-bg.png");
@@ -502,13 +498,13 @@ body .butterfly2, body .butterfly4 {
   background-size: contain;
   background-position: bottom;
   height: 45vh;
-  width: 4000px;
+  width: 4500px;
   position: absolute;
   bottom: 0;
   z-index: 1;
 }
 #game-board .landscape .second-layer-bg-wrapper {
-  width: 2000px;
+  width: 2250px;
   position: absolute;
   top: 150px;
   display: flex;
@@ -523,13 +519,10 @@ body .butterfly2, body .butterfly4 {
   position: relative;
 }
 #game-board .landscape .second-layer-bg-wrapper .second-layer-bg .the-end {
-  background-color: brown;
-  border: solid 1px black;
-  width: 30px;
-  height: 100%;
+  width: 110px;
   position: absolute;
-  right: 100px;
-  top: 0px;
+  right: 200px;
+  top: 50px;
   z-index: 9999;
 }
 #game-board .sun {
@@ -554,8 +547,8 @@ body .butterfly2, body .butterfly4 {
   }
 }
 #game-board .butterfly1 {
-  top: 320px;
-  left: 80px;
+  top: 110px;
+  left: 30px;
 }
 #game-board .butterfly2 {
   display: none;
