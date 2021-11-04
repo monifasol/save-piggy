@@ -98,6 +98,9 @@ body {
     }
 }
 
+#game-over {
+    background-color: #B7EEFF;
+}
 
 
 /* ================ Splash Screen ================ */
@@ -234,7 +237,7 @@ body {
         height: 140px;
         position: absolute;
         bottom: 30px;
-        left: 30%;
+        left: 40%;
         z-index: 3;
         transition: transform 0.5s;
 
@@ -430,7 +433,7 @@ body {
     }
 
     .butterfly1 {
-        top: 350px;
+        top: 320px;
         left: 80px; 
     }
 

@@ -31,8 +31,6 @@ class Game {
         pig.classList.add("jump")
         this.player.didEatFruit()
 
-      } else {
-        return
       }
 
       // add walking class to pig only 1 second
@@ -40,9 +38,6 @@ class Game {
         setTimeout( () => pig.classList.remove("walk"), 400)
       }
 
-      // Multiple key detection! for the jump Forward!
-      // https://stackoverflow.com/questions/5203407/how-to-detect-if-multiple-keys-are-pressed-at-once-using-javascript
-      
       // Move scenario as pig walks
       this.moveScenario()
       event.preventDefault()
@@ -68,33 +63,13 @@ class Game {
 
   }
 
-  initScenario() {
-    firstLayerBg.style.transform = 'translateX(0px)'
-    secondLayerBg.style.transform = 'translateX(0px)'
-    playerWonScreen.className = 'hide'
-
-    // Set Pig at initial position
-    pig.style.left = '40%';
-    pig.style.transform = 'none'
-
-    // Remove any remaining flying knife from the DOM 
-    let knives = document.querySelectorAll('.knife')
-    knives.forEach( (el) => el.remove())
-
-    // Reset state of all fruits
-    fruits.forEach( (divFruits) => { 
-      divFruits.style.transform = 'translateX(0px)' 
-      let fruitSpans = divFruits.querySelectorAll('span.fruit')
-
-      fruitSpans.forEach( (fruit) => { fruit.classList.remove("eaten") })
-    })
-
-  }
-
   moveScenario() {
     // The player doesn NOT move; it's the background that moves
 
     let knivesDOM = document.querySelectorAll('.knife')     // only take knives in DOM
+
+    console.log("ABANS this.xBg1", this.xBg1, "this.xBg2", this.xBg2)
+
 
     if (this.player.direction === 1 && !this.player.didReachTheEnd()) {
       // goes RIGHT and scenario moves if RIGHT limit is not reached
@@ -110,10 +85,9 @@ class Game {
       this.xBg2 += 5
       knivesDOM.forEach( (k) => this.moveKnife(k) )        
 
-    } else if (this.player.direction === 0) {      
-      // then make sure he does not move                  
-      return
-    }
+    } 
+
+    console.log("DESPRES this.xBg1", this.xBg1, "this.xBg2", this.xBg2)
 
     firstLayerBg.style.transform = `translateX(${this.xBg1}px)`
     secondLayerBg.style.transform = `translateX(${this.xBg2}px)`
@@ -125,7 +99,6 @@ class Game {
       // Piggy WON!!!!!!
       this.playerWon()
     }
-
   }
 
   playerWon() {
@@ -135,12 +108,11 @@ class Game {
     pig.style.transform = 'scale(1.3) translateY(-20px)'
     pig.style.transition = 'all 2s'
 
-    // Game is finished
+    // Stop checking Pain and throwing knives!!
     clearInterval(checkPainID)
     clearInterval(deleteKnivesID)
     clearInterval(throwKnivesID)
 
-    // Remove any remaining flying knife from the DOM 
     let knives = document.querySelectorAll('.knife')
     knives.forEach( (el) => el.remove())
 
@@ -246,7 +218,7 @@ class Game {
         this.deleteKnife(knife)
         this.player.removeLive()
 
-        if (this.isGameOver() ) this.callGameOver()
+        if (this.isGameOver() ) this.callGameFinished()
         return false
       }
       return true
@@ -264,14 +236,12 @@ class Game {
     });
   }
 
-  callGameOver() {
+  callGameFinished() {
     // Game is finished
 
     clearInterval(checkPainID)
     clearInterval(deleteKnivesID)
     clearInterval(throwKnivesID)
-
-    showGameOver()
 
     //Butcher stops moving
     butcher.classList.remove("moving")
@@ -283,6 +253,29 @@ class Game {
     // Remove any remaining flying knife from the DOM 
     let knives = document.querySelectorAll('.knife')
     knives.forEach( (el) => el.remove())
+
+    firstLayerBg.style.transform = 'translateX(0px)'
+    secondLayerBg.style.transform = 'translateX(0px)'
+    playerWonScreen.className = 'hide'
+
+    // Set Pig at initial position
+    pig.style.left = '40%';
+    pig.style.transform = 'translateX(0px)'
+
+    this.player.fruitsCollected = 0
+    this.xBg1 = 0
+    this.xBg2 = 0
+    this.xFruits = 0
+
+    // Reset state of all fruits
+    document.getElementById('dialog-the-end-sentence').textContent = "Piggy, you need to collect 10 fruits!"
+
+    fruits.forEach( (divFruits) => { 
+      divFruits.style.transform = 'translateX(0px)' 
+      let fruitSpans = divFruits.querySelectorAll('span.fruit')
+
+      fruitSpans.forEach( (fruit) => { fruit.classList.remove("eaten") })
+    })
   }
 
 }

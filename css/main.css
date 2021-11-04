@@ -165,6 +165,10 @@ body .butterfly2, body .butterfly4 {
   margin-top: 40px;
 }
 
+#game-over {
+  background-color: #B7EEFF;
+}
+
 /* ================ Splash Screen ================ */
 #splash-screen {
   background-color: #B7EEFF;
@@ -302,7 +306,7 @@ body .butterfly2, body .butterfly4 {
   height: 140px;
   position: absolute;
   bottom: 30px;
-  left: 30%;
+  left: 40%;
   z-index: 3;
   transition: transform 0.5s;
 }
@@ -550,7 +554,7 @@ body .butterfly2, body .butterfly4 {
   }
 }
 #game-board .butterfly1 {
-  top: 350px;
+  top: 320px;
   left: 80px;
 }
 #game-board .butterfly2 {

@@ -20,76 +20,92 @@ let game,
 
 const loadGameElements = () => {
   
-  // elements in Splash screen
+  // elements in SPLASH screen
   splashScreen = document.getElementById('splash-screen')
   let startButton = document.getElementById("start-game")
-  startButton.addEventListener("click", showGameScreen)
 
-  // elements in Game screen
-  gameBoard = document.getElementById('game-board')
-  let endButton = document.getElementById("stop-game")
-  endButton.addEventListener("click", ()=> {
-    game.callGameOver()
+  startButton.addEventListener("click",()=> {
+    if (game != null && game != undefined) game.callGameFinished()
+    createNewGame()
+    showGameScreen()
   })
 
-  // elements in Game over screen
+
+  // elements in GAME screen
+  gameBoard = document.getElementById('game-board')
+  let endButton = document.getElementById("stop-game")
+
+  endButton.addEventListener("click", ()=> {
+    game.callGameFinished()
+    showGameOver()
+  })
+
+
+  // elements in GAME OVER screen
   gameOverScreen = document.getElementById('game-over')
   let restartButton = document.getElementById("restart-game")
-  restartButton.addEventListener("click", showGameScreen)
 
-  // elements in Player Won screen
+  restartButton.addEventListener("click",()=> {
+    game.callGameFinished()
+    createNewGame()
+    showGameScreen()
+  })
+  
+
+  // elements in WIN screen
   playerWonScreen = document.getElementById('player-won')
   let playAgainButton = document.getElementById("play-again")
+
   playAgainButton.addEventListener("click", ()=> {
+    game.callGameFinished()
     showSplashScreen()
     playerWonScreen.className = 'hide'
   })
+
 
   // set initial classes
   splashScreen.className = 'show'
   gameBoard.className = 'hide'
   gameOverScreen.className = 'hide'
   playerWonScreen.className = 'hide'
-  
+
 };
 
 // Game Over Screen
 const showSplashScreen = () => {
-
   splashScreen.className = 'show'
   gameOverScreen.className = 'hide'
   gameBoard.className = 'hide'
-
 };
 
 
 // Game Screen
 const showGameScreen = () => {
-
-  if (game != null && game != undefined) {
-    // game object already exists (we are restarting the game)
-    // So let's DELETE THE OLD GAME INSTANCE by setting it to null
-    game = null 
-  } 
-
   gameBoard.className = 'show'
   splashScreen.className = 'hide'
   gameOverScreen.className = 'hide'
-
-  game = new Game()
-  game.initScenario()
-  counterKnives = 1
-  game.start()
 };
 
 // Game Over Screen
 const showGameOver = () => {
-
   gameOverScreen.className = 'show'
   splashScreen.className = 'hide'
   gameBoard.className = 'hide'
-
 };
+
+function createNewGame() {
+
+  if (game != null && game != undefined) {     // Delete the Old Game Instance (if exists) by setting it to null
+    game = null 
+  } 
+
+  firstLayerBg.style.transform = 'translateX(0px)'
+  secondLayerBg.style.transform = 'translateX(0px)'
+
+  game = new Game()
+  counterKnives = 1
+  game.start()
+}
 
 const isVisible = (element) => {
 
