@@ -462,6 +462,7 @@ body .butterfly2, body .butterfly4 {
   height: auto;
   position: absolute;
   z-index: 3;
+  transform: translateX(10px);
   transition: transform 0.3s 0s;
 }
 #game-board .knife img {
@@ -490,6 +491,7 @@ body .butterfly2, body .butterfly4 {
 }
 #game-board .landscape .first-layer-bg,
 #game-board .landscape .second-layer-bg {
+  transform: translateX(0px);
   transition: transform 0.3s;
 }
 #game-board .landscape .first-layer-bg {
@@ -655,6 +657,9 @@ body .butterfly2, body .butterfly4 {
 }
 #game-board .carrots2 span.fruit {
   height: 60px;
+}
+#game-board .strawberries2 {
+  left: 4300px;
 }
 #game-board .dialog {
   font-family: "Source Code Pro", monospace;

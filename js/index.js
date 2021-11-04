@@ -13,6 +13,7 @@ let game,
     checkPainID = null,                                     // setInterval that checks pain
     deleteKnivesID = null,                                  // setInterval that deletes lost knives
     throwKnivesID = null,                                   // setInterval that throws knives
+    knivesAnimationID = null,                               // requestAnimationFrame for knives moving
     audioPigEats = new Audio('img/audio-pig-eats.mp3'),
     audioPigWins = new Audio('img/audio-pig-wins.mp3');
 

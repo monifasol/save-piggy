@@ -347,6 +347,7 @@ body {
         height: auto;
         position: absolute;
         z-index: 3;
+        transform: translateX(0px);          // initial state
         transition: transform 0.3s 0s;
 
         img {
@@ -374,6 +375,7 @@ body {
 
         .first-layer-bg, 
         .second-layer-bg {
+            transform: translateX(0px);          // initial state
             transition: transform 0.3s;
         }
 
@@ -520,6 +522,11 @@ body {
             height: 60px;       
         }      
     }
+
+    .strawberries2 {
+        left: 4300px;
+    }
+
 
     .dialog {
         font-family: 'Source Code Pro', monospace;

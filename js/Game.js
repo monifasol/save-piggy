@@ -51,15 +51,6 @@ class Game {
       checkPainID = setInterval(() => { if (!this.isGameOver()) this.checkPain() }, 100)
       deleteKnivesID = setInterval( ()=> { this.deleteLostKnives() }, 2000)
     }, 2000)
-    
-  
-    // if I don't use the this.handleKeyDown, then inside my function 
-    // this.moveScenario does not exist!!!! Like here:
-    /* document.body.addEventListener("keydown", function (event) {
-        // BLA BLA BLA 
-        this.moveScenario()
-        event.preventDefault();
-      }, true);  */
 
   }
 
@@ -74,7 +65,7 @@ class Game {
       this.xBg1 -= 15
       this.xBg2 -= 5
       knivesDOM.forEach( (k) =>  {
-        window.requestAnimationFrame(this.moveKnife.bind(this, k))  
+        knivesAnimationID = window.requestAnimationFrame(this.moveKnife.bind(this, k))  
       })        
 
     } else if (this.player.direction === -1 && this.xBg2 < 0) {
@@ -83,7 +74,7 @@ class Game {
       this.xBg1 += 15
       this.xBg2 += 5
       knivesDOM.forEach( (k) =>  {
-        window.requestAnimationFrame(this.moveKnife.bind(this, k))  
+        knivesAnimationID = window.requestAnimationFrame(this.moveKnife.bind(this, k))  
       })  
     } 
 
@@ -117,6 +108,7 @@ class Game {
     clearInterval(checkPainID)
     clearInterval(deleteKnivesID)
     clearInterval(throwKnivesID)
+    clearInterval(knivesAnimationID)
 
     let knives = document.querySelectorAll('.knife')
     knives.forEach( (el) => el.remove())
@@ -131,6 +123,8 @@ class Game {
     // Need to extract the Number of the previous "transform translate", to accumulate on it.
     let prevTranslate = element.style.transform
     let newValue = ""
+
+    console.log("prevTranslate", prevTranslate)
 
     if (this.player.direction === 1) newValue = this.moveKnifeBackwards(prevTranslate)
     if (this.player.direction === -1) newValue = this.moveKnifeForwards(prevTranslate)
@@ -248,7 +242,9 @@ class Game {
     clearInterval(checkPainID)
     clearInterval(deleteKnivesID)
     clearInterval(throwKnivesID)
-
+    clearInterval(knivesAnimationID)
+    knivesAnimationID = null
+    
     //Butcher stops moving
     butcher.classList.remove("moving")
 
@@ -260,8 +256,8 @@ class Game {
     let knives = document.querySelectorAll('.knife')
     knives.forEach( (el) => el.remove())
 
-    firstLayerBg.style.transform = 'unset'
-    secondLayerBg.style.transform = 'unset'
+    firstLayerBg.style.transform = 'translateX(0px)'
+    secondLayerBg.style.transform = 'translateX(0px)'
     playerWonScreen.className = 'hide'
 
     // Set Pig at initial position
