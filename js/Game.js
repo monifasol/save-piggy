@@ -119,7 +119,7 @@ class Game {
     fruits.forEach( (divFruits) => { divFruits.style.transform = `translateX(${this.xFruits}px)` })
 
     // If Piggy reached the end and picked up all fruits, then Piggy moves directly to The End.
-    if (this.player.direction === 1 && this.player.didReachTheEnd() && this.player.fruitsCollected >= 2) {
+    if (this.player.direction === 1 && this.player.didReachTheEnd() && this.player.fruitsCollected >= 10) {
       
       // Piggy WON!!!!!!
       this.playerWon()

@@ -20,6 +20,7 @@ body {
         border-radius: 10px;
         font-size: 16px;
         transition: all 1s;
+        z-index: 3;
 
         &:hover {
             background-color: white;
@@ -85,18 +86,111 @@ body {
 
 /* ================ Splash Screen ================ */
 #splash-screen { 
+    background-color: #B7EEFF;
 
-    h1 {
-        margin: 10px 0 50px 0;
-        font-size: 40px;
+    .sun {
+        @include floating-soft;
+        width: 140px;
+        position: absolute;
+        top: 20px;
+        left: 20px; 
     }
 
-    .description {
-        width: 400px;
-        margin: 30px auto;
-        font-size: 16px;
-        line-height: 1.6em;
+    .pig {
+        @include floating-soft;
+        position: absolute;
+        right: 50px;
+        bottom: 200px;
+        width: 150px;
     }
+
+    .butterfly1, .butterfly2, .butterfly3, .butterfly4 {
+        width: 30px;
+        position: absolute;
+    }
+
+    .butterfly1, .butterfly3 {
+        @include floating(3s);
+    }
+
+    .butterfly2, .butterfly4 {
+        @include floating(2.5s);
+    }
+    .butterfly1 {
+        top: 300px;
+        left: 100px; 
+    }
+
+    .butterfly2 {
+        top: 100px;
+        right: 100px; 
+    }
+
+    .butterfly3 {
+        bottom: 100px;
+        right: 180px; 
+    }
+
+    .butterfly4 {
+        bottom: 140px;
+        left: 180px; 
+    }
+
+    .screen-elements {
+        //border: 3px solid black;
+        border: solid 5px pink;
+        border-radius: 20px;
+        padding: 12px 20px;
+        width: 500px;
+        height: 500px;
+        line-height: 30px;
+        font-size: 15px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        overflow: hidden;
+
+        .bg-layer1, .bg-layer2 {
+            width: 100%;
+            position: absolute;
+            left: 0px;
+            z-index: 0;
+        }
+
+        .bg-layer1 {
+            top: 240px;
+        }
+        .bg-layer2 {
+            top: 50px;
+        }
+
+        .text-wrapper {
+
+            background-color: rgba($color: white, $alpha: 0.4);
+            padding: 20px 0;
+            z-index: 1;
+            border-radius: 20px;
+
+            h1 {
+                margin: 10px 0 30px 0;
+                font-size: 50px;
+            }
+        
+            .description {
+                width: 400px;
+                margin: 30px auto;
+                font-size: 20px;
+                line-height: 1.6em;
+            }
+        }
+        .btn {
+            margin-top: 30px;
+        }
+
+    }
+
 }
 
 /* ================ Game over Screen ================ */
@@ -338,7 +432,7 @@ body {
         transition: transform 0.3s;
 
         span.fruit {
-            @include floating;
+            @include floating(1.6s);
             position: absolute;
             height: 40px;
             top: 0px;
@@ -467,7 +561,6 @@ body {
         position: absolute;
         bottom: 10px;
         left: 10px;
-        z-index: 2;
     }
 }
 

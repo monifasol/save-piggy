@@ -68,6 +68,7 @@ body .btn {
   border-radius: 10px;
   font-size: 16px;
   transition: all 1s;
+  z-index: 3;
 }
 body .btn:hover {
   background-color: white;
@@ -125,15 +126,150 @@ body .btn:hover {
 }
 
 /* ================ Splash Screen ================ */
-#splash-screen h1 {
-  margin: 10px 0 50px 0;
-  font-size: 40px;
+#splash-screen {
+  background-color: #B7EEFF;
 }
-#splash-screen .description {
+#splash-screen .sun {
+  animation-name: floating-soft;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+  animation-fill-mode: forwards;
+  width: 140px;
+  position: absolute;
+  top: 20px;
+  left: 20px;
+}
+@keyframes floating-soft {
+  0% {
+    transform: translateY(0%);
+  }
+  50% {
+    transform: translateY(8%);
+  }
+  100% {
+    transform: translateY(0%);
+  }
+}
+#splash-screen .pig {
+  animation-name: floating-soft;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+  animation-fill-mode: forwards;
+  position: absolute;
+  right: 50px;
+  bottom: 200px;
+  width: 150px;
+}
+@keyframes floating-soft {
+  0% {
+    transform: translateY(0%);
+  }
+  50% {
+    transform: translateY(8%);
+  }
+  100% {
+    transform: translateY(0%);
+  }
+}
+#splash-screen .butterfly1, #splash-screen .butterfly2, #splash-screen .butterfly3, #splash-screen .butterfly4 {
+  width: 30px;
+  position: absolute;
+}
+#splash-screen .butterfly1, #splash-screen .butterfly3 {
+  animation-name: floating;
+  animation-duration: 3s;
+  animation-iteration-count: infinite;
+  animation-fill-mode: forwards;
+}
+@keyframes floating {
+  0% {
+    transform: translateY(0%);
+  }
+  50% {
+    transform: translateY(30%);
+  }
+  100% {
+    transform: translateY(0%);
+  }
+}
+#splash-screen .butterfly2, #splash-screen .butterfly4 {
+  animation-name: floating;
+  animation-duration: 2.5s;
+  animation-iteration-count: infinite;
+  animation-fill-mode: forwards;
+}
+@keyframes floating {
+  0% {
+    transform: translateY(0%);
+  }
+  50% {
+    transform: translateY(30%);
+  }
+  100% {
+    transform: translateY(0%);
+  }
+}
+#splash-screen .butterfly1 {
+  top: 300px;
+  left: 100px;
+}
+#splash-screen .butterfly2 {
+  top: 100px;
+  right: 100px;
+}
+#splash-screen .butterfly3 {
+  bottom: 100px;
+  right: 180px;
+}
+#splash-screen .butterfly4 {
+  bottom: 140px;
+  left: 180px;
+}
+#splash-screen .screen-elements {
+  border: solid 5px pink;
+  border-radius: 20px;
+  padding: 12px 20px;
+  width: 500px;
+  height: 500px;
+  line-height: 30px;
+  font-size: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+#splash-screen .screen-elements .bg-layer1, #splash-screen .screen-elements .bg-layer2 {
+  width: 100%;
+  position: absolute;
+  left: 0px;
+  z-index: 0;
+}
+#splash-screen .screen-elements .bg-layer1 {
+  top: 240px;
+}
+#splash-screen .screen-elements .bg-layer2 {
+  top: 50px;
+}
+#splash-screen .screen-elements .text-wrapper {
+  background-color: rgba(255, 255, 255, 0.4);
+  padding: 20px 0;
+  z-index: 1;
+  border-radius: 20px;
+}
+#splash-screen .screen-elements .text-wrapper h1 {
+  margin: 10px 0 30px 0;
+  font-size: 50px;
+}
+#splash-screen .screen-elements .text-wrapper .description {
   width: 400px;
   margin: 30px auto;
-  font-size: 16px;
+  font-size: 20px;
   line-height: 1.6em;
+}
+#splash-screen .screen-elements .btn {
+  margin-top: 30px;
 }
 
 /* ================ Game over Screen ================ */
@@ -545,7 +681,6 @@ body .btn:hover {
   position: absolute;
   bottom: 10px;
   left: 10px;
-  z-index: 2;
 }
 
 /*# sourceMappingURL=main.css.map */

@@ -124,9 +124,9 @@
 
 // Elements floating (example: clouds, fruits)
 
-@mixin floating {
+@mixin floating($duration) {
     animation-name: floating;
-    animation-duration: 1.6s;
+    animation-duration: $duration;
     animation-iteration-count: infinite;
     animation-fill-mode: forwards;
   
@@ -135,4 +135,17 @@
       50% { transform: translateY(30%); }
       100% { transform: translateY(0%); }
     }
+}
+
+@mixin floating-soft {
+  animation-name: floating-soft;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+  animation-fill-mode: forwards;
+
+  @keyframes floating-soft {
+    0% { transform: translateY(0%); }
+    50% { transform: translateY(8%); }
+    100% { transform: translateY(0%); }
   }
+}

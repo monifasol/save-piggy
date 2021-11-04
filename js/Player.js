@@ -15,14 +15,14 @@ class Player {
     const pig = document.getElementById('pig')
     pig.className = 'jump'
 
-    // remove jump effect after the animation is done (1 second)
+    // remove jump effect after the animation is finished (1 second)
     setTimeout( () => {
       pig.classList.remove('jump')
     } , 1000)
   }
 
   didEatFruit() {
-    
+
     let allFruits = document.querySelectorAll('.fruit')
 
     allFruits.forEach( (fruit) => {
