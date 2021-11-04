@@ -142,7 +142,7 @@ body {
         .pig {
             width: 100%;
             height: 100%;
-            background-image: url('/img/pig-walk.png');
+            background-image: url('img/pig-walk.png');
             background-repeat: no-repeat;
             background-size: contain;
             margin-top: -10px;
@@ -180,7 +180,7 @@ body {
         &.jump {
             @include jump;
             .pig {
-                background-image: url('/img/pig-jump.png');
+                background-image: url('img/pig-jump.png');
                 background-repeat: no-repeat;
                 background-size: contain;
                 margin-top: -50px;
@@ -278,7 +278,7 @@ body {
         }
 
         .herbs-layer-bg {
-            background-image: url('/img/herbs.png');
+            background-image: url('img/herbs.png');
             background-repeat: repeat-x;
             background-size: contain;
             background-position: bottom;
@@ -290,7 +290,7 @@ body {
         }
 
         .first-layer-bg {
-            background-image: url('/img/first-layer-bg.png');
+            background-image: url('img/first-layer-bg.png');
             background-repeat: repeat-x;
             background-size: contain;
             background-position: bottom;
@@ -308,7 +308,7 @@ body {
             display: flex;
 
             .second-layer-bg {
-                background-image: url('/img/second-layer-bg.png');
+                background-image: url('img/second-layer-bg.png');
                 background-repeat: repeat-x;
                 background-size: contain;
                 background-position: bottom;

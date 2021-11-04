@@ -70,7 +70,8 @@ class Game {
   initScenario() {
     firstLayerBg.style.transform = 'translateX(0px)'
     secondLayerBg.style.transform = 'translateX(0px)'
-    
+    playerWonScreen.className = 'hide'
+
     // Set Pig at initial position
     pig.style.left = '40%';
     pig.style.transform = 'none'
@@ -86,6 +87,7 @@ class Game {
 
       fruitSpans.forEach( (fruit) => { fruit.classList.remove("eaten") })
     })
+
   }
 
   moveScenario() {
@@ -121,19 +123,16 @@ class Game {
       
       // Piggy WON!!!!!!
       this.playerWon()
-
-      let frameGameRight = frameGame.getBoundingClientRect().right
-      pig.style.left = `${frameGameRight - 250 }px`
-      pig.style.transform = 'scale(1.3) translateY(-20px)'
-      pig.style.transition = 'all 2s'
-
-      setTimeout( () => { playerWonScreen.className = 'show' }, 1500 )
-      
     }
 
   }
 
   playerWon() {
+
+    let frameGameRight = frameGame.getBoundingClientRect().right
+    pig.style.left = `${frameGameRight - 250 }px`
+    pig.style.transform = 'scale(1.3) translateY(-20px)'
+    pig.style.transition = 'all 2s'
 
     // Game is finished
     clearInterval(checkPainID)
@@ -144,8 +143,8 @@ class Game {
     let knives = document.querySelectorAll('.knife')
     knives.forEach( (el) => el.remove())
 
-    // SHOW WIN SCREEN!!!
-
+    // SHOW WIN SCREEN
+    setTimeout( () => { playerWonScreen.className = 'show' }, 1500 )
   }
 
   moveKnife(element) {
