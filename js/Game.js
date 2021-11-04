@@ -149,23 +149,15 @@ class Game {
 
   moveKnife(element) {
 
-    // X didn't change (it was created where Hand's Butcher is) - only changed Y, by falling.
+    // X didn't change (x is where Butcher is); only Y changed when knife falls.
     // Need to extract the Number of the previous "transform translate", to accumulate on it.
+    let prevTranslate = element.style.transform
+    let newValue = ""
 
-    try {
-
-      let prevTranslate = element.style.transform
-      let newValue = ""
-
-      if (this.player.direction === 1) newValue = this.moveKnifeBackwards(prevTranslate)
-      if (this.player.direction === -1) newValue = this.moveKnifeForwards(prevTranslate)
-    
-      element.style.transform = `translateX(${newValue}px)`
-
-    } catch(err) {
-      console.log(`Hey Moni, you got an error! ${err}`, err)
-    }
-
+    if (this.player.direction === 1) newValue = this.moveKnifeBackwards(prevTranslate)
+    if (this.player.direction === -1) newValue = this.moveKnifeForwards(prevTranslate)
+  
+    element.style.transform = `translateX(${newValue}px)`
   }
 
   moveKnifeBackwards(prevTranslate) {
@@ -214,8 +206,6 @@ class Game {
     newKnife.throwKnife()
     this.knives.push(newKnife)
     counterKnives++
-
-    console.log('I just created a new knife: ', newKnife)
   }
 
   isGameOver() {
@@ -230,8 +220,6 @@ class Game {
     // delete knife from game.knives
     let positionKnife = this.knives.indexOf(knife)        
     this.knives.splice(positionKnife, 1)
-
-    //console.log("This knife is deleted:", knife);
   }
 
   checkPain() {

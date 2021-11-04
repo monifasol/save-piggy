@@ -22,9 +22,7 @@ class Player {
   }
 
   didEatFruit() {
-
-    //console.log(`I'm checking if Piggy ate a fruit`)
-
+    
     let allFruits = document.querySelectorAll('.fruit')
 
     allFruits.forEach( (fruit) => {
@@ -38,10 +36,6 @@ class Player {
       let rightFruit = fruit.getBoundingClientRect().right
 
       let yummy = document.querySelector('#pig .yummy')
-
-      // I really don't understand Why this works:
-      //console.log('Im checking this fruit', fruit)
-      //console.log("leftPig", leftPig, "rightPig", rightPig, "leftFruit", leftFruit, "rightFruit", rightFruit)
 
       if (leftPig < leftFruit && rightPig > rightFruit) {
         
