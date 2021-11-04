@@ -170,7 +170,7 @@ body .btn:hover {
 #game-board #pig .pig {
   width: 100%;
   height: 100%;
-  background-image: url("/save-piggy/img/pig-walk.png");
+  background-image: url("../img/pig-walk.png");
   background-repeat: no-repeat;
   background-size: contain;
   margin-top: -10px;
@@ -255,7 +255,7 @@ body .btn:hover {
   }
 }
 #game-board #pig.jump .pig {
-  background-image: url("/save-piggy/img/pig-jump.png");
+  background-image: url("../img/pig-jump.png");
   background-repeat: no-repeat;
   background-size: contain;
   margin-top: -50px;
@@ -353,7 +353,7 @@ body .btn:hover {
   transition: transform 0.3s;
 }
 #game-board .landscape .herbs-layer-bg {
-  background-image: url("/save-piggy/img/herbs.png");
+  background-image: url("../img/herbs.png");
   background-repeat: repeat-x;
   background-size: contain;
   background-position: bottom;
@@ -364,7 +364,7 @@ body .btn:hover {
   z-index: 2;
 }
 #game-board .landscape .first-layer-bg {
-  background-image: url("/save-piggy/img/first-layer-bg.png");
+  background-image: url("../img/first-layer-bg.png");
   background-repeat: repeat-x;
   background-size: contain;
   background-position: bottom;
@@ -381,7 +381,7 @@ body .btn:hover {
   display: flex;
 }
 #game-board .landscape .second-layer-bg-wrapper .second-layer-bg {
-  background-image: url("/save-piggy/img/second-layer-bg.png");
+  background-image: url("../img/second-layer-bg.png");
   background-repeat: repeat-x;
   background-size: contain;
   background-position: bottom;
