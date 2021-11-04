@@ -13,6 +13,7 @@ body {
         font-family: 'Source Code Pro', monospace;
         background-color: pink;
         border: solid 1px rosybrown;
+        filter: drop-shadow(8px 8px 12px #fff);
         padding: 12px 40px;
         display: inline-block;
         cursor: pointer;
@@ -26,6 +27,21 @@ body {
             background-color: white;
         }
     }
+
+    .butterfly1, .butterfly2, .butterfly3, .butterfly4 {
+        width: 30px;
+        position: absolute;
+        z-index: 3;
+    }
+
+    .butterfly1, .butterfly3 {
+        @include floating(3s);
+    }
+
+    .butterfly2, .butterfly4 {
+        @include floating(2.5s);
+    }
+
 }
 
 #splash-screen,
@@ -104,18 +120,6 @@ body {
         width: 150px;
     }
 
-    .butterfly1, .butterfly2, .butterfly3, .butterfly4 {
-        width: 30px;
-        position: absolute;
-    }
-
-    .butterfly1, .butterfly3 {
-        @include floating(3s);
-    }
-
-    .butterfly2, .butterfly4 {
-        @include floating(2.5s);
-    }
     .butterfly1 {
         top: 300px;
         left: 100px; 
@@ -139,6 +143,7 @@ body {
     .screen-elements {
         //border: 3px solid black;
         border: solid 5px pink;
+        filter: drop-shadow(0px 14px 14px #fff);
         border-radius: 20px;
         padding: 12px 20px;
         width: 500px;
@@ -320,22 +325,12 @@ body {
     }
 
     .butcher {
-        width: 100px;
-        height: 100px;
-        background-color: chocolate;
-        border-radius: 10px;
         position: absolute;
         top: 30px;
         left: 20%;  // starts after the title 
-        
-        .hand { 
-            width: 20px;
-            height: 20px;
-            background-color: black;
-            border-radius: 50%;
-            position: absolute;
-            top: 0px;
-            right: -10px;
+
+        img {
+            width: 150px;
         }
 
         &.moving {
@@ -422,6 +417,36 @@ body {
                 }
             }
         }
+    }
+
+    // Floating elements 
+
+    .sun {
+        @include floating-soft;
+        width: 140px;
+        position: absolute;
+        top: 30px;
+        left: 120px; 
+    }
+
+    .butterfly1 {
+        top: 350px;
+        left: 80px; 
+    }
+
+    .butterfly2 {
+        display: none; 
+    }
+
+    .butterfly3 {
+        top: 200px;
+        right: 40%; 
+        transform: scaleX(-1);
+    }
+
+    .butterfly4 {
+        top: 210px;
+        left: 150px;
     }
 
     // Fruits

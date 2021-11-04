@@ -61,6 +61,7 @@ body .btn {
   font-family: "Source Code Pro", monospace;
   background-color: pink;
   border: solid 1px rosybrown;
+  filter: drop-shadow(8px 8px 12px #fff);
   padding: 12px 40px;
   display: inline-block;
   cursor: pointer;
@@ -72,6 +73,45 @@ body .btn {
 }
 body .btn:hover {
   background-color: white;
+}
+body .butterfly1, body .butterfly2, body .butterfly3, body .butterfly4 {
+  width: 30px;
+  position: absolute;
+  z-index: 3;
+}
+body .butterfly1, body .butterfly3 {
+  animation-name: floating;
+  animation-duration: 3s;
+  animation-iteration-count: infinite;
+  animation-fill-mode: forwards;
+}
+@keyframes floating {
+  0% {
+    transform: translateY(0%);
+  }
+  50% {
+    transform: translateY(30%);
+  }
+  100% {
+    transform: translateY(0%);
+  }
+}
+body .butterfly2, body .butterfly4 {
+  animation-name: floating;
+  animation-duration: 2.5s;
+  animation-iteration-count: infinite;
+  animation-fill-mode: forwards;
+}
+@keyframes floating {
+  0% {
+    transform: translateY(0%);
+  }
+  50% {
+    transform: translateY(30%);
+  }
+  100% {
+    transform: translateY(0%);
+  }
 }
 
 #splash-screen.show,
@@ -131,7 +171,7 @@ body .btn:hover {
 }
 #splash-screen .sun {
   animation-name: floating-soft;
-  animation-duration: 2s;
+  animation-duration: 3s;
   animation-iteration-count: infinite;
   animation-fill-mode: forwards;
   width: 140px;
@@ -152,7 +192,7 @@ body .btn:hover {
 }
 #splash-screen .pig {
   animation-name: floating-soft;
-  animation-duration: 2s;
+  animation-duration: 3s;
   animation-iteration-count: infinite;
   animation-fill-mode: forwards;
   position: absolute;
@@ -166,44 +206,6 @@ body .btn:hover {
   }
   50% {
     transform: translateY(8%);
-  }
-  100% {
-    transform: translateY(0%);
-  }
-}
-#splash-screen .butterfly1, #splash-screen .butterfly2, #splash-screen .butterfly3, #splash-screen .butterfly4 {
-  width: 30px;
-  position: absolute;
-}
-#splash-screen .butterfly1, #splash-screen .butterfly3 {
-  animation-name: floating;
-  animation-duration: 3s;
-  animation-iteration-count: infinite;
-  animation-fill-mode: forwards;
-}
-@keyframes floating {
-  0% {
-    transform: translateY(0%);
-  }
-  50% {
-    transform: translateY(30%);
-  }
-  100% {
-    transform: translateY(0%);
-  }
-}
-#splash-screen .butterfly2, #splash-screen .butterfly4 {
-  animation-name: floating;
-  animation-duration: 2.5s;
-  animation-iteration-count: infinite;
-  animation-fill-mode: forwards;
-}
-@keyframes floating {
-  0% {
-    transform: translateY(0%);
-  }
-  50% {
-    transform: translateY(30%);
   }
   100% {
     transform: translateY(0%);
@@ -227,6 +229,7 @@ body .btn:hover {
 }
 #splash-screen .screen-elements {
   border: solid 5px pink;
+  filter: drop-shadow(0px 14px 14px #fff);
   border-radius: 20px;
   padding: 12px 20px;
   width: 500px;
@@ -426,22 +429,12 @@ body .btn:hover {
   transform: rotate(-20deg);
 }
 #game-board .butcher {
-  width: 100px;
-  height: 100px;
-  background-color: chocolate;
-  border-radius: 10px;
   position: absolute;
   top: 30px;
   left: 20%;
 }
-#game-board .butcher .hand {
-  width: 20px;
-  height: 20px;
-  background-color: black;
-  border-radius: 50%;
-  position: absolute;
-  top: 0px;
-  right: -10px;
+#game-board .butcher img {
+  width: 150px;
 }
 #game-board .butcher.moving {
   animation-name: moving;
@@ -534,6 +527,43 @@ body .btn:hover {
   right: 100px;
   top: 0px;
   z-index: 9999;
+}
+#game-board .sun {
+  animation-name: floating-soft;
+  animation-duration: 3s;
+  animation-iteration-count: infinite;
+  animation-fill-mode: forwards;
+  width: 140px;
+  position: absolute;
+  top: 30px;
+  left: 120px;
+}
+@keyframes floating-soft {
+  0% {
+    transform: translateY(0%);
+  }
+  50% {
+    transform: translateY(8%);
+  }
+  100% {
+    transform: translateY(0%);
+  }
+}
+#game-board .butterfly1 {
+  top: 350px;
+  left: 80px;
+}
+#game-board .butterfly2 {
+  display: none;
+}
+#game-board .butterfly3 {
+  top: 200px;
+  right: 40%;
+  transform: scaleX(-1);
+}
+#game-board .butterfly4 {
+  top: 210px;
+  left: 150px;
 }
 #game-board .fruits {
   z-index: 1;

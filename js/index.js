@@ -8,7 +8,6 @@ let game,
     secondLayerBg = document.querySelector('.second-layer-bg'),
     fruits = document.querySelectorAll('.fruits'),
     butcher = document.querySelector('.butcher'),
-    butcherHand = document.querySelector('.hand'),
     pig = document.getElementById('pig'),
     frameGame = document.querySelector('.frame-game'),
     checkPainID = null,                                     // setInterval that checks pain
@@ -16,13 +15,6 @@ let game,
     throwKnivesID = null,                                   // setInterval that throws knives
     audioPig = new Audio('img/audio-pig.mp3');
 
-
-// Cross browser requestAnimationFrame:
-window.requestAnimationFrame = window.requestAnimationFrame
-|| window.mozRequestAnimationFrame
-|| window.webkitRequestAnimationFrame
-|| window.msRequestAnimationFrame
-|| function(f){setTimeout(f, 1000/60)}
 
 // Load all Game elements
 
@@ -36,27 +28,29 @@ const loadGameElements = () => {
   // elements in Game screen
   gameBoard = document.getElementById('game-board')
   let endButton = document.getElementById("stop-game")
-  endButton.addEventListener("click", showGameOver)
+  endButton.addEventListener("click", ()=> {
+    game.callGameOver()
+  })
 
   // elements in Game over screen
   gameOverScreen = document.getElementById('game-over')
   let restartButton = document.getElementById("restart-game")
   restartButton.addEventListener("click", showGameScreen)
 
-  // elements in Game over screen
+  // elements in Player Won screen
   playerWonScreen = document.getElementById('player-won')
   let playAgainButton = document.getElementById("play-again")
   playAgainButton.addEventListener("click", ()=> {
-    showSplashScreen
+    showSplashScreen()
     playerWonScreen.className = 'hide'
   })
-
 
   // set initial classes
   splashScreen.className = 'show'
   gameBoard.className = 'hide'
   gameOverScreen.className = 'hide'
   playerWonScreen.className = 'hide'
+  
 };
 
 // Game Over Screen

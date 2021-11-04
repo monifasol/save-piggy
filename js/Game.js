@@ -65,6 +65,7 @@ class Game {
         this.moveScenario()
         event.preventDefault();
       }, true);  */
+
   }
 
   initScenario() {
@@ -197,11 +198,9 @@ class Game {
 
   throwKnives() {
           
-    let boardTop = gameBoard.getBoundingClientRect().top
-    let butcherHandPosition = butcherHand.getBoundingClientRect().right
-    let y = parseInt(boardTop)                            // top of the board 
-    let x = parseInt(butcherHandPosition)                 // where the butcher hand is
-    let newKnife =  new Knife(x, y, counterKnives)         
+    let butcherPosition = butcher.getBoundingClientRect().right
+    let x = parseInt(butcherPosition) - 70        // butche position minus a bit of his width
+    let newKnife =  new Knife(x, counterKnives)         
     
     newKnife.throwKnife()
     this.knives.push(newKnife)

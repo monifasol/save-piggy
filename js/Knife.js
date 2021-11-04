@@ -1,8 +1,8 @@
 class Knife {
-  constructor(x, y, id) {
+  constructor(x, id) {
     this.id = id;
-    this.x = x;             // Initial X is where the butcher hand is
-    this.y = y;             // Initial Y is the top of the board
+    this.x = x;                // Initial X is where the butcher is
+    this.y = 200;              // Initial Y is the top of the game
   }
 
   throwKnife() {
