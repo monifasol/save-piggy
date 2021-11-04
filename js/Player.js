@@ -1,7 +1,7 @@
 class Player {
 
   constructor() {
-    this.lives = 5
+    this.lives = 6
     this.fruitsCollected = 0
     this.direction = 0
   }  

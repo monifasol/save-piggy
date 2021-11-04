@@ -9,7 +9,7 @@ class Game {
 
   start() {
     // Show game board, create a Player, and start throwing knives
-
+     
     this.boardGame = document.getElementById("game-board")
     this.player = new Player()
     this.startEnemyMovement()
@@ -237,6 +237,9 @@ class Game {
   }
 
   callGameFinished() {
+
+    console.log("I CALLED callGameFinished !!! ")
+
     // Game is finished
 
     clearInterval(checkPainID)

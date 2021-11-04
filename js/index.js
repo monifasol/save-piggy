@@ -16,10 +16,11 @@ let game,
     audioPig = new Audio('img/audio-pig.mp3');
 
 
+
 // Load all Game elements
 
 const loadGameElements = () => {
-  
+
   // elements in SPLASH screen
   splashScreen = document.getElementById('splash-screen')
   let startButton = document.getElementById("start-game")
@@ -60,7 +61,6 @@ const loadGameElements = () => {
     showSplashScreen()
     playerWonScreen.className = 'hide'
   })
-
 
   // set initial classes
   splashScreen.className = 'show'

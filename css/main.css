@@ -81,7 +81,7 @@ body .butterfly1, body .butterfly2, body .butterfly3, body .butterfly4 {
 }
 body .butterfly1, body .butterfly3 {
   animation-name: floating;
-  animation-duration: 3s;
+  animation-duration: 2.5s;
   animation-iteration-count: infinite;
   animation-fill-mode: forwards;
 }
@@ -98,7 +98,7 @@ body .butterfly1, body .butterfly3 {
 }
 body .butterfly2, body .butterfly4 {
   animation-name: floating;
-  animation-duration: 2.5s;
+  animation-duration: 2s;
   animation-iteration-count: infinite;
   animation-fill-mode: forwards;
 }
@@ -561,9 +561,8 @@ body .butterfly2, body .butterfly4 {
   display: none;
 }
 #game-board .butterfly3 {
-  top: 200px;
-  right: 40%;
-  transform: scaleX(-1);
+  top: 130px;
+  left: 300px;
 }
 #game-board .butterfly4 {
   top: 210px;
@@ -683,6 +682,7 @@ body .butterfly2, body .butterfly4 {
 }
 #game-board .lives-left {
   display: flex;
+  justify-content: space-between;
 }
 #game-board .lives-left span.live {
   border: solid 1px salmon;
@@ -715,6 +715,35 @@ body .butterfly2, body .butterfly4 {
   position: absolute;
   bottom: 10px;
   left: 10px;
+  width: 130px;
+  font-size: 15px;
+  text-align: center;
+}
+#game-board .btn-commands {
+  font-family: "Source Code Pro", monospace;
+  background-color: #eaeaea;
+  border: solid 1px grey;
+  position: absolute;
+  left: 10px;
+  width: 130px;
+  padding: 12px 10px;
+  display: inline-block;
+  cursor: pointer;
+  color: black;
+  border-radius: 10px;
+  font-size: 15px;
+  transition: all 1s;
+  z-index: 3;
+  text-align: center;
+}
+#game-board .btn-commands#how-to-go-forwards {
+  bottom: 60px;
+}
+#game-board .btn-commands#how-to-go-backwards {
+  bottom: 110px;
+}
+#game-board .btn-commands#how-to-jump {
+  bottom: 160px;
 }
 
 /*# sourceMappingURL=main.css.map */

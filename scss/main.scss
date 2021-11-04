@@ -35,11 +35,11 @@ body {
     }
 
     .butterfly1, .butterfly3 {
-        @include floating(3s);
+        @include floating(2.5s);
     }
 
     .butterfly2, .butterfly4 {
-        @include floating(2.5s);
+        @include floating(2s);
     }
 
 }
@@ -442,9 +442,8 @@ body {
     }
 
     .butterfly3 {
-        top: 200px;
-        right: 40%; 
-        transform: scaleX(-1);
+        top: 130px;
+        left: 300px;
     }
 
     .butterfly4 {
@@ -550,6 +549,7 @@ body {
 
         &-left {
             display: flex;
+            justify-content: space-between;
 
             span.live {
                 border: solid 1px salmon;
@@ -589,7 +589,39 @@ body {
         position: absolute;
         bottom: 10px;
         left: 10px;
+        width: 130px;
+        font-size: 15px;
+        text-align: center;
     }
+
+    .btn-commands {
+        font-family: 'Source Code Pro', monospace;
+        background-color: #eaeaea;
+        border: solid 1px grey;
+        position: absolute;
+        left: 10px;
+        width: 130px;
+        padding: 12px 10px;
+        display: inline-block;
+        cursor: pointer;
+        color: black;
+        border-radius: 10px;
+        font-size: 15px;
+        transition: all 1s;
+        z-index: 3;
+        text-align: center;
+
+        &#how-to-go-forwards {
+            bottom: 60px;
+        }
+        &#how-to-go-backwards {
+            bottom: 110px;
+        }
+        &#how-to-jump {
+            bottom: 160px;
+        }
+    }
+
 }
 
 

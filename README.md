@@ -11,17 +11,16 @@ Dodge the knives thrown from the sky, while collecting all the fruits in the fie
 
 **The game rules:**
 
-- The player is the pig
-- When the game starts, the butcher will start follow the pig. 
-- The butcher will throw knives to the pig trying to kill him. 
-- We don't want the pig to die so our objective it's to save him.
-- The pig wins when he arrives to the end having collected all fruits and being still alive.
+- The player is Piggy, the pig.
+- When the game starts, the butcher will start following the pig and throwing knives to him form the sky. 
+- We don't want Piggy to die so our objective it's to save him.
+- Piggy wins when he arrives to The End having collected all fruits and being still alive.
 
 **The game controls:**
 
 - We control the player with the controls:
     - Right arrow to move forward
-    - Left arriw to move backwards
+    - Left arrow to move backwards
     - Space bar to jump
 
 **Requirements**
