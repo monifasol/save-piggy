@@ -434,11 +434,11 @@ body .butterfly2, body .butterfly4 {
 }
 #game-board .butcher {
   position: absolute;
-  top: 30px;
+  top: 10px;
   left: 20%;
 }
 #game-board .butcher img {
-  width: 150px;
+  width: 220px;
 }
 #game-board .butcher.moving {
   animation-name: moving;
@@ -462,7 +462,7 @@ body .butterfly2, body .butterfly4 {
   height: auto;
   position: absolute;
   z-index: 3;
-  transform: translateX(10px);
+  transform: translateX(0px);
   transition: transform 0.3s 0s;
 }
 #game-board .knife img {
