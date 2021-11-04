@@ -92,20 +92,6 @@ const showGameOver = () => {
   gameBoard.className = 'hide'
 };
 
-function createNewGame() {
-
-  if (game != null && game != undefined) {     // Delete the Old Game Instance (if exists) by setting it to null
-    game = null 
-  } 
-
-  firstLayerBg.style.transform = 'translateX(0px)'
-  secondLayerBg.style.transform = 'translateX(0px)'
-
-  game = new Game()
-  counterKnives = 1
-  game.start()
-}
-
 const isVisible = (element) => {
 
   let rect = element.getBoundingClientRect();
@@ -127,6 +113,20 @@ const areTouching = (el1, el2) => {
   
   return collisionX && collisionY;
 
+}
+
+function createNewGame() {
+
+  if (game != null && game != undefined) {     // Delete the Old Game Instance (if exists) by setting it to null
+    game = null 
+  } 
+
+  firstLayerBg.style.transform = 'unset'
+  secondLayerBg.style.transform = 'unset'
+
+  game = new Game()
+  counterKnives = 1
+  game.start()
 }
 
 window.addEventListener("load", loadGameElements)

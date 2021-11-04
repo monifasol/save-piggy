@@ -9,11 +9,11 @@ class Game {
 
   start() {
     // Show game board, create a Player, and start throwing knives
-     
+
     this.boardGame = document.getElementById("game-board")
     this.player = new Player()
     this.startEnemyMovement()
-
+    
     this.handleKeyDown = (event) => {
       if (event.defaultPrevented) return; 
 
@@ -40,7 +40,6 @@ class Game {
 
       // Move scenario as pig walks
       this.moveScenario()
-      event.preventDefault()
     };
 
     document.body.addEventListener("keydown", this.handleKeyDown);
@@ -257,18 +256,13 @@ class Game {
     let knives = document.querySelectorAll('.knife')
     knives.forEach( (el) => el.remove())
 
-    firstLayerBg.style.transform = 'translateX(0px)'
-    secondLayerBg.style.transform = 'translateX(0px)'
+    firstLayerBg.style.transform = 'unset'
+    secondLayerBg.style.transform = 'unset'
     playerWonScreen.className = 'hide'
 
     // Set Pig at initial position
     pig.style.left = '40%';
     pig.style.transform = 'translateX(0px)'
-
-    this.player.fruitsCollected = 0
-    this.xBg1 = 0
-    this.xBg2 = 0
-    this.xFruits = 0
 
     // Reset state of all fruits
     document.getElementById('dialog-the-end-sentence').textContent = "Piggy, you need to collect 10 fruits!"
