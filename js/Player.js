@@ -1,4 +1,4 @@
-class Player {
+class Player {  
 
   constructor() {
     this.lives = 6
@@ -39,7 +39,7 @@ class Player {
 
       if (leftPig < leftFruit && rightPig > rightFruit) {
         
-        setTimeout(() => { audioPig.play() }, 400)
+        setTimeout(() => { audioPigEats.play() }, 400)
         
         // With a little delay, because pig takes 1 second to jump
         setTimeout(() => { yummy.classList.add('visible') }, 800)

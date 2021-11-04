@@ -13,8 +13,16 @@ let game,
     checkPainID = null,                                     // setInterval that checks pain
     deleteKnivesID = null,                                  // setInterval that deletes lost knives
     throwKnivesID = null,                                   // setInterval that throws knives
-    audioPig = new Audio('img/audio-pig.mp3');
+    audioPigEats = new Audio('img/audio-pig.mp3'),
+    audioPigWins = new Audio('img/audio-pig-wins.mp3');
 
+
+// Cross browser requestAnimationFrame method:
+window.requestAnimationFrame = window.requestAnimationFrame
+|| window.mozRequestAnimationFrame
+|| window.webkitRequestAnimationFrame
+|| window.msRequestAnimationFrame
+|| function(f){setTimeout(f, 1000/60)}
 
 
 // Load all Game elements
@@ -120,9 +128,6 @@ function createNewGame() {
   if (game != null && game != undefined) {     // Delete the Old Game Instance (if exists) by setting it to null
     game = null 
   } 
-
-  firstLayerBg.style.transform = 'unset'
-  secondLayerBg.style.transform = 'unset'
 
   game = new Game()
   counterKnives = 1

@@ -1,4 +1,5 @@
-class Game {
+class Game {    
+  
   constructor() {
     this.player = null
     this.knives = new Array()
@@ -67,9 +68,6 @@ class Game {
 
     let knivesDOM = document.querySelectorAll('.knife')     // only take knives in DOM
 
-    console.log("ABANS this.xBg1", this.xBg1, "this.xBg2", this.xBg2)
-
-
     if (this.player.direction === 1 && !this.player.didReachTheEnd()) {
       // goes RIGHT and scenario moves if RIGHT limit is not reached
       this.xFruits -= 22
@@ -85,12 +83,8 @@ class Game {
       knivesDOM.forEach( (k) => this.moveKnife(k) )        
 
     } 
-
-    console.log("DESPRES this.xBg1", this.xBg1, "this.xBg2", this.xBg2)
-
-    firstLayerBg.style.transform = `translateX(${this.xBg1}px)`
-    secondLayerBg.style.transform = `translateX(${this.xBg2}px)`
-    fruits.forEach( (divFruits) => { divFruits.style.transform = `translateX(${this.xFruits}px)` })
+    
+    window.requestAnimationFrame(this.moveElements.bind(this))
 
     // If Piggy reached the end and picked up all fruits, then Piggy moves directly to The End.
     if (this.player.direction === 1 && this.player.didReachTheEnd() && this.player.fruitsCollected >= 10) {
@@ -100,12 +94,21 @@ class Game {
     }
   }
 
+  moveElements() {
+    firstLayerBg.style.transform = `translateX(${this.xBg1}px)`
+    secondLayerBg.style.transform = `translateX(${this.xBg2}px)`
+    fruits.forEach( (divFruits) => { divFruits.style.transform = `translateX(${this.xFruits}px)` })
+
+  }
+
   playerWon() {
 
     let frameGameRight = frameGame.getBoundingClientRect().right
     pig.style.left = `${frameGameRight - 250 }px`
     pig.style.transform = 'scale(1.3) translateY(-20px)'
     pig.style.transition = 'all 2s'
+
+    audioPigWins.play()
 
     // Stop checking Pain and throwing knives!!
     clearInterval(checkPainID)
@@ -236,8 +239,6 @@ class Game {
   }
 
   callGameFinished() {
-
-    console.log("I CALLED callGameFinished !!! ")
 
     // Game is finished
 
