@@ -6,6 +6,7 @@ class Game {
     this.xBg1 = 0
     this.xBg2 = 0
     this.xFruits = 0
+    this.speedKnives = 15
   }
 
   start() {
@@ -57,26 +58,21 @@ class Game {
   moveScenario() {
     // The player doesn NOT move; it's the background that moves
 
-    let knivesDOM = document.querySelectorAll('.knife')     // only take knives in DOM
-
     if (this.player.direction === 1 && !this.player.didReachTheEnd()) {
       // goes RIGHT and scenario moves if RIGHT limit is not reached
-      this.xFruits -= 22
-      this.xBg1 -= 15
-      this.xBg2 -= 5
-      knivesDOM.forEach( (k, i) =>  {
-        window.requestAnimationFrame(this.moveKnife.bind(this, k))  
-      })        
+      this.moveBgsBackwards()
 
     } else if (this.player.direction === -1 && this.xBg2 < 0) {
       // goes left and scenario moves if LEFT limit is not reached
-      this.xFruits += 22
-      this.xBg1 += 15
-      this.xBg2 += 5
-      knivesDOM.forEach( (k) =>  {
-        window.requestAnimationFrame(this.moveKnife.bind(this, k))  
-      })  
+      this.moveBgsForwards()
+
     } 
+
+    // if Piggy didn't reach any of the limits, thne we move the knives
+    if ((this.player.direction === 1 && !this.player.didReachTheEnd()) || ((this.player.direction === -1 && this.xBg2 < 0))) {
+      window.requestAnimationFrame(this.moveKnifes.bind(this))  
+      //window.requestAnimationFrame(this.moveKnife.bind(this, k))  
+    }
 
     window.requestAnimationFrame(this.moveElements.bind(this))
 
@@ -88,11 +84,64 @@ class Game {
     }
   }
 
+  moveBgsBackwards() {
+    this.xFruits -= 22
+    this.xBg1 -= 15
+    this.xBg2 -= 5      
+  }
+
+  moveBgsForwards() {
+    this.xFruits += 22
+    this.xBg1 += 15
+    this.xBg2 += 5 
+  }
+
   moveElements() {
     firstLayerBg.style.transform = `translateX(${this.xBg1}px)`
     secondLayerBg.style.transform = `translateX(${this.xBg2}px)`
     fruits.forEach( (divFruits) => { divFruits.style.transform = `translateX(${this.xFruits}px)` })
 
+  }
+
+  moveKnifes() {
+
+    // X didn't change (x is where Butcher is); only Y changed when knife falls.
+    // Need to extract the Number of the previous "transform translate", to accumulate on it.
+
+    let knivesDOM = document.querySelectorAll('.knife')     // only take knives in DOM
+
+    knivesDOM.forEach( (element) =>  {
+      let newValue = this.moveSingleKnife(element, this.player.direction)
+      element.style.transform = `translateX(${newValue}px)`
+    }) 
+  }
+
+  moveSingleKnife(element, direction) {
+    let newValue = 0
+    let prevValue = 0
+    let prevTranslate = element.style.transform
+
+    if (prevTranslate == "" || prevTranslate == undefined) {   // then it's the first fime we apply "transform translate"
+      newValue = `${this.speedKnives}`
+
+    } else {
+
+      prevValue = this.getPreviousKnifeTransformValue(prevTranslate)
+
+      if (direction === 1) {
+        newValue = parseInt(prevValue) - this.speedKnives
+        if (prevValue > 0) newValue = `-${newValue}`        // otherwise I will have two "--"
+
+      } else if (direction === -1) {
+        newValue = parseInt(prevValue) + this.speedKnives
+      }
+    }
+    return newValue
+  }
+
+  getPreviousKnifeTransformValue(prevTranslate) {
+    let positionPx = prevTranslate.indexOf('px')
+    return prevTranslate.slice(11, positionPx)      // position 11 because starts by "translateX("
   }
 
   playerWon() {
@@ -114,52 +163,6 @@ class Game {
 
     // SHOW WIN SCREEN
     setTimeout( () => { playerWonScreen.className = 'show' }, 1500 )
-  }
-
-  moveKnife(element) {
-
-    // X didn't change (x is where Butcher is); only Y changed when knife falls.
-    // Need to extract the Number of the previous "transform translate", to accumulate on it.
-    let prevTranslate = element.style.transform
-    let newValue = ""
-
-    console.log("prevTranslate", prevTranslate)
-
-    if (this.player.direction === 1) newValue = this.moveKnifeBackwards(prevTranslate)
-    if (this.player.direction === -1) newValue = this.moveKnifeForwards(prevTranslate)
-      
-    element.style.transform = `translateX(${newValue}px)`
-  }
-
-  moveKnifeBackwards(prevTranslate) {
-
-    let newValue = 0;
-
-    if (prevTranslate == "" || prevTranslate == undefined) {   // then it's the first fime we apply "transform translate"
-      newValue = -20
-    } else {
-      let positionPx = prevTranslate.indexOf('px')
-      let prevValue = prevTranslate.slice(11, positionPx)      // position 11 because starts by "translateX("
-      newValue = parseInt(prevValue) - 20
-    }
-
-    return newValue
-  }
-
-  moveKnifeForwards(prevTranslate) {
-
-    let newValue = 0;
-
-    if (prevTranslate == "" || prevTranslate == undefined) {    // then it's the first fime we apply "transform translate"
-      newValue = 20
-    } else {
-
-      let positionPx = prevTranslate.indexOf('px')
-      let prevValue = prevTranslate.slice(11, positionPx)       // position 11 because starts by "translateX("
-      newValue = parseInt(prevValue) + 20
-    }
-
-    return newValue
   }
 
   startEnemyMovement() {

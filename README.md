@@ -2,7 +2,7 @@
 
 **Introduction**
 
-Develop a basic game for the browser (only for desktop) to train DOM manipulation, Vanila Javascript classes and objects, HTML and CSS animations, etc. 
+Develop a basic game for the browser to train DOM manipulation, Vanila Javascript classes and objects, HTML and CSS animations. 
 
 ## The Game
 
