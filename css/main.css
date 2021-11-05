@@ -436,6 +436,7 @@ body .butterfly2, body .butterfly4 {
   position: absolute;
   top: 10px;
   left: 20%;
+  filter: drop-shadow(3px 8px 10px #fff);
 }
 #game-board .butcher img {
   width: 220px;
