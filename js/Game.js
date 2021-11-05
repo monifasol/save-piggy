@@ -244,7 +244,9 @@ class Game {
     clearInterval(checkPainID)
     clearInterval(deleteKnivesID)
     clearInterval(throwKnivesID)
-    
+    audioMainTheme.pause()
+    audioMainTheme.currentTime = 0
+
     //Butcher stops moving
     butcher.classList.remove("moving")
 
