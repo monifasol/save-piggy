@@ -501,13 +501,13 @@ body .butterfly2, body .butterfly4 {
   background-size: contain;
   background-position: bottom;
   height: 45vh;
-  width: 4500px;
+  width: 4800px;
   position: absolute;
   bottom: 0;
   z-index: 1;
 }
 #game-board .landscape .second-layer-bg-wrapper {
-  width: 2250px;
+  width: 2400px;
   position: absolute;
   top: 150px;
   display: flex;
@@ -632,7 +632,7 @@ body .butterfly2, body .butterfly4 {
   left: 240px;
 }
 #game-board .peaches {
-  left: 600px;
+  left: 640px;
 }
 #game-board .strawberries {
   left: 1200px;

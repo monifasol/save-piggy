@@ -386,14 +386,14 @@ body {
             background-size: contain;
             background-position: bottom;
             height: 45vh;
-            width: 4500px;
+            width: 4800px;
             position: absolute;
             bottom: 0;
             z-index: 1;
         }
 
         .second-layer-bg-wrapper {
-            width: 2250px;     // doble size, because it will move half speed
+            width: 2400px;     // doble size, because it will move half speed
             position: absolute;
             top: 150px;
             display: flex;
@@ -488,7 +488,7 @@ body {
     }
 
     .peaches {
-        left: 600px;
+        left: 640px;
     }
 
     .strawberries {
