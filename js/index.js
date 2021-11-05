@@ -16,7 +16,8 @@ let game,
     knivesAnimationID = null,                               // requestAnimationFrame for knives moving
     audioPigEats = new Audio('img/audio-pig-eats.mp3'),
     audioPigWins = new Audio('img/audio-pig-wins.mp3'),
-    audioMainTheme = new Audio('img/audio-main-theme.mp3');
+    audioMainTheme = new Audio('img/audio-main-theme.mp3'),
+    audioPain = new Audio('img/audio-pig-pain.ogg');
 
 
 // Cross browser requestAnimationFrame method:
@@ -135,6 +136,7 @@ function createNewGame() {
   counterKnives = 1
   game.start()
   audioMainTheme.play()
+  audioMainTheme.volume = 0.2;
 }
 
 window.addEventListener("load", loadGameElements)

@@ -121,8 +121,9 @@ class Game {
     let prevValue = 0
     let prevTranslate = element.style.transform
 
-    if (prevTranslate == "" || prevTranslate == undefined) {   // then it's the first fime we apply "transform translate"
+    if (prevTranslate == "" || prevTranslate == undefined) {    // then it's the first fime we apply "transform translate"
       newValue = `${this.speedKnives}`
+      if (prevValue === 0) newValue = -newValue                 // if prevValue was 0, then newValue will be at -15
 
     } else {
 
@@ -130,12 +131,12 @@ class Game {
 
       if (direction === 1) {
         newValue = parseInt(prevValue) - this.speedKnives
-        if (prevValue > 0) newValue = `-${newValue}`        // otherwise I will have two "--"
-
+        
       } else if (direction === -1) {
         newValue = parseInt(prevValue) + this.speedKnives
       }
     }
+
     return newValue
   }
 
@@ -203,6 +204,8 @@ class Game {
       
       if ( areTouching(knifeDOM, pigDOM) ) {
 
+        audioPain.play()
+
         let dialog = document.querySelector('.dialog-lives')
         let ouch = document.querySelector('#pig .ouch')
   
@@ -241,6 +244,8 @@ class Game {
 
     // Game is finished
 
+    showGameOver()
+    
     clearInterval(checkPainID)
     clearInterval(deleteKnivesID)
     clearInterval(throwKnivesID)
