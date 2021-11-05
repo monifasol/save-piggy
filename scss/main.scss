@@ -610,7 +610,7 @@ body {
         font-size: 15px;
         transition: all 1s;
         z-index: 3;
-        text-align: center;
+        text-align: left;
 
         &#how-to-go-forwards {
             bottom: 60px;
@@ -619,6 +619,12 @@ body {
             bottom: 110px;
         }
         &#how-to-jump {
+            background-image: url();
+            background-image: url('../img/space-command.png');
+            background-repeat: no-repeat;
+            background-position: 10px;
+            background-size: 13px;
+            padding-left: 36px;
             bottom: 160px;
         }
     }
